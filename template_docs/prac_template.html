@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Рабочая программа практики</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 10mm 20mm 30mm;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            line-height: 1;
+            color: #000;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .title-page {
+            page-break-after: always;
+        }
+
+        .org-line {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1;
+            text-indent: 0;
+        }
+
+        .org-gap {
+            margin-top: 6pt;
+        }
+
+        .blank-title-135 {
+            font-family: "Times New Roman", serif;
+            font-size: 13.5pt;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1;
+            text-indent: 0;
+        }
+
+        .blank-title-16 {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1;
+            text-indent: 0;
+        }
+
+        .blank-title-14 {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1;
+            text-indent: 0;
+        }
+
+        .main-title {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1;
+            text-indent: 0;
+        }
+
+        .program-line {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1;
+            text-indent: 0;
+        }
+
+        .speciality-line {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-style: italic;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1;
+            margin-top: 6pt;
+            text-indent: 0;
+        }
+
+        .city-year {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1;
+            text-indent: 0;
+        }
+
+        .second-page {
+            page-break-after: auto;
+        }
+
+        .body-indent,
+        .body-indent-small,
+        .body-no-indent,
+        .body-left {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            line-height: 1;
+        }
+
+        .body-indent {
+            text-align: justify;
+            text-indent: 1.25cm;
+        }
+
+        .body-indent-small {
+            text-align: justify;
+            text-indent: 1cm;
+        }
+
+        .body-no-indent {
+            text-align: justify;
+            text-indent: 0;
+        }
+
+        .body-left {
+            text-align: left;
+            text-indent: 0;
+        }
+
+        .signature-caption {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-style: italic;
+            font-weight: normal;
+            text-align: left;
+            text-indent: 0;
+            line-height: 1;
+            padding-left: 4.15cm;
+        }
+
+        .agreement-caption {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-style: italic;
+            font-weight: normal;
+            text-align: left;
+            text-indent: 0;
+            line-height: 1;
+            padding-left: 1.25cm;
+        }
+
+        .contents-page {
+            page-break-before: always;
+        }
+
+        .practice-contents-title {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+            text-indent: 0;
+        }
+
+        .practice-contents-blank {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 0;
+            line-height: 1;
+        }
+
+        .practice-contents-table {
+            width: 16.75cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            border: none;
+        }
+
+        .practice-contents-table col {
+            width: 15.5cm;
+        }
+
+        .practice-contents-table td {
+            border: none;
+            padding: 0;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+            text-align: left;
+            vertical-align: top;
+            background: transparent;
+            color: #000;
+        }
+
+        .practice-contents-numbered {
+            padding-left: 0.63cm !important;
+            text-indent: 0;
+            text-transform: uppercase;
+        }
+
+        .practice-contents-num {
+            display: inline-block;
+            width: 0.64cm;
+        }
+
+        .practice-contents-under-number {
+            display: block;
+            margin-left: 0;
+        }
+
+        .practice-contents-appendix {
+            padding-left: 0.63cm !important;
+            text-transform: none;
+        }
+
+        .practice-contents-row-04 td {
+            height: 0.4cm;
+        }
+
+        .practice-contents-row-05 td {
+            height: 0.5cm;
+        }
+
+        .practice-contents-row-08 td {
+            height: 0.8cm;
+        }
+
+        .practice-contents-row-12 td {
+            height: 1.2cm;
+        }
+
+        .practice-contents-row-18 td {
+            height: 1.8cm;
+        }
+
+        .practice-program-page {
+            page-break-before: always;
+        }
+
+        .practice-section-title,
+        .practice-section2-title,
+        .practice-subtitle,
+        .practice-subheading-hanging,
+        .practice-paragraph,
+        .practice-task {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            line-height: 1;
+            color: #000;
+        }
+
+        .practice-section-title {
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 0 0 6pt 0;
+        }
+
+        .practice-section2-title {
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .practice-subtitle {
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 6pt 0 0 0;
+        }
+
+        .practice-subheading-hanging {
+            font-weight: bold;
+            text-align: justify;
+            padding-left: 1.89cm;
+            text-indent: -0.64cm;
+            margin: 6pt 0 0 0;
+        }
+
+        .practice-paragraph {
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 0;
+        }
+
+        .practice-paragraph-after-6 {
+            margin-bottom: 6pt;
+        }
+
+        .practice-task {
+            font-weight: normal;
+            text-align: justify;
+            padding-left: 1.89cm;
+            text-indent: -0.63cm;
+            margin: 0;
+        }
+
+        .practice-competencies-table {
+            width: 17cm;
+            margin-left: -0.26cm;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .practice-competencies-table col:first-child {
+            width: 3cm;
+        }
+
+        .practice-competencies-table col:last-child {
+            width: 14cm;
+        }
+
+        .practice-competencies-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            line-height: 1;
+            color: #000;
+            background: transparent;
+        }
+
+        .practice-competencies-head td {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .practice-competencies-head td:last-child {
+            vertical-align: middle;
+        }
+
+        .practice-competency-code {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .practice-competency-desc {
+            text-align: justify;
+            vertical-align: top;
+        }
+
+        .practice-competency-group {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .practice-competency-activity {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .practice-section-numbered-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            padding-left: 1.27cm;
+            text-indent: -0.64cm;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .practice-subtitle-plain {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 0;
+        }
+
+        .practice-subtitle-plain-after-6 {
+            margin-top: 6pt;
+        }
+
+        .practice-subtitle-bold {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 0;
+        }
+
+        .practice-subtitle-bold-after-6 {
+            margin-top: 6pt;
+        }
+
+        .practice-subtitle-before-6 {
+            margin-top: 6pt;
+        }
+
+        .practice-section4-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            padding-left: 0;
+            text-indent: 1.25cm;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .practice-section5-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            padding-left: 0;
+            text-indent: 1.25cm;
+            margin: 0 0 6pt 0;
+            text-transform: uppercase;
+        }
+
+        .practice-section6-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 6pt 0 0 0;
+            text-transform: uppercase;
+        }
+
+        .practice-subtitle-61 {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            padding-left: 0;
+            text-indent: 1.25cm;
+            margin: 6pt 0 0 0;
+        }
+
+        .practice-paragraph-before-6 {
+            margin-top: 6pt;
+        }
+
+        .practice-paragraph-indent-1 {
+            text-indent: 1.25cm;
+        }
+
+        .practice-underlined-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            text-indent: 1.25cm;
+            text-decoration: underline;
+            margin: 0;
+        }
+
+        .practice-underlined-left-indent {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            padding-left: 1.25cm;
+            text-indent: 0;
+            text-decoration: underline;
+            margin: 0;
+        }
+
+        .practice-underlined-title-before-6 {
+            margin-top: 6pt;
+        }
+
+        .practice-subtitle-64 {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 0;
+        }
+
+        .practice-bullet-127,
+        .practice-bullet-227,
+        .practice-bullet-252,
+        .practice-bullet-doc {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            line-height: 1;
+            color: #000;
+            text-align: justify;
+            margin: 0;
+            text-indent: 1.25cm;
+        }
+
+        .practice-evaluation-table {
+            width: 16.48cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            page-break-inside: auto;
+        }
+
+        .practice-evaluation-table col:nth-child(1) {
+            width: 4.73cm;
+        }
+
+        .practice-evaluation-table col:nth-child(2) {
+            width: 8cm;
+        }
+
+        .practice-evaluation-table col:nth-child(3) {
+            width: 3.74cm;
+        }
+
+        .practice-evaluation-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            line-height: 1;
+            color: #000;
+            background: transparent;
+            vertical-align: top;
+            overflow-wrap: break-word;
+            word-break: normal;
+        }
+
+        .practice-evaluation-head td {
+            font-weight: bold;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .practice-evaluation-result,
+        .practice-evaluation-criteria,
+        .practice-evaluation-method {
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .practice-appendix-page {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            page-break-before: always;
+        }
+
+        .practice-appendix-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 13pt;
+            font-weight: bold;
+            line-height: 1;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .practice-appendix-blank-13,
+        .practice-appendix-blank-14,
+        .practice-appendix-blank-12,
+        .practice-appendix-blank-12-115,
+        .practice-appendix-blank-13-bold {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-weight: normal;
+            text-align: center;
+            text-indent: 0;
+            margin: 0;
+        }
+
+        .practice-appendix-blank-13 {
+            font-size: 13pt;
+            line-height: 1;
+        }
+
+        .practice-appendix-blank-14 {
+            font-size: 14pt;
+            line-height: 1;
+        }
+
+        .practice-appendix-blank-12 {
+            font-size: 12pt;
+            line-height: 1;
+        }
+
+        .practice-appendix-blank-12-115 {
+            font-size: 12pt;
+            line-height: 1.15;
+        }
+
+        .practice-appendix-blank-13-bold {
+            font-size: 13pt;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .practice-appendix-subtitle {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 13pt;
+            font-style: italic;
+            font-weight: bold;
+            line-height: 1;
+            text-align: center;
+            text-indent: 0;
+            margin: 0;
+        }
+
+        .practice-appendix-main-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 13pt;
+            font-weight: bold;
+            line-height: 1;
+            text-align: center;
+            text-indent: 0;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .practice-appendix-line,
+        .practice-appendix-line-115 {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: normal;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 0;
+            margin: 0;
+        }
+
+        .practice-appendix-line {
+            line-height: 1;
+        }
+
+        .practice-appendix-line-115 {
+            line-height: 1.15;
+        }
+
+        .practice-appendix-caption {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            line-height: 1.15;
+            text-align: center;
+            text-indent: 0;
+            margin: 0;
+        }
+
+        .practice-appendix-caption-small {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 10pt;
+            font-style: italic;
+            font-weight: normal;
+            line-height: 1.15;
+            text-align: center;
+            text-indent: 0;
+            margin: 0;
+        }
+
+        .practice-appendix-arrival-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            line-height: 1.15;
+            text-align: center;
+            text-indent: 0;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .practice-appendix-individual-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            line-height: 1;
+            text-align: center;
+            text-indent: 0;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .practice-appendix-caption-italic {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 10pt;
+            font-style: italic;
+            font-weight: normal;
+            line-height: 1;
+            text-align: center;
+            text-indent: 0;
+            margin: 0;
+        }
+
+        .practice-appendix-caption-italic-left {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 10pt;
+            font-style: italic;
+            font-weight: normal;
+            line-height: 1;
+            text-align: center;
+            text-indent: 0;
+            margin: 0;
+        }
+
+        .practice-appendix-center-indent {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            line-height: 1;
+            text-align: center;
+            text-indent: 1cm;
+            margin: 0;
+        }
+
+        .practice-appendix-indent-line,
+        .practice-appendix-indent-line-15 {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1cm;
+            margin: 0;
+        }
+
+        .practice-appendix-indent-line {
+            line-height: 1;
+        }
+
+        .practice-appendix-indent-line-15 {
+            line-height: 1.5;
+        }
+
+        .practice-appendix-italic-inline {
+            font-style: italic;
+        }
+
+        .practice-appendix-work-table {
+            width: 16.5cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            line-height: 1;
+        }
+
+        .practice-appendix-work-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            height: 0;
+            min-height: 0;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+
+        .practice-appendix-work-num {
+            width: 1.74cm;
+            text-align: center;
+        }
+
+        .practice-appendix-work-name {
+            width: 11.75cm;
+            text-align: left;
+        }
+
+        .practice-appendix-work-hours {
+            width: 3.01cm;
+            text-align: center;
+        }
+
+        .practice-appendix-work-head td {
+            font-weight: bold;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .practice-appendix-sign-table {
+            width: 16.58cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-family: "Times New Roman", serif;
+            line-height: 1;
+        }
+
+        .practice-appendix-sign-table td {
+            border: none;
+            padding: 0 0.19cm;
+            height: 0.04cm;
+            min-height: 0.04cm;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+
+        .practice-appendix-sign-left {
+            width: 9.99cm;
+            text-align: justify;
+            font-size: 14pt;
+            font-weight: normal;
+        }
+
+        .practice-appendix-sign-note {
+            display: block;
+            font-size: 12pt;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .practice-appendix-sign-mid {
+            width: 3cm;
+            text-align: center;
+        }
+
+        .practice-appendix-sign-right {
+            width: 3.59cm;
+            text-align: center;
+        }
+
+        .practice-appendix-sign-line {
+            display: block;
+            font-size: 13pt;
+            font-weight: bold;
+        }
+
+        .practice-appendix-sign-caption {
+            display: block;
+            font-size: 10pt;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .practice-appendix-diary-title,
+        .practice-appendix-diary-subtitle {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 18pt;
+            font-weight: normal;
+            line-height: 1;
+            text-align: center;
+            text-indent: 0;
+            margin: 0;
+        }
+
+        .practice-appendix-blank-18 {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 18pt;
+            font-weight: normal;
+            line-height: 1;
+            text-align: center;
+            text-indent: 0;
+            margin: 0;
+        }
+
+        .practice-appendix-diary-title {
+            text-transform: uppercase;
+        }
+
+        .practice-appendix-diary-instruction-table {
+            width: 16.75cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            line-height: 1;
+        }
+
+        .practice-appendix-diary-instruction-table td {
+            border: none;
+            padding: 0 0.19cm;
+            height: 0;
+            min-height: 0;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+
+        .practice-appendix-diary-instruction-main {
+            text-align: left;
+            font-size: 12pt;
+            font-style: normal;
+            font-weight: normal;
+        }
+
+        .practice-appendix-diary-instruction-caption {
+            text-align: center;
+            font-size: 10pt;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .practice-appendix-diary-table {
+            width: 16.79cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            line-height: 1;
+        }
+
+        .practice-appendix-diary-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            height: 0;
+            min-height: 0;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+
+        .practice-appendix-diary-head td {
+            font-weight: bold;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .practice-appendix-diary-date {
+            width: 3.49cm;
+            text-align: center;
+        }
+
+        .practice-appendix-diary-desc {
+            width: 8cm;
+            text-align: left;
+        }
+
+        .practice-appendix-diary-grade {
+            width: 2.25cm;
+            text-align: center;
+        }
+
+        .practice-appendix-diary-sign {
+            width: 3.04cm;
+            text-align: center;
+        }
+
+        .practice-appendix-sign-left-12 {
+            width: 9.99cm;
+            text-align: justify;
+            font-size: 12pt;
+            font-weight: normal;
+        }
+
+        .practice-appendix-sign-caption-12 {
+            display: block;
+            font-size: 12pt;
+            font-style: italic;
+            font-weight: normal;
+        }
+
+        .practice-appendix-stamp {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 10pt;
+            font-weight: normal;
+            line-height: 1;
+            text-align: left;
+            text-indent: 0;
+            margin: 0;
+        }
+
+        .practice-appendix-note {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-style: italic;
+            font-weight: normal;
+            line-height: 1;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 0;
+        }
+
+        .practice-italic-blank {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-style: italic;
+            font-weight: normal;
+            line-height: 1;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin: 0;
+        }
+
+        .practice-stage-table {
+            width: 16.94cm;
+            margin-left: -0.2cm;
+            border-collapse: collapse;
+            table-layout: fixed;
+            page-break-inside: auto;
+        }
+
+        .practice-stage-table col:nth-child(1) {
+            width: 3.68cm;
+        }
+
+        .practice-stage-table col:nth-child(2) {
+            width: 8.25cm;
+        }
+
+        .practice-stage-table col:nth-child(3) {
+            width: 2cm;
+        }
+
+        .practice-stage-table col:nth-child(4) {
+            width: 3cm;
+        }
+
+        .practice-stage-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            font-weight: normal;
+            line-height: 1;
+            color: #000;
+            background: transparent;
+            overflow-wrap: break-word;
+            word-break: normal;
+        }
+
+        .practice-stage-table tr {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .practice-stage-head td {
+            height: 1.76cm;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .practice-stage-index td,
+        .practice-stage-hours,
+        .practice-stage-codes {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .practice-stage-cell {
+            font-size: 10pt !important;
+            text-align: center;
+            vertical-align: middle !important;
+            line-height: 0.95;
+        }
+
+        .practice-stage-cell-inner {
+            display: block;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .practice-stage-hours-head {
+            font-size: 9pt !important;
+            line-height: 0.9;
+            white-space: nowrap;
+            word-break: keep-all;
+            overflow-wrap: normal;
+            hyphens: none;
+        }
+
+        .practice-stage-hours-head span {
+            display: block;
+        }
+
+        .practice-stage-work {
+            padding: 0 !important;
+            text-align: left;
+            vertical-align: middle;
+            line-height: 1;
+            white-space: normal;
+        }
+
+        .practice-stage-total-label {
+            font-weight: bold !important;
+            text-align: right;
+            vertical-align: middle;
+        }
+
+        .practice-stage-total-hours {
+            font-weight: bold !important;
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-page">
+        <p class="org-line">МИНОБРНАУКИ РОССИИ</p>
+        <p class="org-line org-gap">ВЛАДИВОСТОКСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ</p>
+        <p class="org-line org-gap">КОЛЛЕДЖ ИНФОРМАЦИОННЫХ И КРЕАТИВНЫХ ТЕХНОЛОГИЙ</p>
+
+        {% for _ in range(11) %}
+            <p class="blank-title-135">&nbsp;</p>
+        {% endfor %}
+
+        <p class="main-title">РАБОЧАЯ ПРОГРАММА</p>
+        <p class="main-title">{{ practice_kind_title|e }} ПРАКТИКИ</p>
+        <p class="main-title">&nbsp;</p>
+        <p class="program-line">программы подготовки специалистов среднего звена</p>
+        <p class="speciality-line">{{ speciality_display|e }}</p>
+
+        {% for _ in range(5) %}
+            <p class="blank-title-16">&nbsp;</p>
+        {% endfor %}
+
+        <p class="program-line">Форма обучения: {{ study_form|e }}</p>
+
+        {% for _ in range(3) %}
+            <p class="blank-title-16">&nbsp;</p>
+        {% endfor %}
+
+        {% for _ in range(12) %}
+            <p class="blank-title-14">&nbsp;</p>
+        {% endfor %}
+
+        <p class="city-year">Владивосток {{ year|e }}</p>
+    </div>
+
+    <div class="second-page">
+        <p class="body-indent">Рабочая программа {{ practice_kind_text|e }} практики разработана в соответствии с требованиями Федерального государственного образовательного стандарта среднего профессионального образования по специальности {{ speciality|e }}, {{ speciality_name|e }}, утвержденного приказом Минобрнауки России от {{ order_day|e }} {{ order_month|e }} {{ order_year|e }} г. № {{ order_number|e }}, примерной образовательной программой.</p>
+        <p class="body-indent-small">&nbsp;</p>
+        <p class="body-indent-small">&nbsp;</p>
+        <p class="body-indent-small">&nbsp;</p>
+        <p class="body-indent-small">&nbsp;</p>
+        <p class="body-no-indent">Разработчик(и): {{ developer_name|e }}, {{ developer_position|e }}</p>
+        <p class="body-no-indent">&nbsp;</p>
+        <p class="body-no-indent">&nbsp;</p>
+        <p class="body-left">Рассмотрено и одобрено на заседании цикловой методической комиссии</p>
+        <p class="body-left">Протокол № {{ protocol_number|e }} от «{{ protocol_day|e }}» {{ protocol_month|e }} {{ protocol_year|e }} г.</p>
+        <p class="body-no-indent">&nbsp;</p>
+        <p class="body-no-indent">Председатель ЦМК _______________ {{ cmk_chair|e }}</p>
+        <p class="signature-caption">подпись</p>
+        <p class="body-no-indent">&nbsp;</p>
+        <p class="body-no-indent">&nbsp;</p>
+        <p class="body-no-indent">&nbsp;</p>
+        <p class="body-no-indent">&nbsp;</p>
+        <p class="body-no-indent">Согласовано: _______________ {{ approval_person|e }}</p>
+        <p class="agreement-caption">м.п.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;подпись</p>
+    </div>
+
+    <div class="contents-page">
+        <p class="practice-contents-title">СОДЕРЖАНИЕ</p>
+        <p class="practice-contents-blank">&nbsp;</p>
+        <table class="practice-contents-table">
+            <colgroup>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr class="practice-contents-row-08">
+                    <td class="practice-contents-numbered"><span class="practice-contents-num">1</span>ОБЩАЯ ХАРАКТЕРИСТИКА ПРОГРАММЫ ПРАКТИКИ</td>
+                </tr>
+                <tr class="practice-contents-row-18">
+                    <td class="practice-contents-numbered"><span class="practice-contents-num">2</span>ПЕРЕЧЕНЬ ПЛАНИРУЕМЫХ РЕЗУЛЬТАТОВ ОБУЧЕНИЯ ПРИ<span class="practice-contents-under-number">ПРОХОЖДЕНИИ ПРАКТИКИ, СООТНЕСЁННЫХ С ПЛАНИРУЕМЫМИ</span><span class="practice-contents-under-number">РЕЗУЛЬТАТАМИ ОСВОЕНИЯ ООП СПО</span></td>
+                </tr>
+                <tr class="practice-contents-row-08">
+                    <td class="practice-contents-numbered"><span class="practice-contents-num">3</span>ТЕМАТИЧЕСКИЙ ПЛАН И СОДЕРЖАНИЕ ПРАКТИКИ</td>
+                </tr>
+                <tr class="practice-contents-row-08">
+                    <td class="practice-contents-numbered"><span class="practice-contents-num">4</span>УСЛОВИЯ РЕАЛИЗАЦИИ ПРОГРАММЫ ПРАКТИКИ</td>
+                </tr>
+                <tr class="practice-contents-row-12">
+                    <td class="practice-contents-numbered"><span class="practice-contents-num">5</span>КОНТРОЛЬ И ОЦЕНКА РЕЗУЛЬТАТОВ ПРОХОЖДЕНИЯ<span class="practice-contents-under-number">ПРАКТИКИ</span></td>
+                </tr>
+                <tr class="practice-contents-row-12">
+                    <td class="practice-contents-numbered"><span class="practice-contents-num">6</span>МЕТОДИЧЕСКИЕ РЕКОМЕНДАЦИИ ПО ВЫПОЛНЕНИЮ<span class="practice-contents-under-number">ЗАДАНИЙ И ПО ПОДГОТОВКЕ ОТЧЕТА ПО ПРАКТИКЕ</span></td>
+                </tr>
+                <tr class="practice-contents-row-05">
+                    <td class="practice-contents-numbered"><span class="practice-contents-num">7</span>ПРИЛОЖЕНИЯ</td>
+                </tr>
+                <tr class="practice-contents-row-04">
+                    <td class="practice-contents-appendix">Приложение А. Макет направления на практику</td>
+                </tr>
+                <tr class="practice-contents-row-04">
+                    <td class="practice-contents-appendix">Приложение Б. Макет индивидуального задания на практику</td>
+                </tr>
+                <tr class="practice-contents-row-04">
+                    <td class="practice-contents-appendix">Приложение В. Пример оформления дневника практики</td>
+                </tr>
+                <tr class="practice-contents-row-04">
+                    <td class="practice-contents-appendix">Приложение Г. Рекомендации к оформлению отчета по практике</td>
+                </tr>
+                <tr class="practice-contents-row-04">
+                    <td class="practice-contents-appendix">Приложение Д. Образец оформления титульного листа отчета по практике</td>
+                </tr>
+                <tr class="practice-contents-row-04">
+                    <td class="practice-contents-appendix">Приложение Е. Макет аттестационного листа</td>
+                </tr>
+                <tr class="practice-contents-row-04">
+                    <td class="practice-contents-appendix">Приложение Ж. Макет характеристики на студента</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="practice-program-page">
+        <p class="practice-section-title">1 ОБЩАЯ ХАРАКТЕРИСТИКА ПРОГРАММЫ ПРАКТИКИ</p>
+        <p class="practice-subtitle">1.1 Место практики в структуре основной образовательной программы</p>
+        <p class="practice-paragraph">{{ practice_kind_sentence|e }} практика является частью основной образовательной программы (далее ООП) подготовки специалистов среднего звена в соответствии с ФГОС СПО по специальности {{ speciality|e }} {{ speciality_name|e }}.</p>
+        <p class="practice-paragraph">Практика проводится в {{ practice_semester|e }} семестре, трудоёмкость составляет {{ practice_hours|e }} часов, {{ practice_weeks|e }} недель.</p>
+        <p class="practice-paragraph">Форма контроля - дифференцированный зачёт.</p>
+        <p class="practice-paragraph">Форма проведения практики – {{ practice_delivery|e }}.</p>
+        <p class="practice-subheading-hanging">1.2 Цель и задачи практики</p>
+        <p class="practice-paragraph">{{ practice_goal_paragraph|e }}</p>
+        <p class="practice-paragraph">Задачами практики являются:</p>
+        {% for task in practice_tasks %}
+            <p class="practice-task">–	{{ task|e }}</p>
+        {% endfor %}
+        <p class="practice-paragraph">&nbsp;</p>
+        <p class="practice-section2-title">2 ПЕРЕЧЕНЬ ПЛАНИРУЕМЫХ РЕЗУЛЬТАТОВ ОБУЧЕНИЯ ПРИ ПРОХОЖДЕНИИ ПРАКТИКИ, СООТНЕСЁННЫХ С ПЛАНИРУЕМЫМИ РЕЗУЛЬТАТАМИ ОСВОЕНИЯ ООП СПО</p>
+        <p class="practice-paragraph">В соответствии с основным видом деятельности: {{ practice_main_activity|e }}, к которому готовятся выпускники, в результате прохождения практики, обучающиеся должны продемонстрировать следующие результаты обучения:</p>
+        <p class="practice-paragraph">иметь практический опыт: {{ practice_experience|e }}</p>
+        <p class="practice-paragraph">уметь: {{ practice_skills|e }}</p>
+        <p class="practice-paragraph">&nbsp;</p>
+        <p class="practice-paragraph practice-paragraph-after-6">В результате прохождения практики у обучающихся формируются профессиональные компетенции (ПК), соответствующие основному виду деятельности:</p>
+        <table class="practice-competencies-table">
+            <colgroup>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr class="practice-competencies-head">
+                    <td>Код компетенции</td>
+                    <td>Формулировка компетенции</td>
+                </tr>
+                <tr>
+                    <td class="practice-competency-activity" colspan="2">Основной вид деятельности {{ practice_main_activity|e }}</td>
+                </tr>
+                <tr>
+                    <td class="practice-competency-group">ПК</td>
+                    <td class="practice-competency-desc">&nbsp;</td>
+                </tr>
+                {% for competency in practice_pk_competencies %}
+                    <tr>
+                        <td class="practice-competency-code">{{ competency.code|e }}</td>
+                        <td class="practice-competency-desc">{{ competency.desc|e }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="practice-paragraph">&nbsp;</p>
+        <p class="practice-section-numbered-title">3	ТЕМАТИЧЕСКИЙ ПЛАН И СОДЕРЖАНИЕ ПРАКТИКИ</p>
+        <p class="practice-subtitle-plain">3.1 Этапы прохождения практики</p>
+        <p class="practice-paragraph">Содержание {{ practice_kind_text|e }} практики по профессиональному модулю {{ professional_module_display|e }}, структурированное по разделам и видам работ с указанием основных действий и последовательности их выполнения, приведено в таблице.</p>
+        <p class="practice-paragraph">&nbsp;</p>
+        <table class="practice-stage-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr class="practice-stage-head">
+                    <td>Этап практики</td>
+                    <td>Содержание учебного материала и формы организации деятельности обучающихся. Виды работ</td>
+                    <td class="practice-stage-hours-head"><span>Количество</span><span>часов</span></td>
+                    <td>Коды компетенций, формированию которых способствует элемент программы</td>
+                </tr>
+                <tr class="practice-stage-index">
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                {% for stage in practice_stage_groups %}
+                    {% for row in stage.rows %}
+                        <tr>
+                            {% if loop.first %}
+                                <td class="practice-stage-cell" rowspan="{{ stage.rows|length }}" valign="middle" style="vertical-align: middle;"><span class="practice-stage-cell-inner">{{ stage.title|e }}</span></td>
+                            {% endif %}
+                            <td class="practice-stage-work">{% for line in row.work_lines %}{{ line|e }}{% if not loop.last %}<br>{% endif %}{% endfor %}</td>
+                            <td class="practice-stage-hours">{{ row.hours|e }}</td>
+                            <td class="practice-stage-codes">{{ row.codes|e }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+                <tr>
+                    <td class="practice-stage-total-label" colspan="2">Всего:</td>
+                    <td class="practice-stage-total-hours">{{ practice_stage_total_hours|e }}</td>
+                    <td class="practice-stage-codes">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="practice-subtitle-bold practice-subtitle-before-6">3.2 Задания на практику</p>
+        <p class="practice-paragraph">Задания на практику разрабатываются в соответствии с планируемыми результатами обучения.</p>
+        {% for assignment in practice_assignments %}
+            <p class="practice-paragraph">Задание {{ loop.index }}. {{ assignment|e }}</p>
+        {% endfor %}
+        <p class="practice-italic-blank">&nbsp;</p>
+        <p class="practice-section4-title">4	УСЛОВИЯ РЕАЛИЗАЦИИ ПРОГРАММЫ ПРАКТИКИ</p>
+        <p class="practice-subtitle-plain practice-subtitle-plain-after-6">4.1 Материально-техническое обеспечение</p>
+        <p class="practice-paragraph">Для реализации практики предусмотрено наличие следующих специальных помещений:</p>
+        <p class="practice-paragraph">Данные для заполнения можно взять на странице <a href="https://www.vvsu.ru/sveden/objects/cabinets/">кабинетов ВВГУ</a>.</p>
+        {% for room in practice_rooms %}
+            <p class="practice-paragraph">– {{ room|e }}</p>
+        {% endfor %}
+        <p class="practice-subtitle-bold practice-subtitle-bold-after-6">4.2 Информационное обеспечение реализации практики</p>
+        <p class="practice-paragraph">Данные для заполнения можно взять в <a href="https://elib.vvsu.ru/#/?offset=0">электронной библиотеке ВВГУ</a>.</p>
+        <p class="practice-paragraph">Для реализации практики библиотечный фонд ВВГУ укомплектован печатными и электронными изданиями.</p>
+        <p class="practice-paragraph">Обучающиеся из числа инвалидов и лиц с ограниченными возможностями здоровья обеспечены печатными и (или) электронными образовательными ресурсами в формах, адаптированных к ограничениям их здоровья.</p>
+        <p class="practice-subtitle-bold">Основная литература</p>
+        {% for item in practice_main_literature %}
+            <p class="practice-paragraph">{{ loop.index }}. {{ item|e }}</p>
+        {% endfor %}
+        <p class="practice-subtitle-bold practice-subtitle-bold-after-6">Дополнительная литература</p>
+        {% for item in practice_additional_literature %}
+            <p class="practice-paragraph">{{ loop.index }}. {{ item|e }}</p>
+        {% endfor %}
+        <p class="practice-subtitle-bold practice-subtitle-bold-after-6">Электронные ресурсы</p>
+        {% for item in practice_electronic_resources %}
+            <p class="practice-paragraph">{{ loop.index }}. {{ item|e }}</p>
+        {% endfor %}
+        <p class="practice-subtitle-bold practice-subtitle-bold-after-6">Нормативные документы</p>
+        {% for item in practice_normative_docs %}
+            <p class="practice-paragraph">{{ loop.index }}. {{ item|e }}</p>
+        {% endfor %}
+        <p class="practice-paragraph">&nbsp;</p>
+        <p class="practice-section5-title">5	КОНТРОЛЬ И ОЦЕНКА РЕЗУЛЬТАТОВ ПРОХОЖДЕНИЯ ПРАКТИКИ</p>
+        <table class="practice-evaluation-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr class="practice-evaluation-head">
+                    <td>Результаты обучения</td>
+                    <td>Критерии оценки</td>
+                    <td>Методы оценки</td>
+                </tr>
+                {% for row in practice_evaluation_rows %}
+                    <tr>
+                        <td class="practice-evaluation-result">{{ row.result|e }}</td>
+                        <td class="practice-evaluation-criteria">{{ row.criteria|e }}</td>
+                        <td class="practice-evaluation-method">{{ row.method|e }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="practice-paragraph practice-paragraph-before-6">Для оценки достижения запланированных результатов обучения по практике разработаны контрольно-оценочные средства для проведения текущего контроля и промежуточной аттестации, которые прилагаются к программе практики.</p>
+        <p class="practice-section6-title">6 МЕТОДИЧЕСКИЕ РЕКОМЕНДАЦИИ ПО ВЫПОЛНЕНИЮ ЗАДАНИЙ И ПО ПОДГОТОВКЕ ОТЧЕТА ПО ПРАКТИКЕ</p>
+        <p class="practice-subtitle-61">6.1 Общие положения</p>
+        <p class="practice-paragraph">Направление студентов на практику оформляется приказом, которым утверждается вид практики, сроки проведения практики, место прохождения практики, руководитель практики от университета.</p>
+        <p class="practice-paragraph">Студенты, совмещающие обучение с трудовой деятельностью, имеют право проходить практику в организации (предприятии) по месту работы в случаях, если осуществляемая ими профессиональная деятельность соответствует целям практики.</p>
+        <p class="practice-paragraph">Для лиц с ограниченными возможностями здоровья и инвалидов выбор мест прохождения практик согласуется с требованием их доступности для данных обучающихся и практика проводится с учетом особенностей их психофизического развития, индивидуальных возможностей и состояния здоровья. При необходимости (по заявлению обучающегося) предоставляется учебная информация в доступных формах: в печатной форме увеличенным шрифтом; в форме электронного документа; индивидуальные консультации с привлечением тифлосурдопереводчика; индивидуальные задания, консультации и др.</p>
+        <p class="practice-underlined-title">Сведения о местах проведения практик</p>
+        <p class="practice-paragraph">Практика проводится в структурных подразделениях университета / в профильных организациях на основе договоров, заключаемых между образовательной организацией и организациями:</p>
+        {% for place in practice_places %}
+            <p class="practice-paragraph">{{ loop.index }}. {{ place|e }}</p>
+        {% endfor %}
+        <p class="practice-subtitle-61">6.2 Обязанности руководителей практики и обучающихся</p>
+        <p class="practice-underlined-left-indent">Руководитель практики от ВВГУ:</p>
+        <p class="practice-bullet-227">– проводит организационное собрание, на котором знакомит обучающихся с особенностями проведения и с содержанием практики;</p>
+        <p class="practice-bullet-127">– выдает студенту индивидуальное задание на практику;</p>
+        <p class="practice-bullet-127">– участвует в распределении обучающихся по рабочим местам и видам работ в организации;</p>
+        <p class="practice-bullet-127">– осуществляет контроль за соблюдением сроков проведения практики и соответствием ее содержания требованиям, установленным ООП СПО;</p>
+        <p class="practice-bullet-127">– оказывает методическую помощь (консультирование) обучающимся при выполнении ими индивидуальных заданий;</p>
+        <p class="practice-bullet-127">– по окончанию практики проводит промежуточную аттестацию и выставляет результат в ведомость и зачетную книжку студента.</p>
+        <p class="practice-underlined-title">Руководитель практики от профильной организации:</p>
+        <p class="practice-bullet-127">– совместно с руководителем практики от ВВГУ разрабатывает план проведения практики;</p>
+        <p class="practice-bullet-252">– согласовывает индивидуальные задания, содержание и планируемые результаты практики;</p>
+        <p class="practice-bullet-252">– организует практику студентов в соответствии с программой практики и заключенным договором на практику, определяет рабочие места студентам, обязанности и круг выполняемых в период практики задач, не допускает использование студентов-практикантов на должностях, не предусмотренных программой практики;</p>
+        <p class="practice-bullet-252">– проводит инструктаж студентов по ознакомлению с требованиями охраны труда, техники безопасности, пожарной безопасности, а также правилами внутреннего трудового распорядка;</p>
+        <p class="practice-bullet-252">– обеспечивает безопасные условия прохождения практики студентам, отвечающие санитарным правилам и требованиям охраны труда;</p>
+        <p class="practice-bullet-252">– оказывает методическую помощь (консультирование) обучающимся при выполнении ими индивидуальных заданий;</p>
+        <p class="practice-bullet-252">– принимает выполненную работу, оценивает результаты прохождения практики обучающимися, результат оформляет в аттестационном листе о прохождении практики и характеристике на обучающегося.</p>
+        <p class="practice-underlined-title">Обучающийся должен:</p>
+        <p class="practice-bullet-252">– присутствовать на организационном собрании по практике;</p>
+        <p class="practice-bullet-252">– своевременно прибыть на место практики с предъявлением направления;</p>
+        <p class="practice-bullet-252">– соблюдать внутренний распорядок, выполнять требования охраны труда и режима рабочего дня, соответствующие действующим нормам трудового законодательства;</p>
+        <p class="practice-bullet-252">– полностью выполнять все виды работ в сроки, установленные заданием на практику;</p>
+        <p class="practice-bullet-252">– ежедневно заполнять дневник практики;</p>
+        <p class="practice-bullet-252">– по завершению практики в установленные сроки сдать руководителю практики от ВВГУ оформленные в соответствии с требованиями настоящей программы отчетные документы по практике.</p>
+        <p class="practice-subtitle-61">6.3 Документы, регламентирующие проведение практики</p>
+        <p class="practice-paragraph practice-paragraph-before-6">Для прохождения практики студенту выдается:</p>
+        <p class="practice-bullet-doc">- направление на практику (Приложение А);</p>
+        <p class="practice-bullet-doc">- индивидуальное задание (Приложение Б);</p>
+        <p class="practice-bullet-doc">- макет дневника практики (Приложение В);</p>
+        <p class="practice-bullet-doc">- рекомендации по оформлению отчета по практике (Приложения Г, Д).</p>
+        <p class="practice-paragraph">Руководитель практики от профильной организации оформляет аттестационный лист об уровне освоения профессиональных компетенций студентом (Приложение Е) и характеристику (Приложение Ж).</p>
+        <p class="practice-paragraph">&nbsp;</p>
+        <p class="practice-subtitle-64">6.4 Контроль и оценка результатов практики</p>
+        <p class="practice-paragraph">Контроль за прохождением практики осуществляется руководителем практики от ВВГУ в период посещения мест проведения практики, бесед с руководителями практики от предприятий, встреч с обучающимися.</p>
+        <p class="practice-paragraph practice-paragraph-indent-1">По окончанию практики студенты предоставляют руководителю документы, свидетельствующие о выполнении программы практики в полном объеме:</p>
+        <p class="practice-bullet-252">- дневник и отчет по практике в соответствии с индивидуальным заданием;</p>
+        <p class="practice-bullet-127">- аттестационный лист и характеристику на обучающегося, оформленные руководителем практики от предприятия.</p>
+        <p class="practice-paragraph">Дневник практики (Приложение В) ведется студентом ежедневно, в нем указываются дата, виды и объем работ, выполненных за день, а также проставляется оценка и подпись руководителя практики от предприятия.</p>
+        <p class="practice-paragraph">По итогам практики руководителями формируются аттестационные листы (Приложение Е), содержащие сведения об уровне освоения обучающимся профессиональных компетенций, а также характеристики (Приложение Ж) на каждого обучающегося за период прохождения практики.</p>
+        <p class="practice-paragraph">Дневник, аттестационный лист, характеристика заверяются печатью и подписью руководителя практики от предприятия.</p>
+        <p class="practice-paragraph">На протяжении всего периода работы в организации студент должен в соответствии с программой практики собирать и обрабатывать необходимый материал, а затем представить его в виде оформленного отчета о практике своему руководителю. Отчет о практике является основным документом студента, отражающим, выполненную им во время практики работу. Отчет о практике составляется индивидуально каждым студентом. В плане-графике по практике рекомендуется отводить завершающие 2-3 дня для составления, редактирования и оформления отчета студентами.</p>
+        <p class="practice-paragraph">Отчет о практике должен включать текстовый, графический и другой иллюстративный материал. Отчет должен отражать выполнение индивидуального задания программы практики, заданий и поручений, полученных от руководителя практики организации (предприятия). Отчет должен содержать анализ деятельности организации (предприятия), выводы о приобретенных навыках и практическом опыте по конкретным видам работ. Рекомендации по написанию и оформлению отчета приведены в Приложениях Г, Д.</p>
+        <p class="practice-underlined-title practice-underlined-title-before-6">Аттестация по практике.</p>
+        <p class="practice-paragraph">Оформленный отчет по практике с прилагаемыми к нему документами (дневник практики, аттестационный лист, характеристика) сдаются руководителю практики студентом в сроки, определенные графиком учебного процесса и этапами прохождения практики. Результаты обучения по практике оцениваются руководителем практики от ВВГУ на зачете с выставлением оценки. К сдаче зачета в форме защиты отчета по практике допускаются студенты, выполнившие требования программы практики и предоставившие отчетные документы. Руководитель практики на основании критериев, представленных в КОС по практике, проводит промежуточную аттестацию и выставляет результат в ведомость и зачетную книжку студента.</p>
+        <p class="practice-paragraph">Студент, не защитивший в установленные сроки отчет по практике, считается имеющим академическую задолженность и должен устранить её в соответствии с требованиями, установленными локальным актом ВВГУ.</p>
+        <p class="practice-paragraph">&nbsp;</p>
+    </div>
+
+    <div class="practice-appendix-page">
+        <p class="practice-appendix-title">ПРИЛОЖЕНИЕ А</p>
+        <p class="practice-appendix-blank-13">&nbsp;</p>
+        <p class="practice-appendix-subtitle">Макет направления на практику</p>
+        <p class="practice-appendix-blank-14">&nbsp;</p>
+        <p class="practice-appendix-blank-12">&nbsp;</p>
+        <p class="practice-appendix-main-title">НАПРАВЛЕНИЕ НА ПРАКТИКУ</p>
+        <p class="practice-appendix-blank-13-bold">&nbsp;</p>
+        <p class="practice-appendix-blank-13-bold">&nbsp;</p>
+        <p class="practice-appendix-line">Студент(ка) ___________________________________________________________________</p>
+        <p class="practice-appendix-caption">Фамилия, имя, отчество</p>
+        <p class="practice-appendix-blank-12-115">&nbsp;</p>
+        <p class="practice-appendix-line-115">курс ______ группа ______, обучающийся(щаяся) по специальности / профессии СПО</p>
+        <p class="practice-appendix-line-115">_____________________________________________________________________________</p>
+        <p class="practice-appendix-line-115">направляется на (вид) практику__________________________________________________</p>
+        <p class="practice-appendix-line-115">_____________________________________________________________________________</p>
+        <p class="practice-appendix-line-115">в объёме ____ недель (часов), продолжительность практики с ___________ по ___________,</p>
+        <p class="practice-appendix-line-115">в соответствии с приказом от _______________________ № ___________________________</p>
+        <p class="practice-appendix-line-115">Место прохождение практики ____________________________________________________</p>
+        <p class="practice-appendix-line-115">_____________________________________________________________________________</p>
+        <p class="practice-appendix-line-115">Руководитель практики от ВВГУ _______________________________________________</p>
+        <p class="practice-appendix-line-115">_____________________________________________________________________________</p>
+        <p class="practice-appendix-caption-small">фамилия, имя, отчество, должность</p>
+        <p class="practice-appendix-blank-12-115">&nbsp;</p>
+        <p class="practice-appendix-blank-12-115">&nbsp;</p>
+        <p class="practice-appendix-blank-12-115">&nbsp;</p>
+        <p class="practice-appendix-arrival-title">ОТМЕТКА О ПРИБЫТИИ СТУДЕНТА НА МЕСТО ПРАКТИКИ</p>
+        <p class="practice-appendix-blank-12-115">&nbsp;</p>
+        <p class="practice-appendix-line-115">Прибыл на место практики «____» _____________ 20____ г.</p>
+        <p class="practice-appendix-line-115">Принят на работу в качестве _____________________________________________________</p>
+        <p class="practice-appendix-line-115">Руководителем практики от предприятия (учреждения) назначен</p>
+        <p class="practice-appendix-line-115">_____________________________________________________________________________</p>
+        <p class="practice-appendix-line-115">_____________________________________________________________________________</p>
+        <p class="practice-appendix-caption-small">фамилия, имя, отчество, должность</p>
+        <p class="practice-appendix-blank-12-115">&nbsp;</p>
+        <p class="practice-appendix-blank-12-115">&nbsp;</p>
+        <p class="practice-appendix-line-115">М. П.&emsp;&emsp;&emsp;&emsp;Руководитель предприятия (учреждения) __________________</p>
+    </div>
+
+    <div class="practice-appendix-page">
+        <p class="practice-appendix-title">ПРИЛОЖЕНИЕ Б</p>
+        <p class="practice-appendix-blank-14">&nbsp;</p>
+        <p class="practice-appendix-subtitle">Макет индивидуального задания на практику</p>
+        <p class="practice-appendix-blank-13-bold">&nbsp;</p>
+        <p class="practice-appendix-blank-13-bold">&nbsp;</p>
+        <p class="practice-appendix-blank-13-bold">&nbsp;</p>
+        <p class="practice-appendix-individual-title">ИНДИВИДУАЛЬНОЕ ЗАДАНИЕ ПО (ВИД) ПРАКТИКЕ</p>
+        <p class="practice-appendix-blank-12">&nbsp;</p>
+        <p class="practice-appendix-line">Студент(ка) __________________________________________________________________</p>
+        <p class="practice-appendix-caption-italic">Фамилия Имя Отчество</p>
+        <p class="practice-appendix-blank-12">&nbsp;</p>
+        <p class="practice-appendix-line">обучающийся на _____ курсе, по специальности/профессии __________________________</p>
+        <p class="practice-appendix-blank-12">&nbsp;</p>
+        <p class="practice-appendix-line">направляется на <span class="practice-appendix-italic-inline">(вид)</span> практику___________________________________________________</p>
+        <p class="practice-appendix-line">в объеме _______ часов</p>
+        <p class="practice-appendix-line">в период с «___» _________ 20___ г. по «___» _________ 201____ г.</p>
+        <p class="practice-appendix-line">в организации _________________________________________________________________</p>
+        <p class="practice-appendix-line">_____________________________________________________________________________</p>
+        <p class="practice-appendix-caption-italic-left">наименование организации, юридический адрес</p>
+        <p class="practice-appendix-blank-14">&nbsp;</p>
+        <p class="practice-appendix-center-indent">Виды и объем работ в период <span class="practice-appendix-italic-inline">(вид)</span> практики:</p>
+        <p class="practice-appendix-blank-12">&nbsp;</p>
+        <table class="practice-appendix-work-table">
+            <colgroup>
+                <col style="width: 1.74cm;">
+                <col style="width: 11.75cm;">
+                <col style="width: 3.01cm;">
+            </colgroup>
+            <tbody>
+                <tr class="practice-appendix-work-head">
+                    <td class="practice-appendix-work-num">№ п/п</td>
+                    <td class="practice-appendix-work-name">Виды работ</td>
+                    <td class="practice-appendix-work-hours">Кол-во часов</td>
+                </tr>
+                <tr>
+                    <td class="practice-appendix-work-num">1.</td>
+                    <td class="practice-appendix-work-name">&nbsp;</td>
+                    <td class="practice-appendix-work-hours">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="practice-appendix-work-num">2.</td>
+                    <td class="practice-appendix-work-name">&nbsp;</td>
+                    <td class="practice-appendix-work-hours">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="practice-appendix-work-num">3.</td>
+                    <td class="practice-appendix-work-name">&nbsp;</td>
+                    <td class="practice-appendix-work-hours">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="practice-appendix-work-num">4.</td>
+                    <td class="practice-appendix-work-name">&nbsp;</td>
+                    <td class="practice-appendix-work-hours">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="practice-appendix-indent-line"><em>&nbsp;</em></p>
+        <p class="practice-appendix-indent-line">&nbsp;</p>
+        <p class="practice-appendix-indent-line-15">Дата выдачи задания «____» ____________ 20__ г.</p>
+        <p class="practice-appendix-indent-line-15">Срок сдачи отчета по практике «____» _________20__ г.</p>
+        <p class="practice-appendix-blank-14">&nbsp;</p>
+        <p class="practice-appendix-blank-14">&nbsp;</p>
+        <p class="practice-appendix-blank-14">&nbsp;</p>
+        <table class="practice-appendix-sign-table">
+            <colgroup>
+                <col style="width: 9.99cm;">
+                <col style="width: 3cm;">
+                <col style="width: 3.59cm;">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td class="practice-appendix-sign-left">
+                        Руководитель
+                        <span class="practice-appendix-sign-note">(структурное подразделение СПО ВВГУ)</span>
+                    </td>
+                    <td class="practice-appendix-sign-mid">
+                        <span class="practice-appendix-sign-line">___________</span>
+                        <span class="practice-appendix-sign-caption">подпись</span>
+                    </td>
+                    <td class="practice-appendix-sign-right">
+                        <span class="practice-appendix-sign-line">______________</span>
+                        <span class="practice-appendix-sign-caption">Ф.И.О.</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="practice-appendix-page">
+        <p class="practice-appendix-title">ПРИЛОЖЕНИЕ В</p>
+        <p class="practice-appendix-blank-13">&nbsp;</p>
+        <p class="practice-appendix-subtitle">Пример оформления дневника практики</p>
+        <p class="practice-appendix-blank-13-bold">&nbsp;</p>
+        <p class="practice-appendix-diary-title">ДНЕВНИК</p>
+        <p class="practice-appendix-diary-subtitle">прохождения <span class="practice-appendix-italic-inline">(вид)</span> практики</p>
+        <p class="practice-appendix-blank-18">&nbsp;</p>
+        <p class="practice-appendix-line">Студент(ка) __________________________________________________________________</p>
+        <p class="practice-appendix-caption-italic">Фамилия Имя Отчество</p>
+        <p class="practice-appendix-line">Специальность/профессия ______________________________________________________</p>
+        <p class="practice-appendix-line">Группа ______________</p>
+        <p class="practice-appendix-line">Место прохождения практики ___________________________________________________</p>
+        <p class="practice-appendix-line">Сроки прохождения с ____________________________ по ___________________________</p>
+        <p class="practice-appendix-blank-12">&nbsp;</p>
+        <table class="practice-appendix-diary-instruction-table">
+            <colgroup>
+                <col style="width: 6cm;">
+                <col style="width: 3.75cm;">
+                <col style="width: 2.25cm;">
+                <col style="width: 4.75cm;">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td class="practice-appendix-diary-instruction-main">Инструктаж на рабочем месте</td>
+                    <td class="practice-appendix-diary-instruction-main">«__» _____ 201_ г</td>
+                    <td class="practice-appendix-diary-instruction-main">________</td>
+                    <td class="practice-appendix-diary-instruction-main">___________________</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td class="practice-appendix-diary-instruction-caption">дата</td>
+                    <td class="practice-appendix-diary-instruction-caption">подпись</td>
+                    <td class="practice-appendix-diary-instruction-caption">Ф.И.О. инструктирующего</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="practice-appendix-blank-12">&nbsp;</p>
+        <table class="practice-appendix-diary-table">
+            <colgroup>
+                <col style="width: 3.49cm;">
+                <col style="width: 8cm;">
+                <col style="width: 2.25cm;">
+                <col style="width: 3.04cm;">
+            </colgroup>
+            <tbody>
+                <tr class="practice-appendix-diary-head">
+                    <td class="practice-appendix-diary-date">Дата (период)</td>
+                    <td class="practice-appendix-diary-desc">Описание выполнения производственных заданий (виды и объем работ, выполненных за день)</td>
+                    <td class="practice-appendix-diary-grade">Оценка</td>
+                    <td class="practice-appendix-diary-sign">Подпись руководителя практики</td>
+                </tr>
+                <tr>
+                    <td class="practice-appendix-diary-date">&nbsp;</td>
+                    <td class="practice-appendix-diary-desc">&nbsp;</td>
+                    <td class="practice-appendix-diary-grade">&nbsp;</td>
+                    <td class="practice-appendix-diary-sign">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="practice-appendix-diary-date">&nbsp;</td>
+                    <td class="practice-appendix-diary-desc">&nbsp;</td>
+                    <td class="practice-appendix-diary-grade">&nbsp;</td>
+                    <td class="practice-appendix-diary-sign">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="practice-appendix-diary-date">&nbsp;</td>
+                    <td class="practice-appendix-diary-desc">&nbsp;</td>
+                    <td class="practice-appendix-diary-grade">&nbsp;</td>
+                    <td class="practice-appendix-diary-sign">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="practice-appendix-diary-date">&nbsp;</td>
+                    <td class="practice-appendix-diary-desc">&nbsp;</td>
+                    <td class="practice-appendix-diary-grade">&nbsp;</td>
+                    <td class="practice-appendix-diary-sign">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="practice-appendix-blank-13-bold">&nbsp;</p>
+        <p class="practice-appendix-blank-13-bold">&nbsp;</p>
+        <table class="practice-appendix-sign-table">
+            <colgroup>
+                <col style="width: 9.99cm;">
+                <col style="width: 3cm;">
+                <col style="width: 3.59cm;">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td class="practice-appendix-sign-left-12">Руководитель практики от предприятия</td>
+                    <td class="practice-appendix-sign-mid">
+                        <span class="practice-appendix-sign-line">___________</span>
+                        <span class="practice-appendix-sign-caption-12">подпись</span>
+                    </td>
+                    <td class="practice-appendix-sign-right">
+                        <span class="practice-appendix-sign-line">______________</span>
+                        <span class="practice-appendix-sign-caption-12">Ф.И.О.</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="practice-appendix-stamp">М.П.</p>
+        <p class="practice-appendix-blank-14">&nbsp;</p>
+        <p class="practice-appendix-note">1. Дневник ведется по каждому разделу практики.</p>
+        <p class="practice-appendix-note">2. Вначале дневника заполняется график прохождения практики по датам и количеству дней, в соответствии с программой практики, делается отметка о проведенном инструктаже по охране труда.</p>
+        <p class="practice-appendix-note">3. Ежедневно в графе «Описание выполнения производственных заданий» записывается проведенная работа в соответствии с программой практики и указанием непосредственного руководителя, а также заносятся подробные описания действий студента на практике.</p>
+        <p class="practice-appendix-note">4. В записях следует четко выделить:</p>
+        <p class="practice-appendix-note">- с чем ознакомился</p>
+        <p class="practice-appendix-note">- что видел и наблюдал</p>
+        <p class="practice-appendix-note">- что было проделано самостоятельно</p>
+        <p class="practice-appendix-note">5. В графе «Оценка» и «Подпись руководителя практики» учитывается выполнение указаний по ведению дневника, проставляется оценка качества проведенных самостоятельных работ.</p>
+    </div>
+</body>
+</html>
