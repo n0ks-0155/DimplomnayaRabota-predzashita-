@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Рабочая программа МДК</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 10mm 20mm 30mm;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            color: #000;
+            line-height: 1;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .body-indent,
+        .body-no-indent,
+        .section-title,
+        .section-heading,
+        .section-body,
+        .section-lead,
+        .after-results-pilcrow,
+        .section-two-title,
+        .section-two-heading,
+        .section-two-subheading,
+        .after-plan-pilcrow,
+        .section-three-title,
+        .section-three-heading,
+        .section-three-body,
+        .mdk-room-name,
+        .mdk-room-line,
+        .after-rooms-pilcrow,
+        .section-three-subheading,
+        .mdk-source-heading,
+        .mdk-source-item,
+        .after-sources-pilcrow,
+        .mdk-method-title,
+        .mdk-method-body,
+        .mdk-method-heading,
+        .mdk-control-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+        }
+
+        .title-page {
+            page-break-after: always;
+        }
+
+        .blank-first {
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            font-weight: normal;
+            text-align: left;
+            line-height: 1;
+        }
+
+        .org-line {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .org-gap {
+            margin-top: 6pt;
+        }
+
+        .blank-title-12 {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .blank-title-16 {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .blank-left-16 {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-weight: bold;
+            text-align: left;
+            line-height: 1;
+        }
+
+        .blank-calibri {
+            font-family: Calibri, Arial, sans-serif;
+            font-size: 11pt;
+            font-weight: normal;
+            text-align: left;
+            line-height: 1.15;
+            margin-bottom: 10pt;
+        }
+
+        .blank-calibri-center {
+            text-align: center;
+        }
+
+        .main-title {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .mdk-title {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+            margin-top: 6pt;
+        }
+
+        .module-title {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.15;
+            margin-bottom: 10pt;
+        }
+
+        .program-line {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .speciality-label {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            text-align: center;
+            padding-left: 0.75cm;
+            line-height: 1;
+        }
+
+        .speciality-value {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .study-form {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1.15;
+            margin-bottom: 10pt;
+        }
+
+        .city-year {
+            font-family: "Times New Roman", serif;
+            font-size: 16pt;
+            font-weight: normal;
+            text-align: center;
+            line-height: 1.15;
+            margin-bottom: 10pt;
+        }
+
+        .body-indent {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .body-no-indent {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 0;
+            line-height: 1;
+        }
+
+        .contents-page {
+            page-break-before: always;
+        }
+
+        .contents-title {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .contents-blank {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .contents-item {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            text-transform: uppercase;
+            display: flex;
+            margin-left: 1.53cm;
+            text-indent: 0;
+            margin-bottom: 10pt;
+            line-height: 1.15;
+        }
+
+        .contents-number {
+            flex: 0 0 0.63cm;
+        }
+
+        .contents-name {
+            display: block;
+        }
+
+        .section-page {
+            page-break-before: always;
+        }
+
+        .section-title {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: justify;
+            text-transform: uppercase;
+            text-indent: 1.25cm;
+            margin-bottom: 10pt;
+            line-height: 1.15;
+        }
+
+        .section-heading {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .section-heading-spaced {
+            margin-top: 6pt;
+            margin-bottom: 6pt;
+        }
+
+        .section-body {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .section-lead {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: left;
+            text-indent: 1.25cm;
+            margin-top: 6pt;
+            margin-bottom: 6pt;
+            line-height: 1;
+        }
+
+        .mdk-competency-table {
+            width: 16.27cm;
+            margin-left: 0.23cm;
+            border-collapse: collapse;
+            table-layout: fixed;
+            page-break-inside: auto;
+        }
+
+        .mdk-competency-table col:first-child {
+            width: 2.28cm;
+        }
+
+        .mdk-competency-table col:last-child {
+            width: 13.98cm;
+        }
+
+        .mdk-competency-table tr {
+            min-height: 0.48cm;
+            page-break-inside: auto;
+        }
+
+        .mdk-competency-table th,
+        .mdk-competency-table td {
+            border: 1px solid #000;
+            padding: 0;
+            background: transparent !important;
+            color: #000;
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            line-height: 1;
+            vertical-align: top;
+            min-height: 0.48cm;
+        }
+
+        .mdk-competency-table th {
+            font-weight: bold;
+        }
+
+        .mdk-code-cell {
+            text-align: center;
+        }
+
+        .mdk-desc-cell {
+            text-align: left;
+        }
+
+        .mdk-desc-header {
+            text-align: center;
+        }
+
+        .mdk-desc-data {
+            padding-left: 0.23cm !important;
+        }
+
+        .mdk-results-table {
+            width: 16.49cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            page-break-inside: auto;
+        }
+
+        .mdk-results-table col:nth-child(1) {
+            width: 1.99cm;
+        }
+
+        .mdk-results-table col:nth-child(2) {
+            width: 4.5cm;
+        }
+
+        .mdk-results-table col:nth-child(3) {
+            width: 4.75cm;
+        }
+
+        .mdk-results-table col:nth-child(4) {
+            width: 5.25cm;
+        }
+
+        .mdk-results-table tr {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .mdk-results-table th,
+        .mdk-results-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            background: transparent !important;
+            color: #000;
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            font-weight: normal;
+            line-height: 1;
+            vertical-align: top;
+        }
+
+        .mdk-results-table th {
+            text-align: center;
+        }
+
+        .mdk-result-code {
+            text-align: left;
+        }
+
+        .mdk-result-text {
+            text-align: left;
+            white-space: pre-line;
+        }
+
+        .after-results-pilcrow {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            margin-left: 1.27cm;
+            margin-top: 4.5pt;
+            line-height: 1;
+        }
+
+        .section-two-title {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            margin-left: 0.63cm;
+            text-indent: -0.63cm;
+            margin-bottom: 6pt;
+            line-height: 1;
+        }
+
+        .section-two-heading {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            text-indent: 1.25cm;
+            margin-bottom: 6pt;
+            line-height: 1;
+        }
+
+        .mdk-workload-doc-table {
+            width: 16.48cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .mdk-workload-doc-table col:nth-child(1) {
+            width: 8.23cm;
+        }
+
+        .mdk-workload-doc-table col:nth-child(2) {
+            width: 3.99cm;
+        }
+
+        .mdk-workload-doc-table col:nth-child(3) {
+            width: 4.25cm;
+        }
+
+        .mdk-workload-doc-table tr {
+            min-height: 0.04cm;
+            page-break-inside: auto;
+        }
+
+        .mdk-workload-doc-table th,
+        .mdk-workload-doc-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            background: transparent !important;
+            color: #000;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            line-height: 1;
+            vertical-align: middle;
+        }
+
+        .mdk-workload-doc-table th {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .mdk-workload-label {
+            text-align: justify;
+        }
+
+        .mdk-workload-number {
+            text-align: center;
+        }
+
+        .mdk-workload-total td {
+            font-weight: bold;
+        }
+
+        .section-two-subheading {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            text-indent: 1.25cm;
+            margin-top: 6pt;
+            margin-bottom: 6pt;
+            line-height: 1;
+        }
+
+        .mdk-plan-table {
+            width: 16.48cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            page-break-inside: auto;
+        }
+
+        .mdk-plan-table col:nth-child(1) {
+            width: 3.77cm;
+        }
+
+        .mdk-plan-table col:nth-child(2) {
+            width: 7.2cm;
+        }
+
+        .mdk-plan-table col:nth-child(3) {
+            width: 2.49cm;
+        }
+
+        .mdk-plan-table col:nth-child(4) {
+            width: 2.98cm;
+        }
+
+        .mdk-plan-table th,
+        .mdk-plan-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            background: transparent !important;
+            color: #000;
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            line-height: 1;
+        }
+
+        .mdk-plan-table th {
+            height: 1.22cm;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .mdk-plan-section-cell {
+            min-height: 0.43cm;
+            font-weight: bold;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .mdk-plan-topic-group {
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .mdk-plan-topic-cell {
+            font-weight: bold;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .mdk-plan-label {
+            font-weight: bold;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .mdk-plan-text {
+            font-weight: normal;
+            text-align: left;
+            vertical-align: middle;
+            white-space: pre-line;
+        }
+
+        .mdk-plan-text-top {
+            vertical-align: top;
+        }
+
+        .mdk-plan-hours {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .mdk-plan-codes {
+            text-align: left;
+            vertical-align: middle;
+            white-space: pre-line;
+        }
+
+        .after-plan-pilcrow {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            text-indent: 1.25cm;
+            margin-bottom: 6pt;
+            line-height: 1;
+        }
+
+        .section-three-title {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            text-indent: 1.25cm;
+            margin-bottom: 6pt;
+            line-height: 1;
+        }
+
+        .section-three-heading {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .section-three-body {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .mdk-room-name {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-style: italic;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin-top: 6pt;
+            line-height: 1;
+        }
+
+        .mdk-room-line {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .mdk-room-label {
+            text-decoration: underline;
+        }
+
+        .mdk-room-value {
+            white-space: pre-line;
+        }
+
+        .after-rooms-pilcrow {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: center;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .section-three-subheading {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            text-indent: 1.25cm;
+            margin-bottom: 6pt;
+            line-height: 1.15;
+        }
+
+        .mdk-source-heading {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .mdk-source-heading-spaced {
+            margin-top: 6pt;
+        }
+
+        .mdk-source-heading-additional {
+            text-indent: 1cm;
+        }
+
+        .mdk-source-item {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .mdk-source-item-additional {
+            text-indent: 1cm;
+        }
+
+        .after-sources-pilcrow {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .mdk-method-title {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: justify;
+            text-transform: uppercase;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .mdk-method-body {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+        }
+
+        .mdk-method-heading {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin-top: 6pt;
+            line-height: 1;
+        }
+
+        .mdk-control-title {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 6pt;
+            line-height: 1;
+        }
+
+        .mdk-control-table {
+            width: 16.5cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            page-break-inside: auto;
+        }
+
+        .mdk-control-table col:nth-child(1) {
+            width: 2cm;
+        }
+
+        .mdk-control-table col:nth-child(2) {
+            width: 10cm;
+        }
+
+        .mdk-control-table col:nth-child(3) {
+            width: 4.5cm;
+        }
+
+        .mdk-control-table tr {
+            min-height: 0.04cm;
+            page-break-inside: auto;
+            break-inside: auto;
+        }
+
+        .mdk-control-table th,
+        .mdk-control-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            background: transparent !important;
+            color: #000;
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            line-height: 1;
+        }
+
+        .mdk-control-table th {
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .mdk-control-code {
+            font-weight: bold;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .mdk-control-criteria,
+        .mdk-control-methods {
+            font-weight: normal;
+            text-align: left;
+            vertical-align: top !important;
+            white-space: normal;
+        }
+
+        .mdk-control-criterion-line {
+            display: block;
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .after-control-break {
+            page-break-after: always;
+        }
+
+        .mdk-kos-title-page {
+            page-break-after: always;
+        }
+
+        .mdk-kos-line {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .mdk-kos-org {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .mdk-kos-org-gap {
+            margin-top: 6pt;
+        }
+
+        .mdk-kos-calibri-blank {
+            font-family: Calibri, Arial, sans-serif;
+            font-size: 14pt;
+            font-weight: normal;
+            line-height: 1.08;
+            margin-bottom: 8pt;
+        }
+
+        .mdk-kos-tnr-blank {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            line-height: 1;
+        }
+
+        .mdk-kos-main-title {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .mdk-kos-subtitle {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            line-height: 1;
+        }
+
+        .mdk-kos-course-line {
+            width: 12.9cm;
+            max-width: 12.9cm;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mdk-kos-subtitle-spaced {
+            line-height: 1.15;
+            margin-bottom: 10pt;
+        }
+
+        .mdk-kos-bold {
+            font-weight: bold;
+        }
+
+        .mdk-kos-speciality {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .mdk-kos-study-form {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            line-height: 1;
+        }
+
+        .mdk-kos-city-year {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            line-height: 1.08;
+            margin-bottom: 8pt;
+        }
+
+        .mdk-kos-title-bottom-spacer {
+            font-family: "Times New Roman", serif;
+            font-size: 14pt;
+            font-weight: normal;
+            line-height: 1;
+        }
+
+        .mdk-kos-content-page {
+            page-break-after: auto;
+        }
+
+        .mdk-kos-heading {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 13pt;
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin-bottom: 6pt;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+
+        .mdk-kos-heading-no-after {
+            margin-bottom: 0;
+        }
+
+        .mdk-kos-pilcrow-before-results {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 10pt;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .mdk-kos-text {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            margin-bottom: 6pt;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+
+        .mdk-kos-results-table {
+            width: 16.48cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            page-break-inside: auto;
+        }
+
+        .mdk-kos-results-table col:nth-child(1) {
+            width: 1.78cm;
+        }
+
+        .mdk-kos-results-table col:nth-child(2) {
+            width: 2.15cm;
+        }
+
+        .mdk-kos-results-table col:nth-child(3) {
+            width: 12.55cm;
+        }
+
+        .mdk-kos-results-table thead {
+            display: table-header-group;
+        }
+
+        .mdk-kos-results-table th,
+        .mdk-kos-results-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            background: transparent !important;
+            color: #000;
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            font-weight: normal;
+            line-height: 1;
+            min-height: 0.04cm;
+        }
+
+        .mdk-kos-results-table th {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .mdk-kos-pc-cell {
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .mdk-kos-result-code-cell {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .mdk-kos-result-name-cell {
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .mdk-kos-after-table {
+            font-family: "Times New Roman", serif;
+            font-size: 10pt;
+            font-weight: bold;
+            text-align: left;
+            line-height: 1;
+        }
+
+        .mdk-kos-proc-heading {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 13pt;
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+
+        .mdk-kos-proc-text {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+
+        .mdk-kos-proc-blank {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            line-height: 1;
+        }
+
+        .mdk-kos-proc-blank-bold {
+            font-weight: bold;
+            text-indent: 1.25cm;
+        }
+
+        .mdk-kos-proc-italic-blank {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-style: italic;
+            font-weight: normal;
+            text-align: justify;
+            line-height: 1;
+        }
+
+        .mdk-kos-proc-subheading {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+
+        .mdk-kos-score {
+            font-weight: bold;
+        }
+
+        .mdk-kos-test-table {
+            width: 16.48cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            page-break-inside: auto;
+        }
+
+        .mdk-kos-test-table col:nth-child(1) {
+            width: 2.8cm;
+        }
+
+        .mdk-kos-test-table col:nth-child(2) {
+            width: 2.73cm;
+        }
+
+        .mdk-kos-test-table col:nth-child(3) {
+            width: 2.63cm;
+        }
+
+        .mdk-kos-test-table col:nth-child(4) {
+            width: 4.07cm;
+        }
+
+        .mdk-kos-test-table col:nth-child(5) {
+            width: 4.25cm;
+        }
+
+        .mdk-kos-test-table th,
+        .mdk-kos-test-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            background: transparent !important;
+            color: #000;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 1;
+        }
+
+        .mdk-kos-exam-table {
+            width: 16.48cm;
+            margin-left: 0;
+            border-collapse: collapse;
+            table-layout: fixed;
+            page-break-inside: auto;
+        }
+
+        .mdk-kos-exam-table col:nth-child(1) {
+            width: 3.5cm;
+        }
+
+        .mdk-kos-exam-table col:nth-child(2) {
+            width: 12.98cm;
+        }
+
+        .mdk-kos-exam-table th,
+        .mdk-kos-exam-table td {
+            border: 1px solid #000;
+            padding: 0 0.19cm;
+            background: transparent !important;
+            color: #000;
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            font-weight: normal;
+            line-height: 1;
+        }
+
+        .mdk-kos-exam-table th {
+            height: 0.96cm;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .mdk-kos-exam-mark {
+            text-align: center;
+            vertical-align: middle;
+            overflow-wrap: anywhere;
+            word-break: normal;
+        }
+
+        .mdk-kos-exam-desc {
+            text-align: justify;
+            vertical-align: top;
+        }
+
+        .mdk-kos-examples-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 13pt;
+            font-weight: bold;
+            text-align: justify;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+
+        .mdk-kos-questions-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 13pt;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+
+        .mdk-kos-question {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            font-weight: normal;
+            text-align: left;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+
+        .mdk-kos-question-after {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 11pt;
+            font-weight: normal;
+            text-align: left;
+            margin-left: 1.25cm;
+            line-height: 1;
+        }
+
+        .mdk-kos-tickets-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+
+        .mdk-kos-tickets-blank {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: justify;
+            line-height: 1;
+        }
+
+        .mdk-kos-ticket-title {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+
+        .mdk-kos-ticket-question {
+            width: 16.48cm;
+            max-width: 16.48cm;
+            box-sizing: border-box;
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            font-weight: normal;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-page">
+        <p class="blank-first">&nbsp;</p>
+        <p class="org-line">МИНОБРНАУКИ РОССИИ</p>
+        <p class="org-line org-gap">ВЛАДИВОСТОКСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ</p>
+        <p class="org-line org-gap">КОЛЛЕДЖ ИНФОРМАЦИОННЫХ И КРЕАТИВНЫХ ТЕХНОЛОГИЙ</p>
+
+        {% for _ in range(12) %}
+            <p class="blank-title-12">&nbsp;</p>
+        {% endfor %}
+        <p class="blank-title-16">&nbsp;</p>
+
+        <p class="main-title">РАБОЧАЯ ПРОГРАММА</p>
+        <p class="mdk-title">{{ mdk_title|e }}</p>
+        <p class="blank-left-16">&nbsp;</p>
+        <p class="module-title">{{ professional_module_display|e }}</p>
+        <p class="blank-calibri blank-calibri-center">&nbsp;</p>
+        <p class="program-line">программы подготовки специалистов среднего звена</p>
+        <p class="speciality-label">специальность</p>
+        <p class="speciality-value">{{ speciality_display|e }}</p>
+        <p class="blank-title-16">&nbsp;</p>
+        <p class="program-line">&nbsp;</p>
+
+        {% for _ in range(4) %}
+            <p class="blank-calibri">&nbsp;</p>
+        {% endfor %}
+
+        <p class="study-form">Форма обучения - очная</p>
+
+        {% for _ in range(5) %}
+            <p class="blank-calibri">&nbsp;</p>
+        {% endfor %}
+
+        <p class="city-year">Владивосток {{ year|e }}</p>
+    </div>
+
+    <div class="second-page">
+        <p class="body-indent">Рабочая программа {{ mdk_title|e }} разработана на основе федерального государственного образовательного стандарта среднего профессионального образования по специальности {{ speciality_display|e }}, квалификация специалист по работе с искусственным интеллектом, утвержденного приказом Министерства просвещения Российской Федерации от {{ order_day|e }} {{ order_month|e }} {{ order_year|e }} г. № {{ order_number|e }}</p>
+        <p class="body-indent">&nbsp;</p>
+        <p class="body-indent">&nbsp;</p>
+        <p class="body-indent">&nbsp;</p>
+        <p class="body-no-indent">Разработчик(и): {{ developer_name|e }}, {{ developer_position|e }}</p>
+        <p class="body-no-indent">&nbsp;</p>
+        <p class="body-no-indent">Рассмотрено и одобрено на заседании цикловой методической комиссии</p>
+        <p class="body-no-indent">Протокол № {{ protocol_number|e }} от «{{ protocol_day|e }}» {{ protocol_month|e }} {{ protocol_year|e }} г.</p>
+        <p class="body-no-indent">&nbsp;</p>
+        <p class="body-no-indent">&nbsp;</p>
+        <p class="body-no-indent">Председатель ПЦК _______________ {{ pcc_chair|e }}</p>
+    </div>
+
+    <div class="contents-page">
+        <p class="contents-title">СОДЕРЖАНИЕ</p>
+        <p class="contents-blank">&nbsp;</p>
+        <p class="contents-item"><span class="contents-number">1</span><span class="contents-name">ОБЩАЯ ХАРАКТЕРИСТИКА РАБОЧЕЙ ПРОГРАММЫ<br>УЧЕБНОЙ ДИСЦИПЛИНЫ</span></p>
+        <p class="contents-item"><span class="contents-number">2</span><span class="contents-name">СТРУКТУРА И СОДЕРЖАНИЕ УЧЕБНОЙ<br>ДИСЦИПЛИНЫ</span></p>
+        <p class="contents-item"><span class="contents-number">3</span><span class="contents-name">УСЛОВИЯ РЕАЛИЗАЦИИ УЧЕБНОЙ ДИСЦИПЛИНЫ</span></p>
+        <p class="contents-item"><span class="contents-number">4</span><span class="contents-name">КОНТРОЛЬ И ОЦЕНКА РЕЗУЛЬТАТОВ ОСВОЕНИЯ<br>УЧЕБНОЙ ДИСЦИПЛИНЫ</span></p>
+    </div>
+
+    <div class="section-page">
+        <p class="section-title">1.&nbsp;&nbsp;&nbsp;ОБЩАЯ ХАРАКТЕРИСТИКА ПРОГРАММЫ МЕЖДИСЦИПЛИНАРНОГО КУРСА</p>
+        <p class="section-heading">1.1. Цель и место междисциплинарного курса в структуре образовательной программы</p>
+        <p class="section-body">Междисциплинарный курс {{ mdk_title_quoted|e }} входит в профессиональный цикл учебного плана образовательной программы в структуру профессионального модуля {{ professional_module_display_quoted|e }}.</p>
+        <p class="section-body">Цель: {{ course_goal|e }}</p>
+        <p class="section-heading section-heading-spaced">1.2. Планируемые результаты освоения междисциплинарного курса</p>
+        <p class="section-body" style="margin-bottom: 6pt;">По итогам освоения курса, обучающиеся должны продемонстрировать результаты обучения, соотнесённые с результатами освоения ООП СПО, приведенные в таблице.</p>
+
+        <table class="mdk-competency-table">
+            <colgroup>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th class="mdk-code-cell">Код</th>
+                    <th class="mdk-desc-cell mdk-desc-header">Наименование видов деятельности и профессиональных компетенций</th>
+                </tr>
+                {% for activity in mdk_activities %}
+                    <tr>
+                        <td class="mdk-code-cell">{{ activity.vd_code|e }}</td>
+                        <td class="mdk-desc-cell mdk-desc-data">{{ activity.vd_desc|e }}</td>
+                    </tr>
+                    {% for pc in activity.pcs %}
+                        <tr>
+                            <td class="mdk-code-cell">{{ pc.code|e }}</td>
+                            <td class="mdk-desc-cell mdk-desc-data">{{ pc.description|e }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p class="section-lead">В результате освоения междисциплинарного курса обучающийся должен:</p>
+
+        <table class="mdk-results-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>Код ПК</th>
+                    <th>Уметь</th>
+                    <th>Знать</th>
+                    <th>Владеть навыками</th>
+                </tr>
+                {% for result in mdk_pc_results %}
+                    <tr>
+                        <td class="mdk-result-code">{{ result.code_display|e }}</td>
+                        <td class="mdk-result-text">{{ result.skills|e }}</td>
+                        <td class="mdk-result-text">{{ result.knowledge|e }}</td>
+                        <td class="mdk-result-text">{{ result.mastery|e }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p class="after-results-pilcrow">&nbsp;</p>
+        <p class="section-two-title">2.&nbsp;&nbsp;&nbsp;СТРУКТУРА И СОДЕРЖАНИЕ МЕЖДИСЦИПЛИНАРНОГО КУРСА</p>
+        <p class="section-two-heading">2.1 Объем МДК и виды учебной работы</p>
+
+        <table class="mdk-workload-doc-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>Вид учебной работы</th>
+                    <th>Объем в часах</th>
+                    <th>В т.ч. в форме практ. подготовки</th>
+                </tr>
+                {% for row in mdk_workload_rows %}
+                    <tr class="{% if row.total %}mdk-workload-total{% endif %}">
+                        <td class="mdk-workload-label">{{ row.label|e }}</td>
+                        <td class="mdk-workload-number">{{ row.hours|e }}</td>
+                        <td class="mdk-workload-number">{{ row.practice|e }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p class="section-two-subheading">2.2. Тематический план и содержание МДК</p>
+
+        <table class="mdk-plan-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>Наименование разделов и тем</th>
+                    <th>Содержание учебного материала и формы организации деятельности обучающихся</th>
+                    <th>Объем в часах</th>
+                    <th>Коды компетенций, формированию которых способствует элемент программы</th>
+                </tr>
+            </tbody>
+            {% for section in mdk_thematic_plan %}
+                <tbody>
+                    <tr>
+                        <td class="mdk-plan-section-cell" colspan="4">{{ section.section_display|e }}</td>
+                    </tr>
+                </tbody>
+                {% for topic in section.topics %}
+                    <tbody class="mdk-plan-topic-group">
+                        <tr>
+                            <td class="mdk-plan-topic-cell" rowspan="{{ topic.rowspan }}">{{ topic.topic_display|e }}</td>
+                            <td class="mdk-plan-label">Содержание</td>
+                            <td class="mdk-plan-hours"></td>
+                            <td class="mdk-plan-codes"></td>
+                        </tr>
+                        <tr>
+                            <td class="mdk-plan-text">{{ topic.content|e }}</td>
+                            <td class="mdk-plan-hours">{{ topic.content_hours|e }}</td>
+                            <td class="mdk-plan-codes">{{ topic.content_competencies|e }}</td>
+                        </tr>
+                        {% if topic.has_practical %}
+                            <tr>
+                                <td class="mdk-plan-label mdk-plan-text-top">В том числе практических занятий</td>
+                                <td class="mdk-plan-hours"></td>
+                                <td class="mdk-plan-codes"></td>
+                            </tr>
+                            <tr>
+                                <td class="mdk-plan-text mdk-plan-text-top">{{ topic.practical|e }}</td>
+                                <td class="mdk-plan-hours">{{ topic.practical_hours|e }}</td>
+                                <td class="mdk-plan-codes">{{ topic.practical_competencies|e }}</td>
+                            </tr>
+                        {% endif %}
+                        {% if topic.has_self %}
+                            <tr>
+                                <td class="mdk-plan-text mdk-plan-text-top"><strong>В том числе самостоятельная работа обучающихся</strong><br>{{ topic.self_work|e }}</td>
+                                <td class="mdk-plan-hours">{{ topic.self_hours|e }}</td>
+                                <td class="mdk-plan-codes">{{ topic.self_competencies|e }}</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                {% endfor %}
+            {% endfor %}
+        </table>
+
+        <p class="after-plan-pilcrow">&nbsp;</p>
+        <p class="section-three-title">3. УСЛОВИЯ РЕАЛИЗАЦИИ МЕЖДИСЦИПЛИНАРНОГО КУРСА</p>
+        <p class="section-three-heading">3.1. Материально-техническое обеспечение</p>
+        <p class="section-three-body">Для реализации программы {{ mdk_title_quoted|e }} предусмотрено наличие следующих помещений:</p>
+        {% for room in mdk_rooms %}
+            <p class="mdk-room-name">{{ room.name|e }}</p>
+            <p class="mdk-room-line"><span class="mdk-room-label">Основное оборудование:</span> <span class="mdk-room-value">{{ room.equipment|e }}</span></p>
+            <p class="mdk-room-line"><span class="mdk-room-label">Программное обеспечение:</span> <span class="mdk-room-value">{{ room.software|e }}</span></p>
+        {% endfor %}
+        <p class="after-rooms-pilcrow">&nbsp;</p>
+        <p class="section-three-subheading">3.2. Учебно-методическое обеспечение</p>
+        <p class="section-three-body">Для реализации программы учебной дисциплины библиотечный фонд ВВГУ укомплектован печатными и электронными изданиями.</p>
+        <p class="section-three-body">Обучающиеся из числа инвалидов и лиц с ограниченными возможностями здоровья обеспечены печатными и (или) электронными образовательными ресурсами в формах, адаптированных к ограничениям их здоровья.</p>
+        <p class="section-three-body">&nbsp;</p>
+
+        <p class="mdk-source-heading">Основные источники</p>
+        {% for source in mdk_sources.main %}
+            <p class="mdk-source-item">{{ loop.index }}. {{ source|e }}</p>
+        {% endfor %}
+
+        <p class="mdk-source-heading mdk-source-heading-spaced mdk-source-heading-additional">Дополнительные источники</p>
+        {% for source in mdk_sources.additional %}
+            <p class="mdk-source-item mdk-source-item-additional">{{ loop.index }}. {{ source|e }}</p>
+        {% endfor %}
+
+        <p class="mdk-source-heading mdk-source-heading-spaced">Электронные ресурсы</p>
+        {% for source in mdk_sources.electronic %}
+            <p class="mdk-source-item">{{ loop.index }}. {{ source|e }}</p>
+        {% endfor %}
+        <p class="after-sources-pilcrow">&nbsp;</p>
+
+        <p class="mdk-method-title">4 МЕТОДИЧЕСКИЕ УКАЗАНИЯ ДЛЯ ОБУЧАЮЩИХСЯ ПО ИЗУЧЕНИЮ И РЕАЛИЗАЦИИ МЕЖДИСЦИПЛИНАРНОГО КУРСА</p>
+        <p class="mdk-method-body">Начиная изучение дисциплины, студенту необходимо:</p>
+        <p class="mdk-method-body">- ознакомиться с программой, изучить список рекомендуемой литературы;</p>
+        <p class="mdk-method-body">- внимательно разобраться в структуре курса, в системе распределения учебного материала по видам занятий, формам контроля, чтобы иметь представление о курсе в целом.</p>
+        <p class="mdk-method-body">Самостоятельная работа студентов (СРС) — это деятельность учащихся, которую они совершают без непосредственной помощи и указаний преподавателя, руководствуясь сформировавшимися ранее представлениями о порядке и правильности выполнения операций. Цель СРС в процессе обучения заключается, как в усвоении знаний, так и в формировании умений и навыков по их использованию в новых условиях на новом учебном материале. Самостоятельная работа призвана обеспечивать возможность осуществления студентами самостоятельной познавательной деятельности в обучении, и является видом учебного труда, способствующего формированию у студентов самостоятельности. Кроме того, для расширения и углубления знаний по дисциплине целесообразно использовать: публикации в тематических журналах; полнотекстовые базы данных библиотеки; имеющиеся в библиотеках вуза. Успешное освоение дисциплины предполагает активную работу студентов на всех занятиях аудиторной формы: лекций и практических занятий, выполнение аттестационный мероприятий, эффективную самостоятельную работу.</p>
+        <p class="mdk-method-heading">4.1 Методические рекомендации обучающимся по обеспечению самостоятельной работы</p>
+        <p class="mdk-method-body">Самостоятельная работа проводится с целью: систематизации, закрепления, углубления и расширения теоретических знаний и практических умений, приобретаемых студентами в ходе аудиторных занятий; формирования умений использовать специальную литературу; развития познавательных способностей и активности обучающихся; формирования самостоятельности мышления, способности к саморазвитию, самосовершенствованию и самореализации; развития исследовательских умений.</p>
+        <p class="mdk-method-body">Для лучшего освоения материала и систематизации знаний по дисциплине необходимо отвечать на вопросы для самоконтроля. Во время самостоятельной проработки лекционного материала особое внимание следует уделять возникшим вопросам, непонятным терминам, спорным точкам зрения. В случае необходимости обращаться к преподавателю за консультацией. Студент должен четко уяснить, что именно с лекции начинается его подготовка к практическому занятию. Вместе с тем, лекция лишь организует мыслительную деятельность, но не обеспечивает глубину усвоения программного материала.</p>
+        <p class="mdk-method-body">При подготовке к практическому занятию особое внимание необходимо обратить на содержание основных положений и выводов, объяснение явлений и фактов, уяснение практического приложения рассматриваемых теоретических вопросов. В процессе этой работы студент должен стремиться понять и запомнить основные положения рассматриваемого материала, примеры, поясняющие его, а также разобраться в иллюстративном материале. В процессе подготовки рекомендуется взаимное обсуждение материала, во время которого закрепляются знания, а также приобретается практика в изложении и разъяснении полученных знаний, развивается речь.</p>
+        <p class="mdk-method-body">При необходимости следует обращаться за консультацией к преподавателю. Перед консультацией, необходимо хорошо продумать вопросы, которые требуют разъяснения.</p>
+        <p class="mdk-method-body">В процессе изучения дисциплины студенту необходимо ориентироваться на самостоятельную проработку лекционного материала, подготовку к практическим занятиям, выполнение тестов, кейсовых заданий, самостоятельное изучение некоторых разделов курса. Для проведения занятий лекционного типа используются учебно-наглядные пособия в форме презентационных материалов, обеспечивающих тематические иллюстрации, соответствующие темам лекций.</p>
+        <p class="mdk-method-heading">4.2 Особенности организации обучения для лиц с ограниченными возможностями здоровья и инвалидов</p>
+        <p class="mdk-method-body">При необходимости обучающимся из числа лиц с ограниченными возможностями здоровья и инвалидов (по заявлению обучающегося) предоставляется учебная информация в доступных формах с учетом их индивидуальных психофизических особенностей:</p>
+        <p class="mdk-method-body">для лиц с нарушениями зрения: в печатной форме увеличенным шрифтом; в форме электронного документа; индивидуальные консультации с привлечением тифлосурдопереводчика; индивидуальные задания, консультации и др.</p>
+        <p class="mdk-method-body">для лиц с нарушениями слуха: в печатной форме; в форме электронного документа; индивидуальные консультации с привлечением сурдопереводчика; индивидуальные задания, консультации и др.</p>
+        <p class="mdk-method-body">для лиц с нарушениями опорно-двигательного аппарата: в печатной форме; в форме электронного документа; индивидуальные задания, консультации и др.</p>
+        <p class="mdk-method-body">&nbsp;</p>
+
+        <p class="mdk-control-title">5 КОНТРОЛЬ И ОЦЕНКА РЕЗУЛЬТАТОВ ОСВОЕНИЯ КУРСА</p>
+        <table class="mdk-control-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>Код ПК</th>
+                    <th>Критерии оценки результата<br>(показатели освоенности компетенций)</th>
+                    <th>Формы контроля и методы оценки</th>
+                </tr>
+                {% for assessment in mdk_assessments %}
+                    <tr>
+                        <td class="mdk-control-code">{{ assessment.code_display|e }}</td>
+                        <td class="mdk-control-criteria" style="vertical-align: top;">
+                            {% for criterion in assessment.criteria %}
+                                <span class="mdk-control-criterion-line">{{ criterion.label|e }} {{ criterion.text|e }}</span>
+                            {% endfor %}
+                        </td>
+                        <td class="mdk-control-methods">{{ assessment.control_methods|e }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="after-control-break"></div>
+    </div>
+
+    <div class="mdk-kos-title-page">
+        <p class="mdk-kos-line mdk-kos-org">МИНОБРНАУКИ РОССИИ</p>
+        <p class="mdk-kos-line mdk-kos-org mdk-kos-org-gap">ВЛАДИВОСТОКСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ</p>
+        <p class="mdk-kos-line mdk-kos-org mdk-kos-org-gap">КОЛЛЕДЖ ИНФОРМАЦИОННЫХ И КРЕАТИВНЫХ ТЕХНОЛОГИЙ</p>
+
+        {% for _ in range(7) %}
+            <p class="mdk-kos-line mdk-kos-calibri-blank">&nbsp;</p>
+        {% endfor %}
+        <p class="mdk-kos-line mdk-kos-tnr-blank">&nbsp;</p>
+        <p class="mdk-kos-line mdk-kos-main-title">КОНТРОЛЬНО-ОЦЕНОЧНЫЕ СРЕДСТВА</p>
+        <p class="mdk-kos-line mdk-kos-subtitle">для проведения текущего контроля и промежуточной аттестации</p>
+        <p class="mdk-kos-line mdk-kos-tnr-blank">&nbsp;</p>
+        <p class="mdk-kos-line mdk-kos-subtitle mdk-kos-course-line">по <span class="mdk-kos-bold">{{ mdk_title|e }}</span></p>
+        <p class="mdk-kos-line mdk-kos-tnr-blank">&nbsp;</p>
+        <p class="mdk-kos-line mdk-kos-subtitle mdk-kos-subtitle-spaced">{{ professional_module_display|e }}</p>
+        <p class="mdk-kos-line mdk-kos-tnr-blank">&nbsp;</p>
+        <p class="mdk-kos-line mdk-kos-subtitle">программы подготовки специалистов среднего звена</p>
+        <p class="mdk-kos-line mdk-kos-speciality">{{ speciality_display|e }}</p>
+        {% for _ in range(3) %}
+            <p class="mdk-kos-line mdk-kos-tnr-blank">&nbsp;</p>
+        {% endfor %}
+        <p class="mdk-kos-line mdk-kos-study-form">Форма обучения: очная</p>
+        {% for _ in range(15) %}
+            <p class="mdk-kos-line mdk-kos-tnr-blank">&nbsp;</p>
+        {% endfor %}
+        <p class="mdk-kos-line mdk-kos-city-year">Владивосток {{ year|e }}</p>
+    </div>
+
+    <div class="mdk-kos-content-page">
+        <p class="mdk-kos-heading">1. Общие сведения</p>
+        <p class="mdk-kos-text">Контрольно-оценочные средства (далее – КОС) предназначены для контроля и оценки образовательных достижений обучающихся, освоивших программу {{ mdk_title_quoted|e }} в соответствии с техническим заданием и оценка их качества.</p>
+        <p class="mdk-kos-text">КОС включают в себя контрольные материалы для проведения текущего контроля успеваемости и промежуточной аттестации по дисциплине, которая проводится в форме дифференцированного зачёта (с использованием оценочного средства - устный опрос в форме ответов на вопросы билетов, устный опрос в форме собеседования, выполнение письменных заданий, тестирование и т.д.).</p>
+        <p class="mdk-kos-pilcrow-before-results">&nbsp;</p>
+        <p class="mdk-kos-heading mdk-kos-heading-no-after">2.  Планируемые результаты обучения, обеспечивающие результаты освоения образовательной программы</p>
+
+        <table class="mdk-kos-results-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Код ПК</th>
+                    <th>Код результата обучения</th>
+                    <th>Наименование результата обучения</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for group in mdk_kos_results %}
+                    {% for item in group['items'] %}
+                        <tr>
+                            {% if loop.first %}
+                                <td class="mdk-kos-pc-cell" rowspan="{{ group['items']|length }}">{{ group.code_display|e }}</td>
+                            {% endif %}
+                            <td class="mdk-kos-result-code-cell">{{ item.result_code|e }}</td>
+                            <td class="mdk-kos-result-name-cell">{{ item.result_name|e }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="mdk-kos-after-table">&nbsp;</p>
+
+        <p class="mdk-kos-proc-heading">3. Описание процедуры оценивания</p>
+        <p class="mdk-kos-proc-text">Результаты обучения по модулю, уровень сформированности компетенций оцениваются по четырёх бальной шкале оценками: «отлично», «хорошо», «удовлетворительно», «неудовлетворительно» (по бальной системе. Максимальная сумма баллов по дисциплине равна 100 баллов.)</p>
+        <p class="mdk-kos-proc-text">Текущая аттестация по модулю проводится с целью систематической проверки достижений обучающихся. Объектами оценивания являются: степень усвоения теоретических знаний, уровень овладения практическими умениями и навыками по всем видам учебной работы, качество выполнения самостоятельной работы, учебная дисциплина (активность на занятиях, своевременность выполнения различных видов заданий, посещаемость всех видов занятий по аттестуемой дисциплине).</p>
+        <p class="mdk-kos-proc-text">При проведении промежуточной аттестации оценивается достижение студентом запланированных по модулю результатов обучения, обеспечивающих результаты освоения образовательной программы в целом. Оценка на зачете / экзамене выставляется с учетом оценок, полученных при прохождении текущей аттестации.</p>
+        <p class="mdk-kos-proc-blank">&nbsp;</p>
+
+        <p class="mdk-kos-proc-subheading">Критерии оценивания устного ответа</p>
+        <p class="mdk-kos-proc-text">(оценочные средства: контрольная работа, собеседование, устное сообщение.)</p>
+        <p class="mdk-kos-proc-text"><span class="mdk-kos-score">5 баллов</span> – ответ показывает прочные знания основных процессов изучаемой предметной области, отличается глубиной и полнотой раскрытия темы; владение терминологическим аппаратом; умение объяснять сущность, явлений, процессов, событий, делать выводы и обобщения, давать аргументированные ответы, приводить примеры; свободное владение монологической речью, логичность и последовательность ответа; умение приводить примеры современных проблем изучаемой области.</p>
+        <p class="mdk-kos-proc-text"><span class="mdk-kos-score">4 балла</span> – ответ, обнаруживающий прочные знания основных процессов изучаемой предметной области, отличается глубиной и полнотой раскрытия темы; владение терминологическим аппаратом; умение объяснять сущность, явлений, процессов, событий, делать выводы и обобщения, давать аргументированные ответы, приводить примеры; свободное владение монологической речью, логичность и последовательность ответа. Однако допускается одна - две неточности в ответе.</p>
+        <p class="mdk-kos-proc-text"><span class="mdk-kos-score">3 балла</span> – ответ, свидетельствующий в основном о знании процессов изучаемой предметной области, отличающийся недостаточной глубиной и полнотой раскрытия темы; знанием основных вопросов теории; слабо сформированными навыками анализа явлений, процессов, недостаточным умением давать аргументированные ответы и приводить примеры; недостаточно свободным владением монологической речью, логичностью и последовательностью ответа. Допускается несколько ошибок в содержании ответа; неумение привести пример развития ситуации, провести связь с другими аспектами изучаемой области.</p>
+        <p class="mdk-kos-proc-text"><span class="mdk-kos-score">2 балла</span> – ответ, обнаруживающий незнание процессов изучаемой предметной области, отличающийся неглубоким раскрытием темы; незнанием основных вопросов теории, несформированными навыками анализа явлений, процессов; неумением давать аргументированные ответы, слабым владением монологической речью, отсутствием логичности и последовательности. Допускаются серьезные ошибки в содержании ответа; незнание современной проблематики изучаемой области.</p>
+        <p class="mdk-kos-proc-blank">&nbsp;</p>
+
+        <p class="mdk-kos-proc-subheading">Критерии оценивания письменной работы</p>
+        <p class="mdk-kos-proc-text">(оценочные средства: реферат, конспект, контрольная работа, письменный отчет по практической работе, портфолио, доклад (сообщение), в том числе выполненный в форме презентации, творческое задание, курсовая работа).</p>
+        <p class="mdk-kos-proc-text"><span class="mdk-kos-score">5 баллов</span> – студент выразил своё мнение по сформулированной проблеме, аргументировал его, точно определив ее содержание и составляющие. Проблема раскрыта полностью, выводы обоснованы. Приведены данные отечественной и зарубежной литературы, статистические сведения, информация нормативно-правового характера. Студент владеет навыком самостоятельной работы по заданной теме; методами и приемами анализа теоретических и/или практических аспектов изучаемой области. Фактических ошибок, связанных с пониманием проблемы, нет; графически работа оформлена правильно.</p>
+        <p class="mdk-kos-proc-text"><span class="mdk-kos-score">4 балла</span> – работа характеризуется смысловой цельностью, связностью и последовательностью изложения; допущено не более 1 ошибки при объяснении смысла или содержания проблемы. Проблема раскрыта. Не все выводы сделаны и/или обоснованы. Для аргументации приводятся данные отечественных и зарубежных авторов. Продемонстрированы исследовательские умения и навыки. Фактических ошибок, связанных с пониманием проблемы, нет. Допущены одна-две ошибки в оформлении работы.</p>
+        <p class="mdk-kos-proc-text"><span class="mdk-kos-score">3 балла</span> – студент проводит достаточно самостоятельный анализ основных этапов и смысловых составляющих проблемы; понимает базовые основы и теоретическое обоснование выбранной темы. Проблема раскрыта не полностью. Выводы не сделаны и/или выводы не обоснованы Проведен анализ проблемы без привлечения дополнительной литературы. Допущено не более 2 ошибок в смысле или содержании проблемы, оформлении работы.</p>
+        <p class="mdk-kos-proc-text"><span class="mdk-kos-score">2 балла</span> – работа представляет собой пересказанный или полностью переписанный исходный текст без каких бы то ни было комментариев, анализа. Не раскрыта структура и теоретическая составляющая темы. Проблема не раскрыта. Выводы отсутствуют. Допущено три или более трех ошибок в смысловом содержании раскрываемой проблемы, в оформлении работы.</p>
+        <p class="mdk-kos-proc-blank mdk-kos-proc-blank-bold">&nbsp;</p>
+
+        <p class="mdk-kos-proc-subheading">Критерии оценивания тестового задания</p>
+        <p class="mdk-kos-proc-italic-blank">&nbsp;</p>
+        <table class="mdk-kos-test-table">
+            <colgroup>
+                <col>
+                <col>
+                <col>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>Оценка</th>
+                    <th>Отлично</th>
+                    <th>Хорошо</th>
+                    <th>Удовлетворительно</th>
+                    <th>Неудовлетворительно</th>
+                </tr>
+                <tr>
+                    <td>Количество правильных ответов</td>
+                    <td>91 %  и ≥</td>
+                    <td>от 81% до 90,9 %</td>
+                    <td>не менее 70%</td>
+                    <td>менее 70%</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="mdk-kos-proc-blank mdk-kos-proc-blank-bold">&nbsp;</p>
+
+        <p class="mdk-kos-proc-subheading">Критерии выставления оценки студенту на зачете / экзамене</p>
+        <p class="mdk-kos-proc-text">(оценочные средства: устный опрос в форме ответов на вопросы билетов, устный опрос в форме собеседования, выполнение письменных разноуровневых задач и заданий, комплексная расчетно-графическая работа, творческое задание, кейс-задача, портфолио, проект и т.п.)</p>
+        <p class="mdk-kos-proc-text" style="font-size: 8pt;">&nbsp;</p>
+        <table class="mdk-kos-exam-table">
+            <colgroup>
+                <col>
+                <col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>Оценка по  промежуточной аттестации</th>
+                    <th>Характеристика качества сформированности компетенций</th>
+                </tr>
+                <tr>
+                    <td class="mdk-kos-exam-mark">«зачтено» / «отлично»</td>
+                    <td class="mdk-kos-exam-desc">Студент демонстрирует сформированность дисциплинарных компетенций на продвинутом уровне: обнаруживает всестороннее, систематическое и глубокое знание учебного материала, умеет тесно увязывать теорию с практикой, свободно справляется с задачами, вопросами и другими видами применения знаний, причем не затрудняется с ответом при видоизменении заданий, правильно обосновывает принятое решение, владеет разносторонними навыками и приемами выполнения практических задач.</td>
+                </tr>
+                <tr>
+                    <td class="mdk-kos-exam-mark">«зачтено» / «хорошо»</td>
+                    <td class="mdk-kos-exam-desc">Студент демонстрирует сформированность дисциплинарных компетенций на базовом уровне: основные знания, умения освоены, но допускаются незначительные ошибки, неточности, затруднения при аналитических операциях, переносе знаний и умений на новые, нестандартные ситуации.</td>
+                </tr>
+                <tr>
+                    <td class="mdk-kos-exam-mark">«зачтено» /<br>«удовлетворительно»</td>
+                    <td class="mdk-kos-exam-desc">Студент демонстрирует сформированность дисциплинарных компетенций на пороговом уровне: имеет знания только основного материала, но не усвоил его деталей, в ходе контрольных мероприятий допускаются значительные ошибки, недостаточно правильные формулировки, нарушения логической последовательности в изложении программного материала, испытывает затруднения при выполнении практических работ, при оперировании знаниями и умениями при их переносе на новые ситуации.</td>
+                </tr>
+                <tr>
+                    <td class="mdk-kos-exam-mark">«не зачтено» /<br>«неудовлетворительно»</td>
+                    <td class="mdk-kos-exam-desc">Студент демонстрирует сформированность дисциплинарных компетенций на уровне ниже порогового: выявляется полное или практически полное отсутствие знаний значительной части программного материала, студент допускает существенные ошибки, неуверенно, с большими затруднениями выполняет практические работы, умения и навыки не сформированы.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="mdk-kos-proc-blank mdk-kos-proc-blank-bold" style="font-size: 13pt;">&nbsp;</p>
+        <p class="mdk-kos-examples-title">4. Примеры оценочных средств для проведения промежуточной аттестации</p>
+        <p class="mdk-kos-proc-blank mdk-kos-proc-blank-bold" style="font-size: 13pt;">&nbsp;</p>
+        <p class="mdk-kos-questions-title">Вопросы для дифференцированного зачета</p>
+        <p class="mdk-kos-proc-blank mdk-kos-proc-blank-bold" style="font-size: 13pt; text-align: center;">&nbsp;</p>
+        {% for question in mdk_kos_questions %}
+            <p class="mdk-kos-question">{{ loop.index }}. {{ question|e }}</p>
+        {% endfor %}
+        <p class="mdk-kos-question-after">&nbsp;</p>
+
+        <p class="mdk-kos-tickets-title">Экзаменационные билеты</p>
+        <p class="mdk-kos-tickets-blank">&nbsp;</p>
+        {% for ticket in mdk_kos_tickets %}
+            <p class="mdk-kos-ticket-title">Билет {{ loop.index }}.</p>
+            {% for question in ticket.questions %}
+                <p class="mdk-kos-ticket-question">{{ loop.index }}. {{ question|e }}</p>
+            {% endfor %}
+        {% endfor %}
+    </div>
+</body>
+</html>
