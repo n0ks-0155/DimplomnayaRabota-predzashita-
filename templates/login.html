@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в конструктор РПД</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="auth-page">
+    <main class="auth-shell">
+        <section class="auth-hero">
+            <p class="auth-eyebrow">Конструктор РПД</p>
+            <h1>Рабочие программы без лишней рутины</h1>
+            <p>Войдите в систему или создайте учётную запись преподавателя. Email нужен для восстановления доступа к аккаунту.</p>
+            <div class="auth-security-note">
+                <strong>Безопасный вход</strong>
+                <span>Если вы войдёте в аккаунт заново, предыдущий вход автоматически завершится.</span>
+            </div>
+        </section>
+
+        <section class="auth-card">
+            <div class="auth-card-header">
+                <h2>Вход</h2>
+                <p>Используйте логин и пароль преподавателя.</p>
+            </div>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            {% if success %}
+                <p class="success">{{ success }}</p>
+            {% endif %}
+            <form method="post" action="{{ url_for('login') }}" class="auth-form">
+                <div class="form-group">
+                    <label for="username">Логин</label>
+                    <input type="text" id="username" name="username" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" autocomplete="current-password" required>
+                </div>
+                <div class="auth-link-row">
+                    <a href="{{ url_for('forgot_password') }}" class="auth-link">Забыли пароль?</a>
+                </div>
+                <button type="submit" class="btn auth-submit">Войти</button>
+            </form>
+        </section>
+
+        <section class="auth-card auth-card-register">
+            <div class="auth-card-header">
+                <h2>Создать учётную запись</h2>
+                <p>Новая запись сразу станет доступной для входа в приложение.</p>
+            </div>
+            {% if register_error %}
+                <p class="error">{{ register_error }}</p>
+            {% endif %}
+            <form method="post" action="{{ url_for('register') }}" class="auth-form">
+                <div class="form-group">
+                    <label for="register_username">Логин</label>
+                    <input
+                        type="text"
+                        id="register_username"
+                        name="register_username"
+                        value="{{ register_username|default('', true) }}"
+                        autocomplete="username"
+                        minlength="3"
+                        maxlength="40"
+                        required
+                    >
+                    <small>Можно использовать буквы, цифры, точку, дефис и подчёркивание.</small>
+                </div>
+                <div class="form-group">
+                    <label for="register_email">Email для восстановления</label>
+                    <input
+                        type="email"
+                        id="register_email"
+                        name="register_email"
+                        value="{{ register_email|default('', true) }}"
+                        autocomplete="email"
+                        required
+                    >
+                    <small>На этот адрес будет отправляться ссылка для сброса пароля.</small>
+                </div>
+                <div class="form-group">
+                    <label for="register_password">Пароль</label>
+                    <input type="password" id="register_password" name="register_password" autocomplete="new-password" minlength="8" required>
+                    <small>Минимум 8 символов.</small>
+                </div>
+                <div class="form-group">
+                    <label for="register_password_confirm">Повторите пароль</label>
+                    <input type="password" id="register_password_confirm" name="register_password_confirm" autocomplete="new-password" minlength="8" required>
+                </div>
+                <button type="submit" class="btn auth-submit">Создать и войти</button>
+            </form>
+        </section>
+    </main>
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+</body>
+</html>

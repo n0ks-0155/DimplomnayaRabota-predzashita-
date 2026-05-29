@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Междисциплинарный курс (МДК)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='mdk_style.css') }}">
+</head>
+<body>
+    <div class="container mdk-form-shell">
+        <h1>Шаблон: междисциплинарный курс (МДК)</h1>
+        <form action="{{ url_for('generate_document') }}" method="post" id="mdkForm">
+            <input type="hidden" name="template" value="mdk">
+
+            <div id="mdk-rpd-page" class="form-page is-active">
+
+            <div class="form-section mdk-card">
+                <h3>Основные данные</h3>
+                <div class="form-group">
+                    <label for="discipline_type">Тип дисциплины:</label>
+                    <select id="discipline_type" name="discipline_type" required>
+                        <option value="МДК" selected>Междисциплинарный курс (МДК)</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="mdk_index">Индекс компетенций:</label>
+                        <select id="mdk_index" name="mdk_index" required>
+                            <option value="" disabled selected>Выберите индекс</option>
+                            {% for index in mdk_indices %}
+                                <option value="{{ index }}">{{ index }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group half">
+                        <label for="discipline_name">Наименование дисциплины:</label>
+                        <input type="text" id="discipline_name" name="discipline_name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="professional_module">Профессиональный модуль:</label>
+                    <select id="professional_module" name="professional_module" required>
+                        {% for code, title in professional_modules.items() %}
+                            <option value="{{ code }}">{{ code }} {{ title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="speciality">Код специальности:</label>
+                        <input type="text" id="speciality" name="speciality" value="09.02.13" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="speciality_name">Наименование специальности:</label>
+                        <input type="text" id="speciality_name" name="speciality_name" value="Интеграция решений с применением технологий искусственного интеллекта" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="year">Год:</label>
+                    <input type="text" id="year" name="year" value="2026" required>
+                </div>
+            </div>
+
+            <div class="form-section mdk-card">
+                <h3>Реквизиты приказа</h3>
+                <div class="form-row">
+                    <div class="form-group third">
+                        <label for="order_day">Дата:</label>
+                        <select id="order_day" name="order_day" required>
+                            {% for day in range(1, 32) %}
+                                <option value="{{ day }}" {% if day == 24 %}selected{% endif %}>{{ day }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group third">
+                        <label for="order_month">Месяц:</label>
+                        <select id="order_month" name="order_month" required>
+                            <option value="января">января</option>
+                            <option value="февраля">февраля</option>
+                            <option value="марта">марта</option>
+                            <option value="апреля">апреля</option>
+                            <option value="мая">мая</option>
+                            <option value="июня">июня</option>
+                            <option value="июля">июля</option>
+                            <option value="августа">августа</option>
+                            <option value="сентября">сентября</option>
+                            <option value="октября">октября</option>
+                            <option value="ноября">ноября</option>
+                            <option value="декабря" selected>декабря</option>
+                        </select>
+                    </div>
+                    <div class="form-group third">
+                        <label for="order_year">Год:</label>
+                        <select id="order_year" name="order_year" required>
+                            {% for item_year in range(2020, 2036) %}
+                                <option value="{{ item_year }}" {% if item_year == 2024 %}selected{% endif %}>{{ item_year }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="order_number">Номер приказа:</label>
+                    <input type="text" id="order_number" name="order_number" value="1025" required>
+                </div>
+            </div>
+
+            <div class="form-section mdk-card">
+                <h3>Разработчик и протокол</h3>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="developer_name">Разработчик:</label>
+                        <input type="text" id="developer_name" name="developer_name" value="М.Д. Кончаков" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="developer_position">Должность:</label>
+                        <input type="text" id="developer_position" name="developer_position" value="преподаватель" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group quarter">
+                        <label for="protocol_number">Протокол №:</label>
+                        <input type="text" id="protocol_number" name="protocol_number" value="2" required>
+                    </div>
+                    <div class="form-group quarter">
+                        <label for="protocol_day">Дата:</label>
+                        <select id="protocol_day" name="protocol_day" required>
+                            {% for day in range(1, 32) %}
+                                <option value="{{ day }}" {% if day == 25 %}selected{% endif %}>{{ day }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group quarter">
+                        <label for="protocol_month">Месяц:</label>
+                        <select id="protocol_month" name="protocol_month" required>
+                            <option value="января">января</option>
+                            <option value="февраля">февраля</option>
+                            <option value="марта">марта</option>
+                            <option value="апреля">апреля</option>
+                            <option value="мая">мая</option>
+                            <option value="июня">июня</option>
+                            <option value="июля">июля</option>
+                            <option value="августа">августа</option>
+                            <option value="сентября">сентября</option>
+                            <option value="октября">октября</option>
+                            <option value="ноября" selected>ноября</option>
+                            <option value="декабря">декабря</option>
+                        </select>
+                    </div>
+                    <div class="form-group quarter">
+                        <label for="protocol_year">Год:</label>
+                        <select id="protocol_year" name="protocol_year" required>
+                            {% for item_year in range(2020, 2036) %}
+                                <option value="{{ item_year }}" {% if item_year == 2025 %}selected{% endif %}>{{ item_year }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pcc_chair">Председатель ПЦК:</label>
+                    <input type="text" id="pcc_chair" name="pcc_chair" value="П.В. Калашников" required>
+                </div>
+            </div>
+
+            <div class="form-section mdk-card">
+                <h3>1. Общая характеристика программы</h3>
+                <div class="form-group">
+                    <label for="course_goal">Цель:</label>
+                    <textarea id="course_goal" name="course_goal" rows="4" required>формирование у обучающихся профессиональных компетенций, необходимых для проектирования, разработки, тестирования и документирования программных модулей, предназначенных для реализации алгоритмов машинного обучения и других компонентов систем искусственного интеллекта.</textarea>
+                </div>
+
+                <div class="mdk-activities-header">
+                    <h4>Виды деятельности и профессиональные компетенции</h4>
+                    <button type="button" class="btn btn-secondary" id="addMdkActivity">Добавить ВД</button>
+                </div>
+
+                <input type="hidden" id="mdk_activities_json" name="mdk_activities_json">
+                <input type="hidden" id="mdk_pc_results_json" name="mdk_pc_results_json">
+                <div id="mdkActivities" class="mdk-activities"></div>
+
+                <div class="mdk-results-block">
+                    <h4>Планируемые результаты по выбранным ПК</h4>
+                    <div id="mdkPcResults" class="mdk-pc-results"></div>
+                </div>
+            </div>
+
+            <div class="form-section mdk-card">
+                <h3>2. Структура и содержание междисциплинарного курса</h3>
+                <h4>2.1 Объем МДК и виды учебной работы</h4>
+                <div class="mdk-workload-table">
+                    <div class="mdk-workload-head">Вид учебной работы</div>
+                    <div class="mdk-workload-head">Объем в часах</div>
+                    <div class="mdk-workload-head">В т.ч. в форме практ. подготовки</div>
+
+                    <label for="mdk_workload_classes_hours">Учебные занятия</label>
+                    <input type="number" id="mdk_workload_classes_hours" name="mdk_workload_classes_hours" class="mdk-workload-hours" min="0" step="0.01">
+                    <input type="number" name="mdk_workload_classes_practice" class="mdk-workload-practice" min="0" step="0.01">
+
+                    <label for="mdk_workload_self_hours">Самостоятельная работа</label>
+                    <input type="number" id="mdk_workload_self_hours" name="mdk_workload_self_hours" class="mdk-workload-hours" min="0" step="0.01">
+                    <input type="number" name="mdk_workload_self_practice" class="mdk-workload-practice" min="0" step="0.01">
+
+                    <label for="mdk_workload_consultations_hours">Консультации</label>
+                    <input type="number" id="mdk_workload_consultations_hours" name="mdk_workload_consultations_hours" class="mdk-workload-hours" min="0" step="0.01">
+                    <input type="number" name="mdk_workload_consultations_practice" class="mdk-workload-practice" min="0" step="0.01">
+
+                    <label for="mdk_workload_attestation_hours">Промежуточная аттестация</label>
+                    <input type="number" id="mdk_workload_attestation_hours" name="mdk_workload_attestation_hours" class="mdk-workload-hours" min="0" step="0.01">
+                    <input type="number" name="mdk_workload_attestation_practice" class="mdk-workload-practice" min="0" step="0.01">
+
+                    <strong>Всего</strong>
+                    <input type="text" id="mdk_workload_hours_total" readonly>
+                    <input type="text" id="mdk_workload_practice_total" readonly>
+                </div>
+
+                <div class="mdk-thematic-header">
+                    <h4>2.2 Тематический план и содержание МДК</h4>
+                    <button type="button" class="btn btn-secondary" id="addMdkPlanSection">Добавить раздел</button>
+                </div>
+                <input type="hidden" id="mdk_thematic_plan_json" name="mdk_thematic_plan_json">
+                <div id="mdkThematicPlan" class="mdk-thematic-plan"></div>
+            </div>
+
+            <div class="form-section mdk-card">
+                <h3>3. Условия реализации междисциплинарного курса</h3>
+                <div class="mdk-rooms-header">
+                    <h4>3.1 Материально-техническое обеспечение</h4>
+                    <button type="button" class="btn btn-secondary" id="addMdkRoom">Добавить помещение</button>
+                </div>
+                <p class="mdk-help-link">Данные для заполнения можно взять на странице <a href="https://www.vvsu.ru/sveden/objects/cabinets/" target="_blank" rel="noopener noreferrer">кабинетов ВВГУ</a>.</p>
+                <input type="hidden" id="mdk_rooms_json" name="mdk_rooms_json">
+                <div id="mdkRooms" class="mdk-rooms"></div>
+
+                <div class="mdk-sources-block">
+                    <h4>3.2 Учебно-методическое обеспечение</h4>
+                    <p class="mdk-help-link">Данные для заполнения можно взять в <a href="https://elib.vvsu.ru/#/?offset=0" target="_blank" rel="noopener noreferrer">электронной библиотеке ВВГУ</a>.</p>
+                    <input type="hidden" id="mdk_sources_json" name="mdk_sources_json">
+
+                    <div class="mdk-source-group" data-source-type="main">
+                        <div class="mdk-source-header">
+                            <h5>Основные источники</h5>
+                            <button type="button" class="btn btn-secondary mdk-add-source">Добавить источник</button>
+                        </div>
+                        <div class="mdk-source-list"></div>
+                    </div>
+
+                    <div class="mdk-source-group" data-source-type="additional">
+                        <div class="mdk-source-header">
+                            <h5>Дополнительные источники</h5>
+                            <button type="button" class="btn btn-secondary mdk-add-source">Добавить источник</button>
+                        </div>
+                        <div class="mdk-source-list"></div>
+                    </div>
+
+                    <div class="mdk-source-group" data-source-type="electronic">
+                        <div class="mdk-source-header">
+                            <h5>Электронные ресурсы</h5>
+                            <button type="button" class="btn btn-secondary mdk-add-source">Добавить ресурс</button>
+                        </div>
+                        <div class="mdk-source-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section mdk-card">
+                <h3>5. Контроль и оценка результатов освоения курса</h3>
+                <input type="hidden" id="mdk_assessment_json" name="mdk_assessment_json">
+                <div id="mdkAssessmentRows" class="mdk-assessment-rows"></div>
+            </div>
+
+            <div class="mdk-actions">
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">Назад</a>
+                <button type="button" class="btn" id="goToMdkKos">Далее</button>
+            </div>
+            </div>
+
+            <div id="mdk-kos-page" class="form-page mdk-kos-page">
+                <div class="mdk-kos-hero">
+                    <div>
+                        <div class="mdk-kos-eyebrow">Шаг 2 из 2</div>
+                        <h2>Контрольно-оценочные средства</h2>
+                        <p>Заполните результаты обучения для КОС. После этого можно создать итоговый документ.</p>
+                    </div>
+                </div>
+
+                <div class="form-section mdk-card">
+                    <h3>2. Планируемые результаты обучения</h3>
+                    <input type="hidden" id="mdk_kos_results_json" name="mdk_kos_results_json">
+                    <div id="mdkKosResults" class="mdk-kos-results"></div>
+                </div>
+
+                <div class="form-section mdk-card">
+                    <h3>Вопросы для дифференцированного зачета</h3>
+                    <input type="hidden" id="mdk_kos_questions_json" name="mdk_kos_questions_json">
+                    <div id="mdkKosQuestions" class="mdk-kos-questions"></div>
+                    <button type="button" class="btn btn-secondary" id="addMdkKosQuestion">Добавить вопрос</button>
+                </div>
+
+                <div class="form-section mdk-card">
+                    <h3>Экзаменационные билеты</h3>
+                    <input type="hidden" id="mdk_kos_tickets_json" name="mdk_kos_tickets_json">
+                    <div id="mdkKosTickets" class="mdk-kos-tickets"></div>
+                    <button type="button" class="btn btn-secondary" id="addMdkKosTicket">Добавить билет</button>
+                </div>
+
+                <div class="mdk-actions">
+                    <button type="button" class="btn btn-secondary" id="goToMdkRpd">Назад</button>
+                    <button type="submit" class="btn">Создать документ</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        const mdkPcOptions = {{ pc_options|tojson }};
+        const mdkActivities = document.getElementById('mdkActivities');
+        const mdkActivitiesJson = document.getElementById('mdk_activities_json');
+        const mdkPcResultsJson = document.getElementById('mdk_pc_results_json');
+        const mdkPcResults = document.getElementById('mdkPcResults');
+        const addMdkActivityButton = document.getElementById('addMdkActivity');
+        const mdkForm = document.getElementById('mdkForm');
+        const maxMdkPcRows = 100;
+        const workloadHoursTotal = document.getElementById('mdk_workload_hours_total');
+        const workloadPracticeTotal = document.getElementById('mdk_workload_practice_total');
+        const mdkThematicPlan = document.getElementById('mdkThematicPlan');
+        const mdkThematicPlanJson = document.getElementById('mdk_thematic_plan_json');
+        const addMdkPlanSectionButton = document.getElementById('addMdkPlanSection');
+        const maxMdkPlanSections = 100;
+        const maxMdkPlanTopics = 100;
+        const mdkRooms = document.getElementById('mdkRooms');
+        const mdkRoomsJson = document.getElementById('mdk_rooms_json');
+        const addMdkRoomButton = document.getElementById('addMdkRoom');
+        const maxMdkRooms = 100;
+        const mdkSourcesJson = document.getElementById('mdk_sources_json');
+        const mdkSourceGroups = document.querySelectorAll('.mdk-source-group');
+        const maxMdkSources = 100;
+        const mdkAssessmentRows = document.getElementById('mdkAssessmentRows');
+        const mdkAssessmentJson = document.getElementById('mdk_assessment_json');
+        const mdkRpdPage = document.getElementById('mdk-rpd-page');
+        const mdkKosPage = document.getElementById('mdk-kos-page');
+        const goToMdkKosButton = document.getElementById('goToMdkKos');
+        const goToMdkRpdButton = document.getElementById('goToMdkRpd');
+        const mdkKosResults = document.getElementById('mdkKosResults');
+        const mdkKosResultsJson = document.getElementById('mdk_kos_results_json');
+        const maxMdkKosResultRows = 100;
+        const mdkKosQuestions = document.getElementById('mdkKosQuestions');
+        const mdkKosQuestionsJson = document.getElementById('mdk_kos_questions_json');
+        const addMdkKosQuestionButton = document.getElementById('addMdkKosQuestion');
+        const maxMdkKosQuestions = 100;
+        const mdkKosTickets = document.getElementById('mdkKosTickets');
+        const mdkKosTicketsJson = document.getElementById('mdk_kos_tickets_json');
+        const addMdkKosTicketButton = document.getElementById('addMdkKosTicket');
+        const maxMdkKosTickets = 100;
+        const maxMdkKosTicketQuestions = 100;
+
+        function buildPcOptions() {
+            return [
+                '<option value="" disabled selected>Выберите ПК</option>',
+                ...mdkPcOptions.map((item) => (
+                    `<option value="${item.code}">${item.code} ${item.description}</option>`
+                )),
+            ].join('');
+        }
+
+        function addMdkPcRow(activityElement) {
+            const pcList = activityElement.querySelector('.mdk-pc-list');
+            const currentRows = pcList.querySelectorAll('.mdk-pc-row').length;
+            if (currentRows >= maxMdkPcRows) {
+                return;
+            }
+
+            const row = document.createElement('div');
+            row.className = 'mdk-pc-row';
+            row.innerHTML = `
+                <select class="mdk-pc-select" required>
+                    ${buildPcOptions()}
+                </select>
+                <button type="button" class="btn btn-secondary mdk-remove-pc">Удалить</button>
+            `;
+            pcList.appendChild(row);
+            syncMdkPcResultRows();
+            syncMdkAssessmentRows();
+        }
+
+        function renumberMdkActivities() {
+            mdkActivities.querySelectorAll('.mdk-activity').forEach((activity, index) => {
+                const number = index + 1;
+                activity.querySelector('.mdk-activity-number').textContent = `ВД ${number}`;
+                activity.querySelector('.mdk-vd-code').placeholder = `ВД ${number}`;
+            });
+        }
+
+        function addMdkActivity() {
+            const activity = document.createElement('div');
+            activity.className = 'mdk-activity';
+            activity.innerHTML = `
+                <div class="mdk-activity-title">
+                    <strong class="mdk-activity-number"></strong>
+                    <button type="button" class="btn btn-secondary mdk-remove-activity">Удалить ВД</button>
+                </div>
+                <div class="form-row">
+                    <div class="form-group third">
+                        <label>Код ВД:</label>
+                        <input type="text" class="mdk-vd-code" placeholder="ВД 1" required>
+                    </div>
+                    <div class="form-group two-thirds">
+                        <label>Описание ВД:</label>
+                        <textarea class="mdk-vd-desc" rows="2" required></textarea>
+                    </div>
+                </div>
+                <div class="mdk-pc-list"></div>
+                <button type="button" class="btn btn-secondary mdk-add-pc">Добавить ПК</button>
+            `;
+            mdkActivities.appendChild(activity);
+            addMdkPcRow(activity);
+            renumberMdkActivities();
+            syncMdkPcResultRows();
+        }
+
+        function getSelectedPcCodes() {
+            const selected = [];
+            const seen = new Set();
+            mdkActivities.querySelectorAll('.mdk-pc-select').forEach((select) => {
+                if (!select.value || seen.has(select.value)) {
+                    return;
+                }
+                selected.push(select.value);
+                seen.add(select.value);
+            });
+            return selected.slice(0, maxMdkPcRows);
+        }
+
+        function getPcResultValues() {
+            const values = new Map();
+            mdkPcResults.querySelectorAll('.mdk-result-card').forEach((card) => {
+                values.set(card.dataset.code, {
+                    skills: card.querySelector('.mdk-result-skills').value,
+                    knowledge: card.querySelector('.mdk-result-knowledge').value,
+                    mastery: card.querySelector('.mdk-result-mastery').value,
+                });
+            });
+            return values;
+        }
+
+        function syncMdkPcResultRows() {
+            const savedValues = getPcResultValues();
+            const selectedCodes = getSelectedPcCodes();
+            mdkPcResults.innerHTML = '';
+
+            selectedCodes.forEach((code) => {
+                const option = mdkPcOptions.find((item) => item.code === code);
+                const values = savedValues.get(code) || {};
+                const card = document.createElement('div');
+                card.className = 'mdk-result-card';
+                card.dataset.code = code;
+                card.innerHTML = `
+                    <h5>${code.replace(/\\.$/, '')}</h5>
+                    <p>${option ? option.description : ''}</p>
+                    <div class="form-row">
+                        <div class="form-group third">
+                            <label>Уметь:</label>
+                            <textarea class="mdk-result-skills" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group third">
+                            <label>Знать:</label>
+                            <textarea class="mdk-result-knowledge" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group third">
+                            <label>Владеть навыками:</label>
+                            <textarea class="mdk-result-mastery" rows="4" required></textarea>
+                        </div>
+                    </div>
+                `;
+                card.querySelector('.mdk-result-skills').value = values.skills || '';
+                card.querySelector('.mdk-result-knowledge').value = values.knowledge || '';
+                card.querySelector('.mdk-result-mastery').value = values.mastery || '';
+                mdkPcResults.appendChild(card);
+            });
+        }
+
+        function getMdkAssessmentValues() {
+            const values = new Map();
+            mdkAssessmentRows.querySelectorAll('.mdk-assessment-card').forEach((card) => {
+                values.set(card.dataset.code, {
+                    control: card.querySelector('.mdk-assessment-control').value,
+                    excellentEnabled: card.querySelector('.mdk-assessment-excellent-enabled').checked,
+                    excellent: card.querySelector('.mdk-assessment-excellent-text').value,
+                    goodEnabled: card.querySelector('.mdk-assessment-good-enabled').checked,
+                    good: card.querySelector('.mdk-assessment-good-text').value,
+                    satisfactoryEnabled: card.querySelector('.mdk-assessment-satisfactory-enabled').checked,
+                    satisfactory: card.querySelector('.mdk-assessment-satisfactory-text').value,
+                });
+            });
+            return values;
+        }
+
+        function toggleAssessmentCriterion(checkbox) {
+            const row = checkbox.closest('.mdk-assessment-criterion');
+            const textarea = row.querySelector('textarea');
+            textarea.hidden = !checkbox.checked;
+            textarea.disabled = !checkbox.checked;
+            textarea.required = checkbox.checked;
+        }
+
+        function syncMdkAssessmentRows() {
+            const savedValues = getMdkAssessmentValues();
+            const selectedCodes = getSelectedPcCodes();
+            mdkAssessmentRows.innerHTML = '';
+
+            selectedCodes.forEach((code) => {
+                const values = savedValues.get(code) || {};
+                const card = document.createElement('div');
+                card.className = 'mdk-assessment-card';
+                card.dataset.code = code;
+                card.innerHTML = `
+                    <h4>${code.replace(/\\.$/, '')}</h4>
+                    <div class="mdk-assessment-criterion">
+                        <label class="mdk-checkbox-label">
+                            <input type="checkbox" class="mdk-assessment-excellent-enabled">
+                            Оценка "отлично"
+                        </label>
+                        <textarea class="mdk-assessment-excellent-text" rows="3" hidden disabled></textarea>
+                    </div>
+                    <div class="mdk-assessment-criterion">
+                        <label class="mdk-checkbox-label">
+                            <input type="checkbox" class="mdk-assessment-good-enabled">
+                            Оценка "хорошо"
+                        </label>
+                        <textarea class="mdk-assessment-good-text" rows="3" hidden disabled></textarea>
+                    </div>
+                    <div class="mdk-assessment-criterion">
+                        <label class="mdk-checkbox-label">
+                            <input type="checkbox" class="mdk-assessment-satisfactory-enabled">
+                            Оценка "удовлетворительно"
+                        </label>
+                        <textarea class="mdk-assessment-satisfactory-text" rows="3" hidden disabled></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Формы контроля и методы оценки:</label>
+                        <textarea class="mdk-assessment-control" rows="4" required></textarea>
+                    </div>
+                `;
+                card.querySelector('.mdk-assessment-control').value = values.control || '';
+                [
+                    ['excellent', 'excellentEnabled'],
+                    ['good', 'goodEnabled'],
+                    ['satisfactory', 'satisfactoryEnabled'],
+                ].forEach(([key, enabledKey]) => {
+                    const checkbox = card.querySelector(`.mdk-assessment-${key}-enabled`);
+                    const textarea = card.querySelector(`.mdk-assessment-${key}-text`);
+                    checkbox.checked = Boolean(values[enabledKey]);
+                    textarea.value = values[key] || '';
+                    toggleAssessmentCriterion(checkbox);
+                });
+                mdkAssessmentRows.appendChild(card);
+            });
+        }
+
+        function getMdkKosValues() {
+            const values = new Map();
+            mdkKosResults.querySelectorAll('.mdk-kos-card').forEach((card) => {
+                values.set(card.dataset.code, [...card.querySelectorAll('.mdk-kos-result-row')].map((row) => ({
+                    result_code: row.querySelector('.mdk-kos-result-code').value,
+                    result_name: row.querySelector('.mdk-kos-result-name').value,
+                })));
+            });
+            return values;
+        }
+
+        function renumberMdkKosRows(card) {
+            card.querySelectorAll('.mdk-kos-result-row').forEach((row, index) => {
+                row.querySelector('.mdk-kos-result-number').textContent = `${index + 1}.`;
+            });
+            const addButton = card.querySelector('.mdk-add-kos-result');
+            addButton.disabled = card.querySelectorAll('.mdk-kos-result-row').length >= maxMdkKosResultRows;
+        }
+
+        function addMdkKosResultRow(card, values = {}) {
+            const rows = card.querySelector('.mdk-kos-result-list');
+            if (rows.querySelectorAll('.mdk-kos-result-row').length >= maxMdkKosResultRows) {
+                return;
+            }
+            const row = document.createElement('div');
+            row.className = 'mdk-kos-result-row';
+            row.innerHTML = `
+                <strong class="mdk-kos-result-number"></strong>
+                <textarea class="mdk-kos-result-code" rows="2" placeholder="Код результата обучения" required></textarea>
+                <textarea class="mdk-kos-result-name" rows="2" placeholder="Наименование результата обучения" required></textarea>
+                <button type="button" class="btn btn-secondary mdk-remove-kos-result">Удалить</button>
+            `;
+            row.querySelector('.mdk-kos-result-code').value = values.result_code || '';
+            row.querySelector('.mdk-kos-result-name').value = values.result_name || '';
+            rows.appendChild(row);
+            renumberMdkKosRows(card);
+        }
+
+        function syncMdkKosResults() {
+            const savedValues = getMdkKosValues();
+            const selectedCodes = getSelectedPcCodes();
+            mdkKosResults.innerHTML = '';
+
+            selectedCodes.forEach((code) => {
+                const card = document.createElement('div');
+                card.className = 'mdk-kos-card';
+                card.dataset.code = code;
+                card.innerHTML = `
+                    <div class="mdk-kos-card-header">
+                        <h4>${code.replace(/\\.$/, '')}</h4>
+                        <button type="button" class="btn btn-secondary mdk-add-kos-result">Добавить результат</button>
+                    </div>
+                    <div class="mdk-kos-result-list"></div>
+                `;
+                mdkKosResults.appendChild(card);
+                const savedRows = savedValues.get(code) || [{}];
+                savedRows.forEach((row) => addMdkKosResultRow(card, row));
+            });
+        }
+
+        function collectMdkActivities() {
+            const activities = [];
+            mdkActivities.querySelectorAll('.mdk-activity').forEach((activity) => {
+                const pcs = [...activity.querySelectorAll('.mdk-pc-select')]
+                    .map((select) => ({ code: select.value }))
+                    .filter((item) => item.code);
+                activities.push({
+                    vd_code: activity.querySelector('.mdk-vd-code').value.trim(),
+                    vd_desc: activity.querySelector('.mdk-vd-desc').value.trim(),
+                    pcs,
+                });
+            });
+            mdkActivitiesJson.value = JSON.stringify(activities);
+        }
+
+        function collectMdkPcResults() {
+            const results = [...mdkPcResults.querySelectorAll('.mdk-result-card')].map((card) => ({
+                code: card.dataset.code,
+                skills: card.querySelector('.mdk-result-skills').value.trim(),
+                knowledge: card.querySelector('.mdk-result-knowledge').value.trim(),
+                mastery: card.querySelector('.mdk-result-mastery').value.trim(),
+            }));
+            mdkPcResultsJson.value = JSON.stringify(results);
+        }
+
+        function formatWorkloadTotal(value, hasValues) {
+            if (!hasValues) {
+                return '';
+            }
+            return Number.isInteger(value)
+                ? String(value)
+                : value.toFixed(2).replace(/0+$/, '').replace(/\.$/, '');
+        }
+
+        function updateWorkloadTotals() {
+            const sumInputs = (selector) => {
+                let total = 0;
+                let hasValues = false;
+                document.querySelectorAll(selector).forEach((input) => {
+                    if (input.value === '') {
+                        return;
+                    }
+                    const value = Number(input.value);
+                    if (!Number.isNaN(value)) {
+                        total += value;
+                        hasValues = true;
+                    }
+                });
+                return { total, hasValues };
+            };
+
+            const hours = sumInputs('.mdk-workload-hours');
+            const practice = sumInputs('.mdk-workload-practice');
+            workloadHoursTotal.value = formatWorkloadTotal(hours.total, hours.hasValues);
+            workloadPracticeTotal.value = formatWorkloadTotal(practice.total, practice.hasValues);
+        }
+
+        function renumberMdkPlan() {
+            mdkThematicPlan.querySelectorAll('.mdk-plan-section').forEach((section, sectionIndex) => {
+                const sectionNumber = sectionIndex + 1;
+                section.querySelector('.mdk-plan-section-number').textContent = `Раздел ${sectionNumber}`;
+                section.querySelector('.mdk-plan-section-title-input').placeholder = `Раздел ${sectionNumber}`;
+                section.querySelectorAll('.mdk-plan-topic').forEach((topic, topicIndex) => {
+                    const topicNumber = topicIndex + 1;
+                    topic.querySelector('.mdk-plan-topic-number').textContent = `Тема ${sectionNumber}.${topicNumber}`;
+                    topic.querySelector('.mdk-plan-topic-title-input').placeholder = `Тема ${sectionNumber}.${topicNumber}`;
+                });
+            });
+        }
+
+        function addMdkPlanTopic(section) {
+            const topics = section.querySelector('.mdk-plan-topics');
+            if (topics.querySelectorAll('.mdk-plan-topic').length >= maxMdkPlanTopics) {
+                return;
+            }
+
+            const topic = document.createElement('div');
+            topic.className = 'mdk-plan-topic';
+            topic.innerHTML = `
+                <div class="mdk-plan-topic-title">
+                    <strong class="mdk-plan-topic-number"></strong>
+                    <button type="button" class="btn btn-secondary mdk-remove-plan-topic">Удалить тему</button>
+                </div>
+                <div class="form-group">
+                    <label>Наименование темы:</label>
+                    <input type="text" class="mdk-plan-topic-title-input" required>
+                </div>
+                <div class="mdk-plan-entry-grid">
+                    <div class="form-group">
+                        <label>Содержание:</label>
+                        <textarea class="mdk-plan-content" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Часы:</label>
+                        <input type="number" class="mdk-plan-content-hours" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Коды компетенций:</label>
+                        <input type="text" class="mdk-plan-content-competencies">
+                    </div>
+                </div>
+                <div class="mdk-plan-entry-grid">
+                    <div class="form-group">
+                        <label>В том числе практических занятий:</label>
+                        <textarea class="mdk-plan-practical" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Часы:</label>
+                        <input type="number" class="mdk-plan-practical-hours" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Коды компетенций:</label>
+                        <input type="text" class="mdk-plan-practical-competencies">
+                    </div>
+                </div>
+                <div class="mdk-plan-entry-grid">
+                    <div class="form-group">
+                        <label>В том числе самостоятельная работа обучающихся:</label>
+                        <textarea class="mdk-plan-self" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Часы:</label>
+                        <input type="number" class="mdk-plan-self-hours" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Коды компетенций:</label>
+                        <input type="text" class="mdk-plan-self-competencies">
+                    </div>
+                </div>
+            `;
+            topics.appendChild(topic);
+            renumberMdkPlan();
+        }
+
+        function addMdkPlanSection() {
+            if (mdkThematicPlan.querySelectorAll('.mdk-plan-section').length >= maxMdkPlanSections) {
+                return;
+            }
+
+            const section = document.createElement('div');
+            section.className = 'mdk-plan-section';
+            section.innerHTML = `
+                <div class="mdk-plan-section-title">
+                    <strong class="mdk-plan-section-number"></strong>
+                    <button type="button" class="btn btn-secondary mdk-remove-plan-section">Удалить раздел</button>
+                </div>
+                <div class="form-group">
+                    <label>Наименование раздела:</label>
+                    <input type="text" class="mdk-plan-section-title-input" required>
+                </div>
+                <div class="mdk-plan-topics"></div>
+                <button type="button" class="btn btn-secondary mdk-add-plan-topic">Добавить тему</button>
+            `;
+            mdkThematicPlan.appendChild(section);
+            addMdkPlanTopic(section);
+            renumberMdkPlan();
+        }
+
+        function collectMdkThematicPlan() {
+            const sections = [...mdkThematicPlan.querySelectorAll('.mdk-plan-section')].map((section) => ({
+                section_title: section.querySelector('.mdk-plan-section-title-input').value.trim(),
+                topics: [...section.querySelectorAll('.mdk-plan-topic')].map((topic) => ({
+                    topic_title: topic.querySelector('.mdk-plan-topic-title-input').value.trim(),
+                    content: topic.querySelector('.mdk-plan-content').value.trim(),
+                    content_hours: topic.querySelector('.mdk-plan-content-hours').value.trim(),
+                    content_competencies: topic.querySelector('.mdk-plan-content-competencies').value.trim(),
+                    practical: topic.querySelector('.mdk-plan-practical').value.trim(),
+                    practical_hours: topic.querySelector('.mdk-plan-practical-hours').value.trim(),
+                    practical_competencies: topic.querySelector('.mdk-plan-practical-competencies').value.trim(),
+                    self_work: topic.querySelector('.mdk-plan-self').value.trim(),
+                    self_hours: topic.querySelector('.mdk-plan-self-hours').value.trim(),
+                    self_competencies: topic.querySelector('.mdk-plan-self-competencies').value.trim(),
+                })),
+            }));
+            mdkThematicPlanJson.value = JSON.stringify(sections);
+        }
+
+        function renumberMdkRooms() {
+            mdkRooms.querySelectorAll('.mdk-room').forEach((room, index) => {
+                room.querySelector('.mdk-room-number').textContent = `Помещение ${index + 1}`;
+            });
+        }
+
+        function addMdkRoom() {
+            if (mdkRooms.querySelectorAll('.mdk-room').length >= maxMdkRooms) {
+                return;
+            }
+
+            const room = document.createElement('div');
+            room.className = 'mdk-room';
+            room.innerHTML = `
+                <div class="mdk-room-title">
+                    <strong class="mdk-room-number"></strong>
+                    <button type="button" class="btn btn-secondary mdk-remove-room">Удалить помещение</button>
+                </div>
+                <div class="form-group">
+                    <label>Название помещения:</label>
+                    <input type="text" class="mdk-room-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Основное оборудование:</label>
+                    <textarea class="mdk-room-equipment" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Программное обеспечение:</label>
+                    <textarea class="mdk-room-software" rows="4" required></textarea>
+                </div>
+            `;
+            mdkRooms.appendChild(room);
+            renumberMdkRooms();
+        }
+
+        function collectMdkRooms() {
+            const rooms = [...mdkRooms.querySelectorAll('.mdk-room')].map((room) => ({
+                name: room.querySelector('.mdk-room-name').value.trim(),
+                equipment: room.querySelector('.mdk-room-equipment').value.trim(),
+                software: room.querySelector('.mdk-room-software').value.trim(),
+            }));
+            mdkRoomsJson.value = JSON.stringify(rooms);
+        }
+
+        function getMdkSourcesCount() {
+            return document.querySelectorAll('.mdk-source-row').length;
+        }
+
+        function renumberMdkSources(group) {
+            group.querySelectorAll('.mdk-source-row').forEach((row, index) => {
+                row.querySelector('.mdk-source-number').textContent = `${index + 1}.`;
+            });
+        }
+
+        function addMdkSource(group) {
+            if (getMdkSourcesCount() >= maxMdkSources) {
+                return;
+            }
+
+            const list = group.querySelector('.mdk-source-list');
+            const row = document.createElement('div');
+            row.className = 'mdk-source-row';
+            row.innerHTML = `
+                <strong class="mdk-source-number"></strong>
+                <textarea class="mdk-source-text" rows="3" required></textarea>
+                <button type="button" class="btn btn-secondary mdk-remove-source">Удалить</button>
+            `;
+            list.appendChild(row);
+            renumberMdkSources(group);
+        }
+
+        function collectMdkSources() {
+            const sources = {
+                main: [],
+                additional: [],
+                electronic: [],
+            };
+            mdkSourceGroups.forEach((group) => {
+                const sourceType = group.dataset.sourceType;
+                sources[sourceType] = [...group.querySelectorAll('.mdk-source-text')]
+                    .map((textarea) => textarea.value.trim())
+                    .filter(Boolean);
+            });
+            mdkSourcesJson.value = JSON.stringify(sources);
+        }
+
+        function collectMdkAssessments() {
+            const assessments = [...mdkAssessmentRows.querySelectorAll('.mdk-assessment-card')].map((card) => ({
+                code: card.dataset.code,
+                excellent_enabled: card.querySelector('.mdk-assessment-excellent-enabled').checked,
+                excellent: card.querySelector('.mdk-assessment-excellent-text').value.trim(),
+                good_enabled: card.querySelector('.mdk-assessment-good-enabled').checked,
+                good: card.querySelector('.mdk-assessment-good-text').value.trim(),
+                satisfactory_enabled: card.querySelector('.mdk-assessment-satisfactory-enabled').checked,
+                satisfactory: card.querySelector('.mdk-assessment-satisfactory-text').value.trim(),
+                control_methods: card.querySelector('.mdk-assessment-control').value.trim(),
+            }));
+            mdkAssessmentJson.value = JSON.stringify(assessments);
+        }
+
+        function collectMdkKosResults() {
+            const groups = [...mdkKosResults.querySelectorAll('.mdk-kos-card')].map((card) => ({
+                code: card.dataset.code,
+                items: [...card.querySelectorAll('.mdk-kos-result-row')].map((row) => ({
+                    result_code: row.querySelector('.mdk-kos-result-code').value.trim(),
+                    result_name: row.querySelector('.mdk-kos-result-name').value.trim(),
+                })).filter((item) => item.result_code || item.result_name),
+            })).filter((group) => group.items.length);
+            mdkKosResultsJson.value = JSON.stringify(groups);
+        }
+
+        function renumberMdkKosQuestions() {
+            mdkKosQuestions.querySelectorAll('.mdk-kos-question-row').forEach((row, index) => {
+                row.querySelector('.mdk-kos-question-number').textContent = `${index + 1}.`;
+            });
+            addMdkKosQuestionButton.disabled = mdkKosQuestions.querySelectorAll('.mdk-kos-question-row').length >= maxMdkKosQuestions;
+        }
+
+        function addMdkKosQuestion() {
+            if (mdkKosQuestions.querySelectorAll('.mdk-kos-question-row').length >= maxMdkKosQuestions) {
+                return;
+            }
+            const row = document.createElement('div');
+            row.className = 'mdk-kos-question-row';
+            row.innerHTML = `
+                <strong class="mdk-kos-question-number"></strong>
+                <textarea class="mdk-kos-question-text" rows="2" required></textarea>
+                <button type="button" class="btn btn-secondary mdk-remove-kos-question">Удалить</button>
+            `;
+            mdkKosQuestions.appendChild(row);
+            renumberMdkKosQuestions();
+        }
+
+        function collectMdkKosQuestions() {
+            const questions = [...mdkKosQuestions.querySelectorAll('.mdk-kos-question-text')]
+                .map((textarea) => textarea.value.trim())
+                .filter(Boolean)
+                .slice(0, maxMdkKosQuestions);
+            mdkKosQuestionsJson.value = JSON.stringify(questions);
+        }
+
+        function renumberMdkKosTicketQuestions(ticket) {
+            ticket.querySelectorAll('.mdk-kos-ticket-question-row').forEach((row, index) => {
+                row.querySelector('.mdk-kos-ticket-question-number').textContent = `${index + 1}.`;
+            });
+            const addButton = ticket.querySelector('.mdk-add-kos-ticket-question');
+            addButton.disabled = ticket.querySelectorAll('.mdk-kos-ticket-question-row').length >= maxMdkKosTicketQuestions;
+        }
+
+        function renumberMdkKosTickets() {
+            mdkKosTickets.querySelectorAll('.mdk-kos-ticket').forEach((ticket, index) => {
+                ticket.querySelector('.mdk-kos-ticket-number').textContent = `Билет ${index + 1}`;
+                renumberMdkKosTicketQuestions(ticket);
+            });
+            addMdkKosTicketButton.disabled = mdkKosTickets.querySelectorAll('.mdk-kos-ticket').length >= maxMdkKosTickets;
+        }
+
+        function addMdkKosTicketQuestion(ticket) {
+            const questionList = ticket.querySelector('.mdk-kos-ticket-questions');
+            if (questionList.querySelectorAll('.mdk-kos-ticket-question-row').length >= maxMdkKosTicketQuestions) {
+                return;
+            }
+            const row = document.createElement('div');
+            row.className = 'mdk-kos-ticket-question-row';
+            row.innerHTML = `
+                <strong class="mdk-kos-ticket-question-number"></strong>
+                <textarea class="mdk-kos-ticket-question-text" rows="2" required></textarea>
+                <button type="button" class="btn btn-secondary mdk-remove-kos-ticket-question">Удалить</button>
+            `;
+            questionList.appendChild(row);
+            renumberMdkKosTicketQuestions(ticket);
+        }
+
+        function addMdkKosTicket() {
+            if (mdkKosTickets.querySelectorAll('.mdk-kos-ticket').length >= maxMdkKosTickets) {
+                return;
+            }
+            const ticket = document.createElement('div');
+            ticket.className = 'mdk-kos-ticket';
+            ticket.innerHTML = `
+                <div class="mdk-kos-ticket-header">
+                    <strong class="mdk-kos-ticket-number"></strong>
+                    <button type="button" class="btn btn-secondary mdk-remove-kos-ticket">Удалить билет</button>
+                </div>
+                <div class="mdk-kos-ticket-questions"></div>
+                <button type="button" class="btn btn-secondary mdk-add-kos-ticket-question">Добавить вопрос</button>
+            `;
+            mdkKosTickets.appendChild(ticket);
+            addMdkKosTicketQuestion(ticket);
+            renumberMdkKosTickets();
+        }
+
+        function collectMdkKosTickets() {
+            const tickets = [...mdkKosTickets.querySelectorAll('.mdk-kos-ticket')].map((ticket) => ({
+                questions: [...ticket.querySelectorAll('.mdk-kos-ticket-question-text')]
+                    .map((textarea) => textarea.value.trim())
+                    .filter(Boolean)
+                    .slice(0, maxMdkKosTicketQuestions),
+            })).filter((ticket) => ticket.questions.length).slice(0, maxMdkKosTickets);
+            mdkKosTicketsJson.value = JSON.stringify(tickets);
+        }
+
+        function validateMdkPage(page) {
+            const requiredFields = page.querySelectorAll('[required]:not(:disabled)');
+            for (const field of requiredFields) {
+                if (!field.value || !field.value.trim()) {
+                    field.focus();
+                    field.reportValidity();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function showMdkKosPage() {
+            if (!validateMdkPage(mdkRpdPage)) {
+                return;
+            }
+            collectMdkActivities();
+            syncMdkKosResults();
+            mdkRpdPage.classList.remove('is-active');
+            mdkKosPage.classList.add('is-active');
+            document.body.classList.add('kos-mode');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showMdkRpdPage() {
+            mdkKosPage.classList.remove('is-active');
+            mdkRpdPage.classList.add('is-active');
+            document.body.classList.remove('kos-mode');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        addMdkActivityButton.addEventListener('click', addMdkActivity);
+        mdkActivities.addEventListener('change', (event) => {
+            if (event.target.classList.contains('mdk-pc-select')) {
+                syncMdkPcResultRows();
+                syncMdkAssessmentRows();
+                syncMdkKosResults();
+            }
+        });
+        mdkActivities.addEventListener('click', (event) => {
+            const activity = event.target.closest('.mdk-activity');
+            if (!activity) {
+                return;
+            }
+            if (event.target.classList.contains('mdk-add-pc')) {
+                addMdkPcRow(activity);
+            }
+            if (event.target.classList.contains('mdk-remove-pc')) {
+                const rows = activity.querySelectorAll('.mdk-pc-row');
+                if (rows.length > 1) {
+                    event.target.closest('.mdk-pc-row').remove();
+                    syncMdkPcResultRows();
+                    syncMdkAssessmentRows();
+                    syncMdkKosResults();
+                }
+            }
+            if (event.target.classList.contains('mdk-remove-activity')) {
+                const activities = mdkActivities.querySelectorAll('.mdk-activity');
+                if (activities.length > 1) {
+                    activity.remove();
+                    renumberMdkActivities();
+                    syncMdkPcResultRows();
+                    syncMdkAssessmentRows();
+                    syncMdkKosResults();
+                }
+            }
+        });
+        mdkForm.addEventListener('submit', () => {
+            collectMdkActivities();
+            collectMdkPcResults();
+            collectMdkThematicPlan();
+            collectMdkRooms();
+            collectMdkSources();
+            collectMdkAssessments();
+            collectMdkKosResults();
+            collectMdkKosQuestions();
+            collectMdkKosTickets();
+        });
+        goToMdkKosButton.addEventListener('click', showMdkKosPage);
+        goToMdkRpdButton.addEventListener('click', showMdkRpdPage);
+        addMdkPlanSectionButton.addEventListener('click', addMdkPlanSection);
+        mdkThematicPlan.addEventListener('click', (event) => {
+            const section = event.target.closest('.mdk-plan-section');
+            if (!section) {
+                return;
+            }
+            if (event.target.classList.contains('mdk-add-plan-topic')) {
+                addMdkPlanTopic(section);
+            }
+            if (event.target.classList.contains('mdk-remove-plan-topic')) {
+                const topics = section.querySelectorAll('.mdk-plan-topic');
+                if (topics.length > 1) {
+                    event.target.closest('.mdk-plan-topic').remove();
+                    renumberMdkPlan();
+                }
+            }
+            if (event.target.classList.contains('mdk-remove-plan-section')) {
+                const sections = mdkThematicPlan.querySelectorAll('.mdk-plan-section');
+                if (sections.length > 1) {
+                    section.remove();
+                    renumberMdkPlan();
+                }
+            }
+        });
+        addMdkRoomButton.addEventListener('click', addMdkRoom);
+        mdkRooms.addEventListener('click', (event) => {
+            if (!event.target.classList.contains('mdk-remove-room')) {
+                return;
+            }
+            const rooms = mdkRooms.querySelectorAll('.mdk-room');
+            if (rooms.length > 1) {
+                event.target.closest('.mdk-room').remove();
+                renumberMdkRooms();
+            }
+        });
+        mdkSourceGroups.forEach((group) => {
+            group.querySelector('.mdk-add-source').addEventListener('click', () => addMdkSource(group));
+            group.addEventListener('click', (event) => {
+                if (!event.target.classList.contains('mdk-remove-source')) {
+                    return;
+                }
+                const rows = group.querySelectorAll('.mdk-source-row');
+                if (rows.length > 1) {
+                    event.target.closest('.mdk-source-row').remove();
+                    renumberMdkSources(group);
+                }
+            });
+        });
+        mdkAssessmentRows.addEventListener('change', (event) => {
+            if (event.target.matches('.mdk-assessment-criterion input[type="checkbox"]')) {
+                toggleAssessmentCriterion(event.target);
+            }
+        });
+        mdkKosResults.addEventListener('click', (event) => {
+            const card = event.target.closest('.mdk-kos-card');
+            if (!card) {
+                return;
+            }
+            if (event.target.classList.contains('mdk-add-kos-result')) {
+                addMdkKosResultRow(card);
+            }
+            if (event.target.classList.contains('mdk-remove-kos-result')) {
+                const rows = card.querySelectorAll('.mdk-kos-result-row');
+                if (rows.length > 1) {
+                    event.target.closest('.mdk-kos-result-row').remove();
+                    renumberMdkKosRows(card);
+                }
+            }
+        });
+        addMdkKosQuestionButton.addEventListener('click', addMdkKosQuestion);
+        mdkKosQuestions.addEventListener('click', (event) => {
+            if (!event.target.classList.contains('mdk-remove-kos-question')) {
+                return;
+            }
+            const rows = mdkKosQuestions.querySelectorAll('.mdk-kos-question-row');
+            if (rows.length > 1) {
+                event.target.closest('.mdk-kos-question-row').remove();
+                renumberMdkKosQuestions();
+            }
+        });
+        addMdkKosTicketButton.addEventListener('click', addMdkKosTicket);
+        mdkKosTickets.addEventListener('click', (event) => {
+            const ticket = event.target.closest('.mdk-kos-ticket');
+            if (!ticket) {
+                return;
+            }
+            if (event.target.classList.contains('mdk-add-kos-ticket-question')) {
+                addMdkKosTicketQuestion(ticket);
+            }
+            if (event.target.classList.contains('mdk-remove-kos-ticket-question')) {
+                const rows = ticket.querySelectorAll('.mdk-kos-ticket-question-row');
+                if (rows.length > 1) {
+                    event.target.closest('.mdk-kos-ticket-question-row').remove();
+                    renumberMdkKosTicketQuestions(ticket);
+                }
+            }
+            if (event.target.classList.contains('mdk-remove-kos-ticket')) {
+                const tickets = mdkKosTickets.querySelectorAll('.mdk-kos-ticket');
+                if (tickets.length > 1) {
+                    ticket.remove();
+                    renumberMdkKosTickets();
+                }
+            }
+        });
+        document.querySelectorAll('.mdk-workload-hours, .mdk-workload-practice').forEach((input) => {
+            input.addEventListener('input', updateWorkloadTotals);
+        });
+        addMdkActivity();
+        addMdkPlanSection();
+        addMdkRoom();
+        mdkSourceGroups.forEach(addMdkSource);
+        addMdkKosQuestion();
+        addMdkKosTicket();
+        updateWorkloadTotals();
+    </script>
+    <script src="{{ url_for('static', filename='study_plan_hours.js') }}"></script>
+    <script src="{{ url_for('static', filename='ai_assistant.js') }}"></script>
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+</body>
+</html>

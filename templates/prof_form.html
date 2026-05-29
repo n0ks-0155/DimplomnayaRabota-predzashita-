@@ -1,0 +1,2706 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профессиональная дисциплина (ОП / СГ)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .editable-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .editable-table th, .editable-table td { border: 1px solid #ccc; padding: 8px; vertical-align: top; }
+        .editable-table input[type="text"], .editable-table textarea { width: 100%; box-sizing: border-box; }
+        .skills-group input, .knowledge-group input { margin-bottom: 5px; }
+        .skills-group input:last-child, .knowledge-group input:last-child { margin-bottom: 0; }
+        .fixed-table { width: 100%; border-collapse: collapse; }
+        .fixed-table td { border: 1px solid #ccc; padding: 8px; }
+        .fixed-table input { width: 80px; }
+        .section-block { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; background: #fafafa; }
+        .topic-item { background: white; border: 1px solid #eee; padding: 10px; margin-bottom: 10px; }
+        .lit-item { margin-bottom: 5px; }
+        .lit-item input { width: 100%; }
+        .btn-small { padding: 4px 8px; font-size: 0.9em; margin-left: 10px; }
+        .note { color: #666; font-size: 0.9em; margin-top: 5px; }
+        .lit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+
+        .lit-num {
+            width: 2.2em;
+            flex: 0 0 auto;
+            text-align: right;
+            font-family: "Times New Roman", serif;
+        }
+
+        .form-page {
+            display: none;
+        }
+
+        .form-page.is-active {
+            display: block;
+        }
+
+        .wizard-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 28px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .wizard-next {
+            min-width: 140px;
+        }
+
+        /* Дизайн применяется только ко второму экрану КОС */
+        body.kos-mode {
+            background:
+                radial-gradient(circle at 15% 10%, rgba(160, 190, 255, 0.45), transparent 32%),
+                radial-gradient(circle at 85% 20%, rgba(210, 235, 255, 0.55), transparent 34%),
+                linear-gradient(135deg, #f7f9ff 0%, #edf2f7 100%);
+        }
+
+        .kos-glass-page {
+            position: relative;
+            padding: 28px;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.58);
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            box-shadow:
+                0 24px 80px rgba(31, 38, 135, 0.14),
+                inset 0 1px 0 rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+            animation: kosFadeUp 0.35s ease both;
+        }
+
+        .kos-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 24px;
+            padding: 22px 24px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.74), rgba(255,255,255,0.36));
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .kos-hero h2 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            text-align: left;
+        }
+
+        .kos-hero p {
+            margin: 8px 0 0 0;
+            max-width: 640px;
+            color: #4b5563;
+            line-height: 1.45;
+        }
+
+        .kos-eyebrow {
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .kos-glass-page .form-section {
+            border: 1px solid rgba(255, 255, 255, 0.68);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.62);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+        }
+
+        .kos-glass-page .form-section:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.76);
+            box-shadow: 0 16px 42px rgba(15, 23, 42, 0.12);
+        }
+
+        .kos-glass-page input,
+        .kos-glass-page textarea {
+            border-radius: 14px;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            background: rgba(255, 255, 255, 0.8);
+            transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+        }
+
+        .kos-glass-page input:focus,
+        .kos-glass-page textarea:focus {
+            outline: none;
+            border-color: rgba(59, 130, 246, 0.75);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.14);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .kos-actions {
+            position: sticky;
+            bottom: 18px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 28px;
+            padding: 14px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.62);
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            box-shadow: 0 14px 42px rgba(15, 23, 42, 0.12);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.7);
+            color: #111827;
+            border: 1px solid rgba(148, 163, 184, 0.45);
+        }
+
+        @keyframes kosFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-page {
+            display: none;
+        }
+
+        .form-page.is-active {
+            display: block;
+        }
+
+        .wizard-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 28px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .kos-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .kos-glass-page {
+            padding: 28px;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            box-shadow: 0 24px 80px rgba(31, 38, 135, 0.14);
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+        }
+
+        .kos-hero {
+            margin-bottom: 24px;
+            padding: 22px 24px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .kos-ok-group {
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 16px;
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .kos-ok-group-header {
+            display: grid;
+            grid-template-columns: minmax(180px, 260px) 1fr auto;
+            gap: 12px;
+            align-items: end;
+            margin-bottom: 12px;
+        }
+
+        .kos-ok-group-header label {
+            font-weight: 600;
+        }
+
+        .kos-result-items {
+            display: grid;
+            gap: 8px;
+        }
+
+        .kos-result-item {
+            display: grid;
+            grid-template-columns: 160px 1fr auto;
+            gap: 8px;
+            align-items: start;
+        }
+
+        .kos-result-item textarea {
+            min-height: 54px;
+        }
+
+        .kos-group-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+
+        .oral-question-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .oral-question-num {
+            width: 2.2em;
+            flex: 0 0 auto;
+            text-align: right;
+            font-family: "Times New Roman", serif;
+            font-weight: 600;
+        }
+
+        .oral-question-item input {
+            flex: 1;
+        }
+
+        .control-work-item,
+        .control-variant-item,
+        .control-task-item {
+            display: grid;
+            gap: 10px;
+            padding: 14px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .control-variant-item {
+            margin-left: 14px;
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .control-task-item {
+            margin-left: 14px;
+            background: rgba(255, 255, 255, 0.36);
+        }
+
+        .control-work-header,
+        .control-variant-header,
+        .control-task-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .control-work-num,
+        .control-variant-num,
+        .control-task-num {
+            font-weight: 700;
+        }
+
+        .control-task-row,
+        .control-answer-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto auto;
+            gap: 8px;
+            align-items: start;
+        }
+
+        .control-answer-row {
+            grid-template-columns: 2.2em minmax(0, 1fr) auto auto;
+        }
+
+        .control-answer-label {
+            text-align: right;
+            font-family: "Times New Roman", serif;
+            font-weight: 600;
+            padding-top: 8px;
+        }
+
+        .control-task-row textarea,
+        .control-answer-row textarea {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .control-task-row .ai-suggest-button,
+        .control-answer-row .ai-suggest-button {
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .control-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .test-example-item {
+            display: grid;
+            gap: 10px;
+            padding: 14px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.35);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .test-question-row,
+        .test-answer-row {
+            display: grid;
+            grid-template-columns: 2.2em minmax(0, 1fr) auto auto;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .test-answer-row {
+            grid-template-columns: 2.2em minmax(0, 1fr) auto;
+            margin-left: 0;
+        }
+
+        .test-question-num,
+        .test-answer-label {
+            text-align: right;
+            font-family: "Times New Roman", serif;
+            font-weight: 600;
+        }
+
+        .test-question-row input,
+        .test-answer-row input {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .formula-dialog {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: rgba(15, 23, 42, 0.42);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .formula-dialog[hidden] {
+            display: none;
+        }
+
+        .formula-dialog-panel {
+            width: min(720px, 100%);
+            border-radius: 24px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 24px 80px rgba(15, 23, 42, 0.22);
+        }
+
+        .formula-dialog-panel h3 {
+            margin-top: 0;
+        }
+
+        .formula-dialog-title-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .formula-help-button {
+            width: 32px;
+            height: 32px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            color: #111827;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            font-weight: 700;
+        }
+
+        .formula-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 10px 0;
+        }
+
+        .formula-template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .formula-template {
+            margin-left: 0;
+            text-align: left;
+            white-space: normal;
+        }
+
+        .formula-help-dialog-panel {
+            width: min(860px, 100%);
+            max-height: min(84vh, 760px);
+            overflow: auto;
+        }
+
+        .formula-help-list {
+            margin: 12px 0;
+            padding-left: 22px;
+            line-height: 1.55;
+        }
+
+        .formula-template-card {
+            padding: 12px;
+            border-radius: 16px;
+            background: rgba(248, 250, 252, 0.92);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .formula-template-code {
+            display: block;
+            margin-bottom: 8px;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 13px;
+            word-break: break-word;
+        }
+
+        .formula-template-preview {
+            min-height: 42px;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.78);
+        }
+
+        .formula-symbol {
+            margin-left: 0;
+            min-width: 36px;
+        }
+
+        .formula-preview {
+            min-height: 54px;
+            margin: 12px 0;
+            padding: 12px;
+            border-radius: 14px;
+            background: rgba(248, 250, 252, 0.92);
+            border: 1px solid rgba(148, 163, 184, 0.35);
+        }
+
+        .formula-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 760px) {
+            .test-question-row,
+            .test-answer-row {
+                grid-template-columns: 2.2em minmax(0, 1fr);
+            }
+
+            .test-question-row .btn-small,
+            .test-answer-row .btn-small,
+            .control-task-row .btn-small,
+            .control-answer-row .btn-small {
+                grid-column: 2;
+                justify-self: start;
+                margin-left: 0;
+            }
+
+            .control-task-row {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .control-answer-row {
+                grid-template-columns: 2.2em minmax(0, 1fr);
+            }
+
+            .control-task-row .btn-small {
+                grid-column: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Шаблон: профессиональная дисциплина (ОП / СГ)</h1>
+        <form action="{{ url_for('generate_document') }}" method="post" id="mainForm">
+            <input type="hidden" name="template" value="prof">
+
+            <div id="rpd-page" class="form-page is-active">
+
+            <!-- Основные поля -->
+            <div class="form-group">
+                <label for="discipline_type">Тип дисциплины:</label>
+                <select id="discipline_type" name="discipline_type" required>
+                    <option value="ОП">Общепрофессиональная дисциплина (ОП)</option>
+                    <option value="СГ">Социально-гуманитарная дисциплина (СГ)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="discipline_name">Наименование дисциплины:</label>
+                <input type="text" id="discipline_name" name="discipline_name" required>
+            </div>
+            <div class="form-group">
+                <label for="competency_index">Индекс компетенций:</label>
+                <select id="competency_index" name="competency_index" required>
+                    <option value="" disabled selected>Выберите индекс</option>
+                    {% for index in competency_indices %}
+                        <option value="{{ index }}">{{ index }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-row">
+                <div class="form-group half">
+                    <label for="speciality">Код специальности:</label>
+                    <input type="text" id="speciality" name="speciality" value="09.02.13" required>
+                </div>
+                <div class="form-group half">
+                    <label for="speciality_name">Наименование специальности:</label>
+                    <input type="text" id="speciality_name" name="speciality_name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="year">Год набора группы:</label>
+                <input type="text" id="year" name="year" placeholder="например, 2025" required>
+            </div>
+            <div class="form-section">
+                <h3>Реквизиты приказа и протокола</h3>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="order_day">Дата приказа:</label>
+                        <div class="form-row">
+                            <select id="order_day" name="order_day" required>
+                                {% for day in range(1, 32) %}
+                                    <option value="{{ day }}" {% if day == 24 %}selected{% endif %}>{{ day }}</option>
+                                {% endfor %}
+                            </select>
+                            <select id="order_month" name="order_month" required>
+                                <option value="января">января</option>
+                                <option value="февраля">февраля</option>
+                                <option value="марта">марта</option>
+                                <option value="апреля">апреля</option>
+                                <option value="мая">мая</option>
+                                <option value="июня">июня</option>
+                                <option value="июля">июля</option>
+                                <option value="августа">августа</option>
+                                <option value="сентября">сентября</option>
+                                <option value="октября">октября</option>
+                                <option value="ноября">ноября</option>
+                                <option value="декабря" selected>декабря</option>
+                            </select>
+                            <select id="order_year" name="order_year" required>
+                                {% for item_year in range(2020, 2036) %}
+                                    <option value="{{ item_year }}" {% if item_year == 2024 %}selected{% endif %}>{{ item_year }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group half">
+                        <label for="order_number">Номер приказа:</label>
+                        <input type="text" id="order_number" name="order_number" value="1025" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="protocol_number">Номер протокола:</label>
+                        <input type="text" id="protocol_number" name="protocol_number" value="3" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="protocol_day">Дата протокола:</label>
+                        <div class="form-row">
+                            <select id="protocol_day" name="protocol_day" required>
+                                {% for day in range(1, 32) %}
+                                    <option value="{{ day }}" {% if day == 20 %}selected{% endif %}>{{ day }}</option>
+                                {% endfor %}
+                            </select>
+                            <select id="protocol_month" name="protocol_month" required>
+                                <option value="января">января</option>
+                                <option value="февраля">февраля</option>
+                                <option value="марта">марта</option>
+                                <option value="апреля">апреля</option>
+                                <option value="мая">мая</option>
+                                <option value="июня">июня</option>
+                                <option value="июля">июля</option>
+                                <option value="августа">августа</option>
+                                <option value="сентября">сентября</option>
+                                <option value="октября">октября</option>
+                                <option value="ноября" selected>ноября</option>
+                                <option value="декабря">декабря</option>
+                            </select>
+                            <select id="protocol_year" name="protocol_year" required>
+                                {% for item_year in range(2020, 2036) %}
+                                    <option value="{{ item_year }}" {% if item_year == 2025 %}selected{% endif %}>{{ item_year }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1.2 Цель и планируемые результаты -->
+            <div class="form-section">
+                <h3>1.2 Цель и планируемые результаты освоения дисциплины</h3>
+                <table class="editable-table" id="results-table">
+                    <thead>
+                        <tr>
+                            <th>Код ПК, ОК</th>
+                            <th>Умения (до трёх)</th>
+                            <th>Знания (до трёх)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="results-body">
+                        <!-- строки добавляются через JS -->
+                    </tbody>
+                </table>
+                <button type="button" class="btn" onclick="addResultRow()">Добавить строку</button>
+                <p class="note">Можно добавить до 100 строк.</p>
+            </div>
+
+            <!-- 2.1 Объем учебной дисциплины и виды учебной работы -->
+            <div class="form-section">
+                <h3>2.1 Объем учебной дисциплины и виды учебной работы</h3>
+                <table class="fixed-table">
+                    <tr>
+                        <td>Объем образовательной программы</td>
+                        <td><input type="text" id="hours_total" name="hours_total" value="0" readonly style="background-color:#f0f0f0;"></td>
+                    </tr>
+                    <tr>
+                        <td>- теоретическое обучение</td>
+                        <td><input type="number" class="hours-input" id="hours_lecture" name="hours_lecture" value="" min="0" required></td>
+                    </tr>
+                    <tr>
+                        <td>- практические занятия</td>
+                        <td><input type="number" class="hours-input" id="hours_practice" name="hours_practice" value="" min="0" required></td>
+                    </tr>
+                    <tr>
+                        <td>- самостоятельная работа</td>
+                        <td><input type="number" class="hours-input" id="hours_self" name="hours_self" value="" min="0" required></td>
+                    </tr>
+                    <tr>
+                        <td>- промежуточная аттестация в форме дифференцированного зачета</td>
+                        <td><input type="number" class="hours-input" id="hours_exam" name="hours_exam" value="" min="0" required></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- 2.2 Тематический план и содержание -->
+            <div class="form-section">
+                <h3>2.2 Тематический план и содержание учебной дисциплины</h3>
+                <div id="sections-container-22"></div>
+                <button type="button" class="btn" id="add-section-22">Добавить раздел</button>
+                <p class="note">Можно добавить до 100 разделов. В каждом разделе можно добавить до 100 тем. Для каждой темы можно добавить практическое занятие и/или самостоятельную работу.</p>
+            </div>
+
+            <!-- 3.1 Материально-техническое обеспечение -->
+            <div class="form-section">
+                <h3>3.1 Материально-техническое обеспечение</h3>
+                <p class="note">
+                    Данные для заполнения можно взять на странице
+                    <a href="https://www.vvsu.ru/sveden/objects/cabinets/" target="_blank" rel="noopener noreferrer">кабинетов ВВГУ</a>.
+                </p>
+                <div id="classrooms-container">
+                </div>
+                <button type="button" class="btn" id="add-classroom-btn">Добавить кабинет</button>
+                <p class="note">Можно добавить до 100 кабинетов. Для каждого укажите наименование, основное оборудование и программное обеспечение.</p>
+            </div>
+
+            <!-- 3.2 Информационное обеспечение -->
+            <div class="form-section">
+                <h3>3.2 Информационное обеспечение</h3>
+                <p class="note">
+                    Данные для заполнения можно взять в
+                    <a href="https://elib.vvsu.ru/#/?offset=0" target="_blank" rel="noopener noreferrer">электронной библиотеке ВВГУ</a>.
+                </p>
+                <h4>Основная литература</h4>
+                <div id="basic-lit-container">
+                    <div class="lit-item">
+                        <span class="lit-num">1.</span>
+                        <input type="text" name="basic_lit[]" value="">
+                        <button type="button" class="btn-small" onclick="removeLitItem(this, 'basic-lit-container')">✖</button>
+                    </div>
+                </div>
+                <button type="button" class="btn-small" onclick="addLitItem('basic-lit-container', 'basic_lit[]')">Добавить</button>
+
+                <h4>Дополнительная литература</h4>
+                <div id="add-lit-container">
+                    <div class="lit-item">
+                        <span class="lit-num">1.</span>
+                        <input type="text" name="additional_lit[]" value="">
+                        <button type="button" class="btn-small" onclick="removeLitItem(this, 'add-lit-container')">✖</button>
+                    </div>
+                </div>
+                <button type="button" class="btn-small" onclick="addLitItem('add-lit-container', 'additional_lit[]')">Добавить</button>
+
+                <h4>Электронные ресурсы</h4>
+                <div id="el-res-container">
+                    <div class="lit-item">
+                        <span class="lit-num">1.</span>
+                        <input type="text" name="el_res[]" value="">
+                        <button type="button" class="btn-small" onclick="removeLitItem(this, 'el-res-container')">✖</button>
+                    </div>
+                </div>
+                <button type="button" class="btn-small" onclick="addLitItem('el-res-container', 'el_res[]')">Добавить</button>
+            </div> 
+            <!-- 5 Контроль и оценка -->
+            <div class="form-section">
+                <h3>5 Контроль и оценка результатов освоения учебной дисциплины</h3>
+
+                <h4>Критерии оценки</h4>
+                <label>
+                    <input type="checkbox" name="sec5_criteria[]" value="excellent">
+                    Отлично
+                </label><br>
+
+                <label>
+                    <input type="checkbox" name="sec5_criteria[]" value="good">
+                    Хорошо
+                </label><br>
+
+                <label>
+                    <input type="checkbox" name="sec5_criteria[]" value="satisfactory">
+                    Удовлетворительно
+                </label><br>
+
+                <label>
+                    <input type="checkbox" name="sec5_criteria[]" value="unsatisfactory">
+                    Неудовлетворительно
+                </label>
+
+                <h4>Методы оценки</h4>
+                <label>
+                    <input type="checkbox" name="sec5_methods[]" value="Тестирование">
+                    Тестирование
+                </label><br>
+
+                <label>
+                    <input type="checkbox" name="sec5_methods[]" value="Контрольная работа">
+                    Контрольная работа
+                </label><br>
+
+                <label>
+                    <input type="checkbox" name="sec5_methods[]" value="Самостоятельная работа">
+                    Самостоятельная работа
+                </label><br>
+
+                <label>
+                    <input type="checkbox" name="sec5_methods[]" value="Защита реферата">
+                    Защита реферата
+                </label><br>
+
+                <label>
+                    <input type="checkbox" name="sec5_methods[]" value="Наблюдение за выполнением практического задания (деятельностью студента)">
+                    Наблюдение за выполнением практического задания (деятельностью студента)
+                </label><br>
+
+                <label>
+                    <input type="checkbox" name="sec5_methods[]" value="Оценка выполнения практического задания (работы)">
+                    Оценка выполнения практического задания (работы)
+                </label><br>
+
+                <label>
+                    <input type="checkbox" name="sec5_methods[]" value="Подготовка и выступление с докладом, сообщением, презентацией">
+                    Подготовка и выступление с докладом, сообщением, презентацией
+                </label>
+            </div>
+
+            <div class="wizard-actions">
+                <button type="button" class="btn wizard-next" onclick="goToKosPage()">
+                    Далее →
+                </button>
+            </div>
+            </div>
+
+            <div id="kos-page" class="form-page kos-glass-page">
+
+            <div class="kos-hero">
+                <div>
+                    <div class="kos-eyebrow">Шаг 2 из 2</div>
+                    <h2>Контрольно-оценочные средства</h2>
+                    <p>Заполните данные КОС. После этого можно создать итоговый документ.</p>
+                </div>
+            </div>
+
+            <!-- КОС -->
+            <h2>КОНТРОЛЬНО-ОЦЕНОЧНЫЕ СРЕДСТВА</h2>
+
+            <!-- 2 Планируемые результаты обучения (КОС) -->
+            <div class="form-section">
+                <h3>2 Планируемые результаты обучения по дисциплине</h3>
+
+                <p class="note">
+                    Для каждой ячейки «Код ОК» можно добавить до 100 кодов результата обучения.
+                </p>
+
+                <div id="kos-ok-groups"></div>
+
+                <button type="button" class="btn" id="add-kos-ok-group-btn" onclick="addKosOkGroup()">
+                    Добавить Код ОК
+                </button>
+            </div>
+
+            <!-- Вопросы для собеседования -->
+            <div class="form-section">
+                <h3>Вопросы для собеседования (устного опроса)</h3>
+
+                <p class="note">Можно добавить до 100 вопросов. Нумерация проставляется автоматически.</p>
+
+                <div id="oral-questions-container">
+                    <div class="lit-item oral-question-item">
+                        <span class="oral-question-num">1.</span>
+                        <input type="text" name="oral_question[]" value="" placeholder="Введите вопрос без номера">
+                        <button type="button" class="btn-small" onclick="removeOralQuestion(this)">✖</button>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-small" id="add-oral-question-btn" onclick="addOralQuestion()">
+                    Добавить вопрос
+                </button>
+            </div>
+
+            <!-- Примеры тестовых заданий -->
+            <div class="form-section">
+                <h3>Примеры тестовых заданий</h3>
+                <p class="note">Нумерация заданий проставляется автоматически. Для каждого задания можно заполнить четыре варианта ответа.</p>
+                <div id="test-examples-container">
+                    <div class="test-example-item">
+                        <div class="test-question-row">
+                            <span class="test-question-num">1.</span>
+                            <input type="text" name="test_question[]" value="Как называют высказывание A→B?" placeholder="Введите тестовое задание без номера">
+                            <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                            <button type="button" class="btn-small" onclick="removeTestExample(this)">✖</button>
+                        </div>
+                        <div class="test-answer-row">
+                            <span class="test-answer-label">а)</span>
+                            <input type="text" name="test_answer_a[]" value="" placeholder="Вариант ответа а)">
+                            <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                        </div>
+                        <div class="test-answer-row">
+                            <span class="test-answer-label">б)</span>
+                            <input type="text" name="test_answer_b[]" value="" placeholder="Вариант ответа б)">
+                            <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                        </div>
+                        <div class="test-answer-row">
+                            <span class="test-answer-label">в)</span>
+                            <input type="text" name="test_answer_c[]" value="" placeholder="Вариант ответа в)">
+                            <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                        </div>
+                        <div class="test-answer-row">
+                            <span class="test-answer-label">г)</span>
+                            <input type="text" name="test_answer_d[]" value="" placeholder="Вариант ответа г)">
+                            <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-small" id="add-test-example-btn" onclick="addTestExample()">Добавить тестовое задание</button>
+            </div>
+
+            <!-- Контрольные работы -->
+            <div class="form-section">
+                <h3>Контрольные работы</h3>
+                <p class="note">
+                    Контрольные работы, варианты и задачи нумеруются автоматически.
+                    В каждом варианте можно добавить до 100 задач и до 100 вариантов.
+                </p>
+                <div id="control-works-container"></div>
+                <button type="button" class="btn-small" id="add-control-work-btn" onclick="addControlWork()">Добавить контрольную работу</button>
+            </div>
+                <div class="kos-actions">
+                    <button type="button" class="btn btn-secondary" onclick="goToMainPage()">← Назад</button>
+                    <button type="submit" class="btn">Создать документ</button>
+                </div>
+            </div>  
+        </form>
+        <p><a href="{{ url_for('index') }}">← Вернуться к выбору шаблонов</a></p>
+    </div>
+
+    <div class="formula-dialog" id="formula-dialog" hidden>
+        <div class="formula-dialog-panel" role="dialog" aria-modal="true" aria-labelledby="formula-dialog-title">
+            <div class="formula-dialog-title-row">
+                <h3 id="formula-dialog-title">Вставка формулы или символа</h3>
+                <button type="button" class="formula-help-button" title="Справка по формулам" aria-label="Открыть справку по формулам" onclick="openFormulaHelpDialog()">?</button>
+            </div>
+            <p class="note">Введите LaTeX-формулу или выберите нужные символы. Предпросмотр работает через MathJax.</p>
+            <textarea id="formula-input" rows="4" style="width:100%;" placeholder="Например: \frac{a}{b}, x^2, A \to B"></textarea>
+            <div class="formula-toolbar" aria-label="Быстрые символы">
+                <button type="button" class="btn-small formula-symbol" data-insert="→">→</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="↔">↔</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="≡">≡</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="¬">¬</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∧">∧</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∨">∨</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∀">∀</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∃">∃</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∈">∈</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∉">∉</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="⊂">⊂</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="⊆">⊆</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∪">∪</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∩">∩</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∅">∅</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="≤">≤</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="≥">≥</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="≠">≠</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="≈">≈</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="±">±</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∓">∓</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="×">×</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="÷">÷</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="·">·</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="√">√</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="π">π</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∞">∞</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="²">²</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="³">³</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="α">α</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="β">β</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="γ">γ</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="δ">δ</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="λ">λ</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="μ">μ</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="Σ">Σ</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∑">∑</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="∫">∫</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="\frac{}{}">дробь</button>
+                <button type="button" class="btn-small formula-symbol" data-insert="\sqrt{}">корень</button>
+            </div>
+            <div class="formula-preview" id="formula-preview">Предпросмотр появится здесь.</div>
+            <div class="formula-preview" id="formula-docx-preview">В документ будет вставлено: —</div>
+            <div class="formula-actions">
+                <button type="button" class="btn-small" onclick="insertFormulaText(true)">Вставить как формулу</button>
+                <button type="button" class="btn-small" onclick="closeFormulaDialog()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="formula-dialog" id="formula-help-dialog" hidden>
+        <div class="formula-dialog-panel formula-help-dialog-panel" role="dialog" aria-modal="true" aria-labelledby="formula-help-title">
+            <div class="formula-dialog-title-row">
+                <h3 id="formula-help-title">Справка по формулам</h3>
+                <button type="button" class="btn-small" onclick="closeFormulaHelpDialog()">Закрыть</button>
+            </div>
+            <ol class="formula-help-list">
+                <li>Нажмите кнопку «Формула» рядом с вопросом или вариантом ответа.</li>
+                <li>Введите выражение в формате LaTeX, например `\frac{a}{b}`, `x^2`, `\sqrt{x}` или `A \to B`.</li>
+                <li>Используйте кнопки символов, если нужный знак сложно набрать с клавиатуры.</li>
+                <li>Следите за предпросмотром MathJax: он показывает, как формула читается математически.</li>
+                <li>Нажмите «Вставить как формулу», чтобы подставить выражение в активное поле формы.</li>
+            </ol>
+            <p class="note">Ниже есть готовые шаблоны. Нажмите «Подставить», чтобы перенести шаблон в окно ввода формулы.</p>
+            <div class="formula-template-grid" aria-label="Шаблоны формул">
+                <div class="formula-template-card">
+                    <code class="formula-template-code">x = {-b \pm \sqrt{b^2-4ac} \over 2a}</code>
+                    <div class="formula-template-preview">\(x = {-b \pm \sqrt{b^2-4ac} \over 2a}\)</div>
+                    <button type="button" class="btn-small formula-template" data-template="x = {-b \pm \sqrt{b^2-4ac} \over 2a}">Подставить</button>
+                </div>
+                <div class="formula-template-card">
+                    <code class="formula-template-code">\frac{a}{b}</code>
+                    <div class="formula-template-preview">\(\frac{a}{b}\)</div>
+                    <button type="button" class="btn-small formula-template" data-template="\frac{a}{b}">Подставить</button>
+                </div>
+                <div class="formula-template-card">
+                    <code class="formula-template-code">\sqrt{x^2 + y^2}</code>
+                    <div class="formula-template-preview">\(\sqrt{x^2 + y^2}\)</div>
+                    <button type="button" class="btn-small formula-template" data-template="\sqrt{x^2 + y^2}">Подставить</button>
+                </div>
+                <div class="formula-template-card">
+                    <code class="formula-template-code">A \to B</code>
+                    <div class="formula-template-preview">\(A \to B\)</div>
+                    <button type="button" class="btn-small formula-template" data-template="A \to B">Подставить</button>
+                </div>
+                <div class="formula-template-card">
+                    <code class="formula-template-code">(X \to Y) \equiv ((\neg X) \lor Y)</code>
+                    <div class="formula-template-preview">\((X \to Y) \equiv ((\neg X) \lor Y)\)</div>
+                    <button type="button" class="btn-small formula-template" data-template="(X \to Y) \equiv ((\neg X) \lor Y)">Подставить</button>
+                </div>
+                <div class="formula-template-card">
+                    <code class="formula-template-code">A \land B \equiv B \land A</code>
+                    <div class="formula-template-preview">\(A \land B \equiv B \land A\)</div>
+                    <button type="button" class="btn-small formula-template" data-template="A \land B \equiv B \land A">Подставить</button>
+                </div>
+                <div class="formula-template-card">
+                    <code class="formula-template-code">\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix}</code>
+                    <div class="formula-template-preview">\(\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix}\)</div>
+                    <button type="button" class="btn-small formula-template" data-template="\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix}">Подставить матрицу 3×3</button>
+                </div>
+                <div class="formula-template-card">
+                    <code class="formula-template-code">\begin{pmatrix}0&1&0&1\\1&0&1&0\\0&1&0&1\\1&0&1&0\end{pmatrix}</code>
+                    <div class="formula-template-preview">\(\begin{pmatrix}0&1&0&1\\1&0&1&0\\0&1&0&1\\1&0&1&0\end{pmatrix}\)</div>
+                    <button type="button" class="btn-small formula-template" data-template="\begin{pmatrix}0&1&0&1\\1&0&1&0\\0&1&0&1\\1&0&1&0\end{pmatrix}">Подставить матрицу 4×4</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)'], ['$', '$']]
+            },
+            startup: {
+                typeset: false
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script>
+        // Счетчики
+        const MAX_RESULT_ROWS = 100;
+        const MAX_SECTIONS_22 = 100;
+        const MAX_TOPICS_PER_SECTION_22 = 100;
+        const MAX_CLASSROOMS = 100;
+        let resultRowIndex = 0;
+        let kosResultRowIndex = 0;
+        let sectionIndex = 0;
+
+        function isRequiredCandidate(field) {
+            const type = (field.getAttribute('type') || '').toLowerCase();
+
+            if (['hidden', 'button', 'submit', 'reset'].includes(type)) {
+                return false;
+            }
+
+            if (field.disabled || field.readOnly) {
+                return false;
+            }
+
+            if (type === 'checkbox' || type === 'radio') {
+                return false;
+            }
+
+            if (field.closest('.skills-group, .knowledge-group, .test-answer-row, .control-answer-row')) {
+                return false;
+            }
+
+            return true;
+        }
+
+        function markRequiredFields(scope = document) {
+            const form = document.getElementById('mainForm');
+            if (!form) return;
+
+            const root = scope.querySelectorAll ? scope : form;
+            root.querySelectorAll('input, textarea, select').forEach(field => {
+                if (!form.contains(field) || !isRequiredCandidate(field)) return;
+
+                field.required = true;
+                field.setAttribute('aria-required', 'true');
+            });
+        }
+
+        function setupRequiredFieldsObserver() {
+            const form = document.getElementById('mainForm');
+            if (!form) return;
+
+            markRequiredFields(form);
+
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            markRequiredFields(node);
+                        }
+                    });
+                });
+            });
+
+            observer.observe(form, {
+                childList: true,
+                subtree: true
+            });
+        }
+
+        function validateCheckboxGroup(name, label) {
+            const fields = Array.from(document.getElementsByName(name));
+            if (!fields.length || fields.some(field => field.checked)) {
+                return true;
+            }
+
+            const rpdPage = document.getElementById('rpd-page');
+            if (rpdPage && !rpdPage.classList.contains('is-active') && typeof goToMainPage === 'function') {
+                goToMainPage();
+            }
+
+            alert(`Заполните обязательное поле: ${label}.`);
+            fields[0].focus();
+            return false;
+        }
+
+        function validateRequiredChoiceGroups() {
+            return validateCheckboxGroup('sec5_criteria[]', 'Критерии оценки')
+                && validateCheckboxGroup('sec5_methods[]', 'Методы оценки');
+        }
+
+        function validateResultsRows() {
+            const rows = document.querySelectorAll('#results-body tr');
+            let valid = true;
+
+            rows.forEach((row, idx) => {
+                if (!valid) return;
+
+                const code = row.querySelector('input[name^="result_code_"]').value.trim();
+                const desc = row.querySelector('input[name^="result_desc_"]').value.trim();
+                const skills = Array.from(row.querySelectorAll('.skills-group input')).map(inp => inp.value.trim()).filter(Boolean);
+                const knowledges = Array.from(row.querySelectorAll('.knowledge-group input')).map(inp => inp.value.trim()).filter(Boolean);
+
+                if (!code || !desc) {
+                    alert(`В строке ${idx + 1} не заполнен код или описание ПК/ОК.`);
+                    row.querySelector('input[name^="result_code_"]').focus();
+                    valid = false;
+                    return;
+                }
+
+                if (skills.length === 0) {
+                    alert(`В строке ${idx + 1} не указано ни одного умения.`);
+                    row.querySelector('.skills-group input').focus();
+                    valid = false;
+                    return;
+                }
+
+                if (knowledges.length === 0) {
+                    alert(`В строке ${idx + 1} не указано ни одного знания.`);
+                    row.querySelector('.knowledge-group input').focus();
+                    valid = false;
+                }
+            });
+
+            return valid;
+        }
+
+        function validateTestAnswerMinimums() {
+            const items = document.querySelectorAll('#test-examples-container .test-example-item');
+            let valid = true;
+
+            items.forEach((item, idx) => {
+                if (!valid) return;
+
+                const answers = Array.from(item.querySelectorAll('.test-answer-row input'))
+                    .map(input => input.value.trim())
+                    .filter(Boolean);
+
+                if (answers.length < 2) {
+                    alert(`В тестовом задании ${idx + 1} заполните минимум 2 варианта ответа.`);
+                    const firstAnswer = item.querySelector('.test-answer-row input');
+                    if (firstAnswer) firstAnswer.focus();
+                    valid = false;
+                }
+            });
+
+            return valid;
+        }
+
+        function validateControlAnswerMinimums() {
+            const tasks = document.querySelectorAll('#control-works-container .control-task-item');
+            let valid = true;
+
+            tasks.forEach((task, idx) => {
+                if (!valid) return;
+
+                const answers = Array.from(task.querySelectorAll('.control-answer-input'))
+                    .map(input => input.value.trim())
+                    .filter(Boolean);
+
+                if (answers.length < 2) {
+                    alert(`В задаче ${idx + 1} контрольной работы заполните минимум 2 варианта ответа.`);
+                    const firstAnswer = task.querySelector('.control-answer-input');
+                    if (firstAnswer) firstAnswer.focus();
+                    valid = false;
+                }
+            });
+
+            return valid;
+        }
+
+        function validateKosPageMinimums() {
+            return validateTestAnswerMinimums() && validateControlAnswerMinimums();
+        }
+
+        document.addEventListener('DOMContentLoaded', setupRequiredFieldsObserver);
+        document.addEventListener('DOMContentLoaded', () => {
+            const disciplineType = document.getElementById('discipline_type');
+            const competencyIndex = document.getElementById('competency_index');
+            const indicesByType = {{ competency_indices_by_type|tojson }};
+            if (!disciplineType || !competencyIndex) return;
+
+            function updateCompetencyOptions() {
+                const currentValue = competencyIndex.value;
+                const indices = indicesByType[disciplineType.value] || indicesByType['ОП'] || [];
+                competencyIndex.innerHTML = '<option value="" disabled selected>Выберите индекс</option>';
+                indices.forEach((index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = index;
+                    competencyIndex.appendChild(option);
+                });
+                if (indices.includes(currentValue)) {
+                    competencyIndex.value = currentValue;
+                }
+            }
+
+            disciplineType.addEventListener('change', updateCompetencyOptions);
+            updateCompetencyOptions();
+        });
+
+        window.onload = function() {
+            addResultRow();  // одна строка по умолчанию
+            addKosOkGroup();
+            renumberOralQuestions();
+            updateOralQuestionButton();
+            renumberTestExamples();
+            addControlWork();
+            calculateTotal(); // для часов
+            // Добавить обработчики на поля часов
+            document.querySelectorAll('.hours-input').forEach(input => {
+                input.addEventListener('input', calculateTotal);
+            });
+            if (resultRowIndex >= MAX_RESULT_ROWS) {
+                document.querySelector('button[onclick="addResultRow()"]').style.display = 'none';
+            }
+        };
+
+        function validateMainPageBeforeNext() {
+            const requiredFields = document.querySelectorAll('#rpd-page [required]');
+
+            for (const field of requiredFields) {
+                if (!field.value || !field.value.trim()) {
+                    field.focus();
+                    field.reportValidity();
+                    return false;
+                }
+            }
+
+            return validateRequiredChoiceGroups() && validateResultsRows();
+        }
+
+        function goToKosPage() {
+            if (!validateMainPageBeforeNext()) {
+                return;
+            }
+
+            document.getElementById('rpd-page').classList.remove('is-active');
+            document.getElementById('kos-page').classList.add('is-active');
+            document.body.classList.add('kos-mode');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function goToMainPage() {
+            document.getElementById('kos-page').classList.remove('is-active');
+            document.getElementById('rpd-page').classList.add('is-active');
+            document.body.classList.remove('kos-mode');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function removeResultRow(btn) {
+            const row = btn.closest('tr');
+            row.remove();
+            renumberResultRows();
+            // показать кнопку, если меньше максимума
+            const addButton = document.querySelector('button[onclick="addResultRow()"]');
+            if (resultRowIndex < MAX_RESULT_ROWS) {
+                addButton.style.display = 'inline-block';
+            } else {
+                addButton.style.display = 'none';
+            }
+        }
+
+        document.querySelectorAll('#kos-ok-groups .kos-ok-group').forEach((group, groupIdx) => {
+            const okField = group.querySelector('.kos-ok-code');
+            const okCount = countNonEmptyLines(okField.value);
+
+            if (okCount > 10) {
+                alert(`В группе ОК ${groupIdx + 1} указано больше 10 кодов ОК.`);
+                okField.focus();
+                valid = false;
+                return;
+            }
+
+            const resultItems = group.querySelectorAll('.kos-result-item');
+
+            if (resultItems.length > 100) {
+                alert(`В группе ОК ${groupIdx + 1} больше 100 кодов результата обучения.`);
+                valid = false;
+                return;
+            }
+        });
+
+        document.getElementById('mainForm').addEventListener('submit', function(e) {
+            markRequiredFields(document.getElementById('mainForm'));
+
+            if (!validateRequiredChoiceGroups() || !validateResultsRows() || !validateKosPageMinimums()) {
+                e.preventDefault();
+                return;
+            }
+
+            let valid = true;
+            const kosRows = document.querySelectorAll('#kos-results-body tr');
+
+            if (kosRows.length > 100) {
+                alert('В таблице КОС можно добавить не более 100 строк.');
+            valid = false;
+        }
+
+            kosRows.forEach((row, idx) => {
+                const okCodes = row.querySelector('.kos-ok-codes');
+                const resCodes = row.querySelector('.kos-res-codes');
+
+                if (okCodes && countNonEmptyLines(okCodes.value) > 10) {
+                    alert(`В строке КОС ${idx + 1} указано больше 10 кодов ОК.`);
+                    valid = false;
+                    return;
+                }
+
+                if (resCodes && countNonEmptyLines(resCodes.value) > 100) {
+                    alert(`В строке КОС ${idx + 1} указано больше 100 кодов результата обучения.`);
+                    valid = false;
+                    return;
+                }
+            });
+            if (!valid) e.preventDefault();
+        });
+
+        // --- Функция расчёта общего объёма часов ---
+        function calculateTotal() {
+            const lecture = parseFloat(document.getElementById('hours_lecture').value) || 0;
+            const practice = parseFloat(document.getElementById('hours_practice').value) || 0;
+            const self = parseFloat(document.getElementById('hours_self').value) || 0;
+            const exam = parseFloat(document.getElementById('hours_exam').value) || 0;
+            const total = lecture + practice + self + exam;
+            document.getElementById('hours_total').value = total;
+        }
+
+        // --- Результаты (с тремя полями для умений и знаний) ---
+        function renumberResultRows() {
+            const rows = document.querySelectorAll('#results-body tr');
+            rows.forEach((row, rowIndex) => {
+                const codeInput = row.querySelector('input[name^="result_code_"]');
+                const descInput = row.querySelector('input[name^="result_desc_"]');
+                if (codeInput) codeInput.name = `result_code_${rowIndex}`;
+                if (descInput) descInput.name = `result_desc_${rowIndex}`;
+
+                row.querySelectorAll('.skills-group input').forEach((input, skillIndex) => {
+                    input.name = `skill_${rowIndex}_${skillIndex}`;
+                });
+
+                row.querySelectorAll('.knowledge-group input').forEach((input, knowledgeIndex) => {
+                    input.name = `knowledge_${rowIndex}_${knowledgeIndex}`;
+                });
+            });
+
+            resultRowIndex = rows.length;
+        }
+
+        function addResultRow() {
+            const tbody = document.getElementById('results-body');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>
+                    <input type="text" name="result_code_${resultRowIndex}" placeholder="Код (например, ОК.01)" required>
+                    <input type="text" name="result_desc_${resultRowIndex}" placeholder="Описание" required style="margin-top: 5px;">
+                </td>
+                <td class="skills-group">
+                    <input type="text" name="skill_${resultRowIndex}_0" placeholder="Умение 1">
+                    <input type="text" name="skill_${resultRowIndex}_1" placeholder="Умение 2">
+                    <input type="text" name="skill_${resultRowIndex}_2" placeholder="Умение 3">
+                </td>
+                <td class="knowledge-group">
+                    <input type="text" name="knowledge_${resultRowIndex}_0" placeholder="Знание 1">
+                    <input type="text" name="knowledge_${resultRowIndex}_1" placeholder="Знание 2">
+                    <input type="text" name="knowledge_${resultRowIndex}_2" placeholder="Знание 3">
+                </td>
+                <td><button type="button" onclick="removeResultRow(this)">✖</button></td>
+            `;
+            tbody.appendChild(row);
+            renumberResultRows();
+    
+            // Ограничение до 100 строк
+            if (resultRowIndex >= MAX_RESULT_ROWS) {
+                document.querySelector('button[onclick="addResultRow()"]').style.display = 'none';
+            }
+        }
+
+        // --- КОС результаты ---
+        function countNonEmptyLines(value) {
+            return value
+                .split(/\r?\n/)
+                .map(line => line.trim())
+                .filter(Boolean).length;
+        }
+
+        function updateKosAddButtonVisibility() {
+            const rows = document.querySelectorAll('#kos-results-body tr');
+            const btn = document.getElementById('add-kos-result-btn');
+
+            if (!btn) return;
+
+            if (rows.length >= 100) {
+                btn.style.display = 'none';
+            } else {
+                btn.style.display = 'inline-block';
+            }
+        }
+
+        function removeKosResultRow(btn) {
+            const row = btn.closest('tr');
+            row.remove();
+            updateKosAddButtonVisibility();
+        }
+
+        let kosOkGroupIndex = 0;
+
+        function countNonEmptyLines(value) {
+            return value
+                .split(/\r?\n/)
+                .map(line => line.trim())
+                .filter(Boolean).length;
+        }
+
+        function updateKosGroupIndexes() {
+            const groups = document.querySelectorAll('#kos-ok-groups .kos-ok-group');
+
+            groups.forEach((group, groupIdx) => {
+                group.dataset.groupIndex = groupIdx;
+
+                const okTextarea = group.querySelector('.kos-ok-code');
+                if (okTextarea) {
+                    okTextarea.name = `kos_ok_${groupIdx}`;
+                }
+
+                const resultItems = group.querySelectorAll('.kos-result-item');
+                resultItems.forEach((item, itemIdx) => {
+                    const resCode = item.querySelector('.kos-res-code');
+                    const resDesc = item.querySelector('.kos-res-desc');
+
+                    if (resCode) resCode.name = `kos_rescode_${groupIdx}_${itemIdx}`;
+                    if (resDesc) resDesc.name = `kos_desc_${groupIdx}_${itemIdx}`;
+                });
+
+                const title = group.querySelector('.kos-ok-group-title');
+                if (title) {
+                    title.textContent = `Группа ОК ${groupIdx + 1}`;
+                }
+            });
+
+            kosOkGroupIndex = groups.length;
+        }
+
+        function updateKosAddButtons(group) {
+            const items = group.querySelectorAll('.kos-result-item');
+            const addBtn = group.querySelector('.add-kos-result-to-group');
+
+            if (addBtn) {
+                addBtn.style.display = items.length >= 100 ? 'none' : 'inline-block';
+            }
+        }
+
+        function addKosResultToGroup(buttonOrGroup) {
+            const group = buttonOrGroup.classList && buttonOrGroup.classList.contains('kos-ok-group')
+                ? buttonOrGroup
+                : buttonOrGroup.closest('.kos-ok-group');
+
+            const itemsContainer = group.querySelector('.kos-result-items');
+            const currentItems = itemsContainer.querySelectorAll('.kos-result-item');
+
+            if (currentItems.length >= 100) {
+                alert('Для одной ячейки «Код ОК» можно добавить не более 100 кодов результата обучения.');
+                return;
+            }
+
+            const item = document.createElement('div');
+            item.className = 'kos-result-item';
+
+            item.innerHTML = `
+                <textarea class="kos-res-code" rows="2" placeholder="Код результата" required></textarea>
+                <textarea class="kos-res-desc" rows="2" placeholder="Наименование результата обучения" required></textarea>
+                <button type="button" class="btn-small" onclick="removeKosResultFromGroup(this)">✖</button>
+            `;
+
+            itemsContainer.appendChild(item);
+            updateKosGroupIndexes();
+            updateKosAddButtons(group);
+        }
+
+        function removeKosResultFromGroup(btn) {
+            const group = btn.closest('.kos-ok-group');
+            const items = group.querySelectorAll('.kos-result-item');
+
+            if (items.length <= 1) {
+                alert('В группе должен остаться хотя бы один код результата обучения.');
+                return;
+            }
+
+            btn.closest('.kos-result-item').remove();
+            updateKosGroupIndexes();
+            updateKosAddButtons(group);
+        }
+
+        function addKosOkGroup() {
+            const container = document.getElementById('kos-ok-groups');
+            const groups = container.querySelectorAll('.kos-ok-group');
+
+            if (groups.length >= 100) {
+                alert('Можно добавить не более 100 групп «Код ОК».');
+                return;
+            }
+
+            const group = document.createElement('div');
+            group.className = 'kos-ok-group';
+
+            group.innerHTML = `
+                <div class="kos-ok-group-header">
+                    <div>
+                        <label class="kos-ok-group-title">Группа ОК ${groups.length + 1}</label>
+                        <textarea class="kos-ok-code" rows="3" placeholder="Например: ОК.01&#10;ОК.02" required></textarea>
+                    </div>
+
+                    <div class="note">
+                        Добавьте коды результата обучения и их наименования.
+                        Ячейка «Код ОК» в документе будет объединена по высоте этих строк.
+                    </div>
+
+                    <button type="button" class="btn-small" onclick="removeKosOkGroup(this)">✖</button>
+                </div>
+
+                <div class="kos-result-items"></div>
+
+                <div class="kos-group-actions">
+                    <button type="button" class="btn-small add-kos-result-to-group" onclick="addKosResultToGroup(this)">
+                        Добавить код результата
+                    </button>
+                </div>
+            `;
+
+            container.appendChild(group);
+            addKosResultToGroup(group);
+            updateKosGroupIndexes();
+        }
+
+        function removeKosOkGroup(btn) {
+            const group = btn.closest('.kos-ok-group');
+            group.remove();
+
+            const groups = document.querySelectorAll('#kos-ok-groups .kos-ok-group');
+            if (groups.length === 0) {
+                addKosOkGroup();
+            }
+
+            updateKosGroupIndexes();
+        }
+
+        // --- Литература и списки ---
+        function renumberLitItems(containerId) {
+            const container = document.getElementById(containerId);
+            const items = container.querySelectorAll('.lit-item');
+            items.forEach((item, idx) => {
+                const num = item.querySelector('.lit-num');
+                if (num) num.textContent = `${idx + 1}.`;
+            });
+        }
+
+        function addLitItem(containerId, fieldName) {
+            const container = document.getElementById(containerId);
+            const items = container.querySelectorAll('.lit-item');
+
+            if (items.length >= 10) {
+                alert('Можно добавить не более 10 строк.');
+                return;
+            }
+
+            const newItem = document.createElement('div');
+            newItem.className = 'lit-item';
+            newItem.innerHTML = `
+                <span class="lit-num"></span>
+                <input type="text" name="${fieldName}" value="">
+                <button type="button" class="btn-small" onclick="removeLitItem(this, '${containerId}')">✖</button>
+            `;
+            container.appendChild(newItem);
+            renumberLitItems(containerId);
+        }
+
+        function removeLitItem(btn, containerId) {
+            const container = document.getElementById(containerId);
+            const item = btn.closest('.lit-item');
+            if (item) item.remove();
+            renumberLitItems(containerId);
+        }
+
+        window.addEventListener('load', () => {
+            renumberLitItems('basic-lit-container');
+            renumberLitItems('add-lit-container');
+            renumberLitItems('el-res-container');
+        });
+
+        // ----- Новая реализация 2.2 (тематический план) -----
+        let section22Count = 0;
+        let totalTopicsCount = 0;
+
+        function updateSection22AddButton() {
+            const globalAddSectionBtn = document.getElementById('add-section-22');
+            if (!globalAddSectionBtn) return;
+
+            const sectionsCount = document.querySelectorAll('#sections-container-22 .section-block').length;
+            const isMax = sectionsCount >= MAX_SECTIONS_22;
+            globalAddSectionBtn.disabled = isMax;
+            globalAddSectionBtn.style.opacity = isMax ? '0.5' : '1';
+        }
+
+        function addSection22() {
+            const container = document.getElementById('sections-container-22');
+            if (container.querySelectorAll('.section-block').length >= MAX_SECTIONS_22) {
+                alert(`Достигнуто максимальное количество разделов (${MAX_SECTIONS_22}).`);
+                return;
+            }
+
+            const sectionId = container.querySelectorAll('.section-block').length;
+            const sectionNumber = sectionId + 1;
+
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'section-block';
+            sectionDiv.dataset.sectionId = sectionId;
+            sectionDiv.innerHTML = `
+                <h4>Раздел ${sectionNumber}</h4>
+                <input type="text" name="section_title_${sectionId}" placeholder="Наименование раздела" required style="width:100%; margin-bottom:10px;">
+                <div class="topics-container-22" id="topics-container-${sectionId}"></div>
+                <button type="button" class="btn-small add-topic-btn" data-section-id="${sectionId}">Добавить тему</button>
+                <button type="button" class="btn-small remove-section-btn" data-section-id="${sectionId}">Удалить раздел</button>
+            `;
+            container.appendChild(sectionDiv);
+            attachSectionEvents(sectionDiv);
+            updateSection22AddButton();
+        }
+
+        function attachSectionEvents(sectionDiv) {
+            const addTopicBtn = sectionDiv.querySelector('.add-topic-btn');
+            const removeSectionBtn = sectionDiv.querySelector('.remove-section-btn');
+            addTopicBtn.addEventListener('click', () => {
+                const sectionId = parseInt(addTopicBtn.dataset.sectionId);
+                addTopicToSection(sectionId);
+            });
+            removeSectionBtn.addEventListener('click', () => {
+                const sectionId = parseInt(removeSectionBtn.dataset.sectionId);
+                removeSection(sectionId);
+            });
+        }
+
+        function updateTopicAddButton(sectionId) {
+            const topicsContainer = document.getElementById(`topics-container-${sectionId}`);
+            const addTopicBtn = document.querySelector(`.add-topic-btn[data-section-id="${sectionId}"]`);
+            if (!topicsContainer || !addTopicBtn) return;
+
+            const isMax = topicsContainer.querySelectorAll('.topic-item').length >= MAX_TOPICS_PER_SECTION_22;
+            addTopicBtn.disabled = isMax;
+            addTopicBtn.style.opacity = isMax ? '0.5' : '1';
+        }
+
+        function renumberTopicsInSection(sectionId) {
+            const topicsContainer = document.getElementById(`topics-container-${sectionId}`);
+            if (!topicsContainer) return;
+
+            const topics = topicsContainer.querySelectorAll('.topic-item');
+            topics.forEach((topic, topicIdx) => {
+                topic.dataset.topicIndex = topicIdx;
+
+                const strong = topic.querySelector('strong');
+                if (strong) strong.innerText = `Тема ${sectionId + 1}.${topicIdx + 1}`;
+
+                topic.querySelectorAll('input, textarea').forEach(input => {
+                    const name = input.getAttribute('name');
+                    if (!name) return;
+
+                    let newName = name.replace(/section_title_\d+/, `section_title_${sectionId}`);
+                    newName = newName.replace(/topic_title_\d+_\d+/, `topic_title_${sectionId}_${topicIdx}`);
+                    newName = newName.replace(/topic_content_\d+_\d+/, `topic_content_${sectionId}_${topicIdx}`);
+                    newName = newName.replace(/topic_hours_\d+_\d+/, `topic_hours_${sectionId}_${topicIdx}`);
+                    newName = newName.replace(/practical_content_\d+_\d+/, `practical_content_${sectionId}_${topicIdx}`);
+                    newName = newName.replace(/practical_hours_\d+_\d+/, `practical_hours_${sectionId}_${topicIdx}`);
+                    newName = newName.replace(/selfwork_content_\d+_\d+/, `selfwork_content_${sectionId}_${topicIdx}`);
+                    newName = newName.replace(/selfwork_hours_\d+_\d+/, `selfwork_hours_${sectionId}_${topicIdx}`);
+                    input.setAttribute('name', newName);
+                });
+
+                const addPractical = topic.querySelector('.add-practical-btn');
+                if (addPractical) {
+                    addPractical.dataset.section = sectionId;
+                    addPractical.dataset.topic = topicIdx;
+                }
+
+                const addSelfwork = topic.querySelector('.add-selfwork-btn');
+                if (addSelfwork) {
+                    addSelfwork.dataset.section = sectionId;
+                    addSelfwork.dataset.topic = topicIdx;
+                }
+
+                const practicalContainer = topic.querySelector('[class^="practical-container-"]');
+                if (practicalContainer) {
+                    practicalContainer.className = `practical-container-${sectionId}_${topicIdx}`;
+                }
+
+                const selfworkContainer = topic.querySelector('[class^="selfwork-container-"]');
+                if (selfworkContainer) {
+                    selfworkContainer.className = `selfwork-container-${sectionId}_${topicIdx}`;
+                }
+            });
+
+            updateTopicAddButton(sectionId);
+        }
+
+        function addTopicToSection(sectionId) {
+            const topicsContainer = document.getElementById(`topics-container-${sectionId}`);
+            const currentTopicsCount = topicsContainer.children.length;
+            if (currentTopicsCount >= MAX_TOPICS_PER_SECTION_22) {
+                alert(`В одном разделе может быть не более ${MAX_TOPICS_PER_SECTION_22} тем.`);
+                return;
+            }
+            const topicIndex = currentTopicsCount;
+            const topicDiv = document.createElement('div');
+            topicDiv.className = 'topic-item';
+            topicDiv.dataset.topicIndex = topicIndex;
+            topicDiv.innerHTML = `
+                <div class="topic-editor-panel" style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:10px; padding:5px; border:1px solid #ccc;">
+                    <div style="flex:1; min-width:200px;">
+                        <strong>Тема ${sectionId+1}.${topicIndex+1}</strong><br>
+                        <input type="text" name="topic_title_${sectionId}_${topicIndex}" placeholder="Наименование темы" required style="width:100%;">
+                    </div>
+                    <div style="flex:2; min-width:300px;">
+                        <label>Содержание учебного материала (обязательно):</label>
+                        <textarea name="topic_content_${sectionId}_${topicIndex}" rows="3" style="width:100%;"></textarea>
+                    </div>
+                    <div style="width:80px;">
+                        <label>Часы:</label>
+                        <input type="number" name="topic_hours_${sectionId}_${topicIndex}" value="0" min="0" step="1" style="width:70px;">
+                    </div>
+                    <div>
+                        <button type="button" class="btn-small add-practical-btn" data-section="${sectionId}" data-topic="${topicIndex}">Практическое занятие</button>
+                        <button type="button" class="btn-small add-selfwork-btn" data-section="${sectionId}" data-topic="${topicIndex}">Самостоятельная работа</button>
+                        <button type="button" class="btn-small remove-topic-btn">✖ Удалить тему</button>
+                    </div>
+                </div>
+                <div class="practical-container-${sectionId}_${topicIndex}" style="margin-left:20px;"></div>
+                <div class="selfwork-container-${sectionId}_${topicIndex}" style="margin-left:20px;"></div>
+            `;
+            topicsContainer.appendChild(topicDiv);
+            totalTopicsCount++;
+
+            // события для кнопок внутри темы
+            const addPracticalBtn = topicDiv.querySelector('.add-practical-btn');
+            const addSelfworkBtn = topicDiv.querySelector('.add-selfwork-btn');
+            const removeTopicBtn = topicDiv.querySelector('.remove-topic-btn');
+            addPracticalBtn.addEventListener('click', () => {
+                addPracticalToTopic(parseInt(addPracticalBtn.dataset.section), parseInt(addPracticalBtn.dataset.topic));
+            });
+            addSelfworkBtn.addEventListener('click', () => {
+                addSelfworkToTopic(parseInt(addSelfworkBtn.dataset.section), parseInt(addSelfworkBtn.dataset.topic));
+            });
+            removeTopicBtn.addEventListener('click', () => {
+                const currentSection = parseInt(topicDiv.closest('.section-block').dataset.sectionId);
+                const currentTopic = parseInt(topicDiv.dataset.topicIndex);
+                removeTopic(currentSection, currentTopic, topicDiv);
+            });
+
+            // обновить состояние кнопки добавления темы в разделе, если достигнут лимит
+            renumberTopicsInSection(sectionId);
+        }
+
+        function addPracticalToTopic(sectionId, topicIndex) {
+            const container = document.querySelector(`.practical-container-${sectionId}_${topicIndex}`);
+            if (container.children.length > 0) {
+                alert('Практическое занятие уже добавлено для этой темы.');
+                return;
+            }
+            const practicalDiv = document.createElement('div');
+            practicalDiv.className = 'practical-item';
+            practicalDiv.innerHTML = `
+                <div style="margin:5px 0; padding:5px; background:#f9f9f9;">
+                    <strong>Практическое занятие</strong><br>
+                    <textarea name="practical_content_${sectionId}_${topicIndex}" rows="2" placeholder="Описание практического занятия" style="width:100%;"></textarea>
+                    <label>Часы: <input type="number" name="practical_hours_${sectionId}_${topicIndex}" value="0" min="0" step="1" style="width:60px;"></label>
+                    <button type="button" class="btn-small remove-practical-btn">✖</button>
+                </div>
+            `;
+            container.appendChild(practicalDiv);
+            practicalDiv.querySelector('.remove-practical-btn').addEventListener('click', () => practicalDiv.remove());
+        }
+
+        function addSelfworkToTopic(sectionId, topicIndex) {
+            const container = document.querySelector(`.selfwork-container-${sectionId}_${topicIndex}`);
+            if (container.children.length > 0) {
+                    alert('Самостоятельная работа уже добавлена для этой темы.');
+                return;
+            }
+            const selfworkDiv = document.createElement('div');
+            selfworkDiv.className = 'selfwork-item';
+            selfworkDiv.innerHTML = `
+                <div style="margin:5px 0; padding:5px; background:#f9f9f9;">
+                    <strong>Самостоятельная работа</strong><br>
+                    <textarea name="selfwork_content_${sectionId}_${topicIndex}" rows="2" placeholder="Описание самостоятельной работы" style="width:100%;"></textarea>
+                    <label>Часы: <input type="number" name="selfwork_hours_${sectionId}_${topicIndex}" value="0" min="0" step="1" style="width:60px;"></label>
+                    <button type="button" class="btn-small remove-selfwork-btn">✖</button>
+                </div>
+            `;
+            container.appendChild(selfworkDiv);
+            selfworkDiv.querySelector('.remove-selfwork-btn').addEventListener('click', () => selfworkDiv.remove());
+        }
+
+        function removeTopic(sectionId, topicIndex, topicDiv) {
+            totalTopicsCount--;
+            topicDiv.remove();
+            renumberTopicsInSection(sectionId);
+        }
+
+        function removeSection(sectionId) {
+            const sectionDiv = document.querySelector(`.section-block[data-section-id="${sectionId}"]`);
+            const topicsCount = sectionDiv.querySelectorAll('.topic-item').length;
+            totalTopicsCount -= topicsCount;
+            sectionDiv.remove();
+            // перестроить индексы оставшихся разделов
+            const sections = document.querySelectorAll('#sections-container-22 .section-block');
+            sections.forEach((sec, idx) => {
+                sec.dataset.sectionId = idx;
+                const h4 = sec.querySelector('h4');
+                if (h4) h4.innerText = `Раздел ${idx+1}`;
+                const addTopicBtn = sec.querySelector('.add-topic-btn');
+                if (addTopicBtn) addTopicBtn.dataset.sectionId = idx;
+                const removeBtn = sec.querySelector('.remove-section-btn');
+                if (removeBtn) removeBtn.dataset.sectionId = idx;
+                const topicsContainer = sec.querySelector('.topics-container-22');
+                if (topicsContainer) topicsContainer.id = `topics-container-${idx}`;
+                renumberTopicsInSection(idx);
+            });
+            section22Count = document.querySelectorAll('#sections-container-22 .section-block').length;
+            updateSection22AddButton();
+        }
+
+        // Инициализация: добавить первый раздел
+        document.getElementById('add-section-22').addEventListener('click', addSection22);
+        window.addEventListener('load', () => {
+            addSection22();
+        });
+
+        // ----- Управление кабинетами (материально-техническое обеспечение) -----
+        let classroomCount = 0;
+
+        function addClassroom() {
+            if (classroomCount >= MAX_CLASSROOMS) {
+                alert(`Максимальное количество кабинетов: ${MAX_CLASSROOMS}`);
+                return;
+            }
+            const container = document.getElementById('classrooms-container');
+            const classroomDiv = document.createElement('div');
+            classroomDiv.className = 'classroom-block';
+            classroomDiv.style.border = '1px solid #ccc';
+            classroomDiv.style.padding = '15px';
+            classroomDiv.style.marginBottom = '15px';
+            classroomDiv.style.borderRadius = '5px';
+            classroomDiv.innerHTML = `
+                <h4>Кабинет ${classroomCount+1}</h4>
+                <div class="form-group">
+                    <label>Наименование оборудованного кабинета:</label>
+                    <input type="text" name="classroom_name_${classroomCount}" class="classroom-name" placeholder="например, Кабинет математических дисциплин" style="width:100%;">
+                </div>
+                <div class="form-group">
+                    <label>Основное оборудование:</label>
+                    <textarea name="classroom_equipment_${classroomCount}" rows="3" placeholder="например, Количество посадочных мест – 36, комплект мебели (стол и стул) для преподавателя – 1 шт., проектор Full HD – 1 шт., экран – 1 шт., мультимедийное оборудование – 1 шт., доска маркерная." style="width:100%;"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Программное обеспечение:</label>
+                    <textarea name="classroom_software_${classroomCount}" rows="3" placeholder="например, Microsoft Windows 7 Professional; Microsoft Office ProPlus 2010 Russian Acdmc; ..." style="width:100%;"></textarea>
+                </div>
+                <button type="button" class="btn-small remove-classroom-btn">✖ Удалить кабинет</button>
+            `;
+            container.appendChild(classroomDiv);
+            classroomCount++;
+    
+            // обработчик удаления
+            const removeBtn = classroomDiv.querySelector('.remove-classroom-btn');
+            removeBtn.addEventListener('click', () => {
+                classroomDiv.remove();
+                classroomCount--;
+                // обновить заголовки оставшихся кабинетов
+                const allClassrooms = document.querySelectorAll('#classrooms-container .classroom-block');
+                allClassrooms.forEach((block, idx) => {
+                    const h4 = block.querySelector('h4');
+                    if (h4) h4.innerText = `Кабинет ${idx+1}`;
+                    // обновить атрибуты name у всех полей
+                    block.querySelectorAll('input, textarea').forEach(el => {
+                        const name = el.getAttribute('name');
+                        if (name) {
+                            const newName = name.replace(/_\d+/, `_${idx}`);
+                            el.setAttribute('name', newName);
+                        }
+                    });
+                });
+                // показать кнопку добавления, если меньше максимума
+                const addBtn = document.getElementById('add-classroom-btn');
+                if (classroomCount < MAX_CLASSROOMS) {
+                    addBtn.disabled = false;
+                    addBtn.style.opacity = '1';
+                }
+            });
+    
+            // скрыть кнопку, если достигнут лимит
+            const addBtn = document.getElementById('add-classroom-btn');
+            if (classroomCount >= MAX_CLASSROOMS) {
+                addBtn.disabled = true;
+                addBtn.style.opacity = '0.5';
+            }
+        }
+
+        // Инициализация: добавить один кабинет по умолчанию
+        document.getElementById('add-classroom-btn').addEventListener('click', addClassroom);
+        // Добавим вызов при загрузке
+        window.addEventListener('load', () => {
+            addClassroom();
+        });
+
+        function goToKosPage() {
+            if (typeof validateMainPageBeforeNext === 'function' && !validateMainPageBeforeNext()) {
+                return;
+            }
+
+            const rpdPage = document.getElementById('rpd-page');
+            const kosPage = document.getElementById('kos-page');
+
+            if (!rpdPage || !kosPage) {
+                alert('Не найдены блоки rpd-page или kos-page. Проверьте разметку.');
+                return;
+            }
+
+            rpdPage.classList.remove('is-active');
+            kosPage.classList.add('is-active');
+            document.body.classList.add('kos-mode');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        function goToMainPage() {
+            const rpdPage = document.getElementById('rpd-page');
+            const kosPage = document.getElementById('kos-page');
+
+            if (!rpdPage || !kosPage) {
+                alert('Не найдены блоки rpd-page или kos-page. Проверьте разметку.');
+                return;
+            }
+
+            kosPage.classList.remove('is-active');
+            rpdPage.classList.add('is-active');
+            document.body.classList.remove('kos-mode');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        const MAX_ORAL_QUESTIONS = 100;
+
+        function renumberOralQuestions() {
+            const items = document.querySelectorAll('#oral-questions-container .oral-question-item');
+
+            items.forEach((item, index) => {
+                const num = item.querySelector('.oral-question-num');
+                if (num) {
+                    num.textContent = `${index + 1}.`;
+                }
+            });
+        }
+
+        function updateOralQuestionButton() {
+            const container = document.getElementById('oral-questions-container');
+            const btn = document.getElementById('add-oral-question-btn');
+
+            if (!container || !btn) return;
+
+            const count = container.querySelectorAll('.oral-question-item').length;
+            btn.style.display = count >= MAX_ORAL_QUESTIONS ? 'none' : 'inline-block';
+        }
+
+        function addOralQuestion() {
+            const container = document.getElementById('oral-questions-container');
+            const count = container.querySelectorAll('.oral-question-item').length;
+
+            if (count >= MAX_ORAL_QUESTIONS) {
+                alert('Можно добавить не более 100 вопросов.');
+                return;
+            }
+
+            const item = document.createElement('div');
+            item.className = 'lit-item oral-question-item';
+
+            item.innerHTML = `
+                <span class="oral-question-num"></span>
+                <input type="text" name="oral_question[]" value="" placeholder="Введите вопрос без номера">
+                <button type="button" class="btn-small" onclick="removeOralQuestion(this)">✖</button>
+            `;
+
+            container.appendChild(item);
+
+            renumberOralQuestions();
+            updateOralQuestionButton();
+        }
+
+        function removeOralQuestion(btn) {
+            const item = btn.closest('.oral-question-item');
+            item.remove();
+
+            const container = document.getElementById('oral-questions-container');
+
+            if (container.querySelectorAll('.oral-question-item').length === 0) {
+                addOralQuestion();
+                return;
+            }
+
+            renumberOralQuestions();
+            updateOralQuestionButton();
+        }
+
+        function renumberTestExamples() {
+            const items = document.querySelectorAll('#test-examples-container .test-example-item');
+            items.forEach((item, index) => {
+                const num = item.querySelector('.test-question-num');
+                if (num) {
+                    num.textContent = `${index + 1}.`;
+                }
+            });
+        }
+
+        function createTestExampleItem() {
+            const item = document.createElement('div');
+            item.className = 'test-example-item';
+            item.innerHTML = `
+                <div class="test-question-row">
+                    <span class="test-question-num"></span>
+                    <input type="text" name="test_question[]" value="" placeholder="Введите тестовое задание без номера">
+                    <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                    <button type="button" class="btn-small" onclick="removeTestExample(this)">✖</button>
+                </div>
+                <div class="test-answer-row">
+                    <span class="test-answer-label">а)</span>
+                    <input type="text" name="test_answer_a[]" value="" placeholder="Вариант ответа а)">
+                    <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                </div>
+                <div class="test-answer-row">
+                    <span class="test-answer-label">б)</span>
+                    <input type="text" name="test_answer_b[]" value="" placeholder="Вариант ответа б)">
+                    <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                </div>
+                <div class="test-answer-row">
+                    <span class="test-answer-label">в)</span>
+                    <input type="text" name="test_answer_c[]" value="" placeholder="Вариант ответа в)">
+                    <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                </div>
+                <div class="test-answer-row">
+                    <span class="test-answer-label">г)</span>
+                    <input type="text" name="test_answer_d[]" value="" placeholder="Вариант ответа г)">
+                    <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                </div>
+            `;
+            return item;
+        }
+
+        function addTestExample() {
+            const container = document.getElementById('test-examples-container');
+            container.appendChild(createTestExampleItem());
+            renumberTestExamples();
+        }
+
+        function removeTestExample(btn) {
+            const container = document.getElementById('test-examples-container');
+            const item = btn.closest('.test-example-item');
+            if (item) {
+                item.remove();
+            }
+
+            if (container.querySelectorAll('.test-example-item').length === 0) {
+                addTestExample();
+                return;
+            }
+
+            renumberTestExamples();
+        }
+
+        const CONTROL_ANSWER_LABELS = ['а', 'б', 'в', 'г'];
+        const MAX_CONTROL_VARIANTS = 100;
+        const MAX_CONTROL_TASKS = 100;
+
+        function createControlAnswerRow(answerIndex) {
+            return `
+                <div class="control-answer-row">
+                    <span class="control-answer-label">${CONTROL_ANSWER_LABELS[answerIndex]})</span>
+                    <textarea rows="2" class="control-answer-input" placeholder="Вариант ответа ${CONTROL_ANSWER_LABELS[answerIndex]})"></textarea>
+                    <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                </div>
+            `;
+        }
+
+        function createControlTaskItem() {
+            const item = document.createElement('div');
+            item.className = 'control-task-item';
+            item.innerHTML = `
+                <div class="control-task-header">
+                    <span class="control-task-num">Задача</span>
+                    <button type="button" class="btn-small" onclick="removeControlTask(this)">✖ Удалить задачу</button>
+                </div>
+                <div class="control-task-row">
+                    <textarea rows="3" class="control-task-input" placeholder="Введите текст задачи"></textarea>
+                    <button type="button" class="btn-small" onclick="openFormulaDialog(this)">Формула</button>
+                </div>
+                <div class="control-answer-list">
+                    ${CONTROL_ANSWER_LABELS.map((_, index) => createControlAnswerRow(index)).join('')}
+                </div>
+            `;
+            return item;
+        }
+
+        function createControlVariantItem() {
+            const item = document.createElement('div');
+            item.className = 'control-variant-item';
+            item.innerHTML = `
+                <div class="control-variant-header">
+                    <span class="control-variant-num">Вариант</span>
+                    <div>
+                        <button type="button" class="btn-small" onclick="addControlTask(this)">Добавить задачу</button>
+                        <button type="button" class="btn-small" onclick="removeControlVariant(this)">✖ Удалить вариант</button>
+                    </div>
+                </div>
+                <input type="hidden" class="control-variant-marker" value="1">
+                <div class="control-tasks-container"></div>
+            `;
+
+            item.querySelector('.control-tasks-container').appendChild(createControlTaskItem());
+            return item;
+        }
+
+        function createControlWorkItem() {
+            const item = document.createElement('div');
+            item.className = 'control-work-item';
+            item.innerHTML = `
+                <div class="control-work-header">
+                    <span class="control-work-num">Контрольная работа</span>
+                    <div>
+                        <button type="button" class="btn-small" onclick="addControlVariant(this)">Добавить вариант</button>
+                        <button type="button" class="btn-small" onclick="removeControlWork(this)">✖ Удалить контрольную</button>
+                    </div>
+                </div>
+                <label>Тема контрольной работы:</label>
+                <input type="text" class="control-topic-input" placeholder="Например: Основные понятия математической логики">
+                <div class="control-variants-container"></div>
+            `;
+
+            item.querySelector('.control-variants-container').appendChild(createControlVariantItem());
+            return item;
+        }
+
+        function updateControlWorkIndexes() {
+            const works = document.querySelectorAll('#control-works-container .control-work-item');
+
+            works.forEach((work, workIndex) => {
+                const workNum = work.querySelector('.control-work-num');
+                const topic = work.querySelector('.control-topic-input');
+                if (workNum) workNum.textContent = `Контрольная работа № ${workIndex + 1}`;
+                if (topic) topic.name = `control_topic_${workIndex}`;
+
+                const variants = work.querySelectorAll(':scope > .control-variants-container > .control-variant-item');
+                variants.forEach((variant, variantIndex) => {
+                    const variantNum = variant.querySelector('.control-variant-num');
+                    const marker = variant.querySelector('.control-variant-marker');
+                    if (variantNum) variantNum.textContent = `Вариант ${variantIndex + 1}`;
+                    if (marker) marker.name = `control_variant_marker_${workIndex}_${variantIndex}`;
+
+                    const tasks = variant.querySelectorAll(':scope > .control-tasks-container > .control-task-item');
+                    tasks.forEach((task, taskIndex) => {
+                        const taskNum = task.querySelector('.control-task-num');
+                        const taskInput = task.querySelector('.control-task-input');
+                        if (taskNum) taskNum.textContent = `Задача ${taskIndex + 1}`;
+                        if (taskInput) taskInput.name = `control_task_${workIndex}_${variantIndex}_${taskIndex}`;
+
+                        task.querySelectorAll('.control-answer-input').forEach((answer, answerIndex) => {
+                            answer.name = `control_answer_${workIndex}_${variantIndex}_${taskIndex}_${answerIndex}`;
+                        });
+                    });
+                });
+            });
+        }
+
+        function addControlWork() {
+            const container = document.getElementById('control-works-container');
+            if (!container) return;
+
+            if (container.querySelectorAll('.control-work-item').length >= 10) {
+                alert('Можно добавить не более 10 контрольных работ.');
+                return;
+            }
+
+            container.appendChild(createControlWorkItem());
+            updateControlWorkIndexes();
+        }
+
+        function removeControlWork(btn) {
+            const container = document.getElementById('control-works-container');
+            const item = btn.closest('.control-work-item');
+            if (item) item.remove();
+            if (container && container.querySelectorAll('.control-work-item').length === 0) {
+                addControlWork();
+                return;
+            }
+            updateControlWorkIndexes();
+        }
+
+        function addControlVariant(btn) {
+            const work = btn.closest('.control-work-item');
+            const container = work ? work.querySelector('.control-variants-container') : null;
+            if (!container) return;
+
+            if (container.querySelectorAll('.control-variant-item').length >= MAX_CONTROL_VARIANTS) {
+                alert('Можно добавить не более 100 вариантов.');
+                return;
+            }
+
+            container.appendChild(createControlVariantItem());
+            updateControlWorkIndexes();
+        }
+
+        function removeControlVariant(btn) {
+            const work = btn.closest('.control-work-item');
+            const container = work ? work.querySelector('.control-variants-container') : null;
+            const item = btn.closest('.control-variant-item');
+            if (item) item.remove();
+            if (container && container.querySelectorAll('.control-variant-item').length === 0) {
+                container.appendChild(createControlVariantItem());
+            }
+            updateControlWorkIndexes();
+        }
+
+        function addControlTask(btn) {
+            const variant = btn.closest('.control-variant-item');
+            const container = variant ? variant.querySelector('.control-tasks-container') : null;
+            if (!container) return;
+
+            if (container.querySelectorAll('.control-task-item').length >= MAX_CONTROL_TASKS) {
+                alert('Можно добавить не более 100 задач в одном варианте.');
+                return;
+            }
+
+            container.appendChild(createControlTaskItem());
+            updateControlWorkIndexes();
+        }
+
+        function removeControlTask(btn) {
+            const variant = btn.closest('.control-variant-item');
+            const container = variant ? variant.querySelector('.control-tasks-container') : null;
+            const item = btn.closest('.control-task-item');
+            if (item) item.remove();
+            if (container && container.querySelectorAll('.control-task-item').length === 0) {
+                container.appendChild(createControlTaskItem());
+            }
+            updateControlWorkIndexes();
+        }
+
+        let activeFormulaTarget = null;
+
+        function openFormulaDialog(btn) {
+            const row = btn.closest('.test-question-row, .test-answer-row, .control-task-row, .control-answer-row');
+            activeFormulaTarget = row ? row.querySelector('input, textarea') : null;
+
+            const dialog = document.getElementById('formula-dialog');
+            const input = document.getElementById('formula-input');
+            if (!dialog || !input || !activeFormulaTarget) return;
+
+            input.value = '';
+            dialog.hidden = false;
+            input.focus();
+            updateFormulaPreview();
+        }
+
+        function closeFormulaDialog() {
+            const dialog = document.getElementById('formula-dialog');
+            if (dialog) {
+                dialog.hidden = true;
+            }
+            activeFormulaTarget = null;
+        }
+
+        function openFormulaHelpDialog() {
+            const dialog = document.getElementById('formula-help-dialog');
+            if (!dialog) return;
+
+            dialog.hidden = false;
+            if (window.MathJax && MathJax.typesetPromise) {
+                MathJax.typesetClear([dialog]);
+                MathJax.typesetPromise([dialog]).catch(() => {});
+            }
+        }
+
+        function closeFormulaHelpDialog() {
+            const dialog = document.getElementById('formula-help-dialog');
+            if (dialog) {
+                dialog.hidden = true;
+            }
+        }
+
+        function insertAtCursor(target, text) {
+            const start = target.selectionStart ?? target.value.length;
+            const end = target.selectionEnd ?? target.value.length;
+            target.value = target.value.slice(0, start) + text + target.value.slice(end);
+            const nextPosition = start + text.length;
+            target.focus();
+            target.setSelectionRange(nextPosition, nextPosition);
+            target.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        const latexSymbolMap = {
+            '\\pm': '±',
+            '\\mp': '∓',
+            '\\to': '→',
+            '\\rightarrow': '→',
+            '\\leftarrow': '←',
+            '\\leftrightarrow': '↔',
+            '\\equiv': '≡',
+            '\\ne': '≠',
+            '\\neq': '≠',
+            '\\le': '≤',
+            '\\leq': '≤',
+            '\\ge': '≥',
+            '\\geq': '≥',
+            '\\approx': '≈',
+            '\\cdot': '·',
+            '\\times': '×',
+            '\\div': '÷',
+            '\\land': '∧',
+            '\\wedge': '∧',
+            '\\lor': '∨',
+            '\\vee': '∨',
+            '\\neg': '¬',
+            '\\forall': '∀',
+            '\\exists': '∃',
+            '\\in': '∈',
+            '\\notin': '∉',
+            '\\subset': '⊂',
+            '\\subseteq': '⊆',
+            '\\cup': '∪',
+            '\\cap': '∩',
+            '\\emptyset': '∅',
+            '\\infty': '∞',
+            '\\sum': '∑',
+            '\\int': '∫',
+            '\\alpha': 'α',
+            '\\beta': 'β',
+            '\\gamma': 'γ',
+            '\\delta': 'δ',
+            '\\lambda': 'λ',
+            '\\mu': 'μ',
+            '\\pi': 'π',
+            '\\sigma': 'σ',
+            '\\Sigma': 'Σ',
+            '\\omega': 'ω',
+            '\\Omega': 'Ω'
+        };
+
+        const superscriptMap = {
+            '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+            '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+            '+': '⁺', '-': '⁻', '=': '⁼', '(': '⁽', ')': '⁾',
+            'n': 'ⁿ', 'i': 'ⁱ'
+        };
+
+        const subscriptMap = {
+            '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+            '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉',
+            '+': '₊', '-': '₋', '=': '₌', '(': '₍', ')': '₎',
+            'a': 'ₐ', 'e': 'ₑ', 'h': 'ₕ', 'i': 'ᵢ', 'j': 'ⱼ',
+            'k': 'ₖ', 'l': 'ₗ', 'm': 'ₘ', 'n': 'ₙ', 'o': 'ₒ',
+            'p': 'ₚ', 'r': 'ᵣ', 's': 'ₛ', 't': 'ₜ', 'u': 'ᵤ',
+            'v': 'ᵥ', 'x': 'ₓ'
+        };
+
+        function readLatexGroup(text, openIndex) {
+            if (text[openIndex] !== '{') return null;
+
+            let depth = 0;
+            for (let i = openIndex; i < text.length; i++) {
+                if (text[i] === '{') depth++;
+                if (text[i] === '}') depth--;
+                if (depth === 0) {
+                    return {
+                        content: text.slice(openIndex + 1, i),
+                        end: i + 1
+                    };
+                }
+            }
+
+            return null;
+        }
+
+        function splitTopLevelOver(content) {
+            let depth = 0;
+            for (let i = 0; i < content.length; i++) {
+                if (content[i] === '{') depth++;
+                if (content[i] === '}') depth--;
+                if (depth === 0 && content.slice(i, i + 5) === '\\over') {
+                    return [
+                        content.slice(0, i).trim(),
+                        content.slice(i + 5).trim()
+                    ];
+                }
+            }
+
+            return null;
+        }
+
+        function replaceLatexCommandWithGroups(text, command, groupCount, renderer) {
+            let result = '';
+            let index = 0;
+
+            while (index < text.length) {
+                const commandIndex = text.indexOf(command, index);
+                if (commandIndex === -1) {
+                    result += text.slice(index);
+                    break;
+                }
+
+                result += text.slice(index, commandIndex);
+                let cursor = commandIndex + command.length;
+                const groups = [];
+                let failed = false;
+
+                for (let groupIndex = 0; groupIndex < groupCount; groupIndex++) {
+                    while (text[cursor] === ' ') cursor++;
+                    const group = readLatexGroup(text, cursor);
+                    if (!group) {
+                        failed = true;
+                        break;
+                    }
+                    groups.push(group.content);
+                    cursor = group.end;
+                }
+
+                if (failed) {
+                    result += command;
+                    index = commandIndex + command.length;
+                    continue;
+                }
+
+                result += renderer(groups);
+                index = cursor;
+            }
+
+            return result;
+        }
+
+        function replaceLatexOver(text) {
+            let result = '';
+            let index = 0;
+
+            while (index < text.length) {
+                const openIndex = text.indexOf('{', index);
+                if (openIndex === -1) {
+                    result += text.slice(index);
+                    break;
+                }
+
+                const group = readLatexGroup(text, openIndex);
+                if (!group) {
+                    result += text.slice(index);
+                    break;
+                }
+
+                const split = splitTopLevelOver(group.content);
+                if (!split) {
+                    result += text.slice(index, group.end);
+                    index = group.end;
+                    continue;
+                }
+
+                result += text.slice(index, openIndex);
+                result += formatFraction(split[0], split[1]);
+                index = group.end;
+            }
+
+            return result;
+        }
+
+        function convertScriptCharacters(value, map) {
+            return [...value].map(char => map[char] || char).join('');
+        }
+
+        function needsFractionParens(value) {
+            const text = String(value || '').trim();
+            if (text.length <= 1) return false;
+            return true;
+        }
+
+        function formatFraction(numerator, denominator) {
+            const left = convertLatexToDocumentText(numerator);
+            const right = convertLatexToDocumentText(denominator);
+            const safeLeft = needsFractionParens(left) ? `(${left})` : left;
+            const safeRight = needsFractionParens(right) ? `(${right})` : right;
+            return `${safeLeft}⁄${safeRight}`;
+        }
+
+        function convertLatexMatrixToText(value) {
+            return String(value || '').replace(/\\begin\{[pbvB]?matrix\}([\s\S]+?)\\end\{[pbvB]?matrix\}/g, (_, body) => {
+                const rows = body
+                    .split(/\\\\/)
+                    .map(row => row.trim())
+                    .filter(Boolean)
+                    .map(row => row.split('&').map(cell => convertLatexToDocumentText(cell.trim())).join(' '));
+                return rows.length ? `⎛${rows.join('; ')}⎞` : '';
+            });
+        }
+
+        function convertLatexToDocumentText(value) {
+            let text = String(value || '').trim();
+            text = text.replace(/^\\\(/, '').replace(/\\\)$/, '');
+            text = text.replace(/^\$/, '').replace(/\$$/, '');
+            text = convertLatexMatrixToText(text);
+            text = text.replace(/\\\\/g, '\\');
+            text = replaceLatexCommandWithGroups(text, '\\frac', 2, groups => {
+                return formatFraction(groups[0], groups[1]);
+            });
+            text = replaceLatexCommandWithGroups(text, '\\sqrt', 1, groups => {
+                return `√(${convertLatexToDocumentText(groups[0])})`;
+            });
+            text = replaceLatexOver(text);
+
+            Object.entries(latexSymbolMap)
+                .sort((a, b) => b[0].length - a[0].length)
+                .forEach(([command, symbol]) => {
+                    text = text.split(command).join(symbol);
+                });
+
+            text = text.replace(/\^\{([^{}]+)\}/g, (_, script) => convertScriptCharacters(script, superscriptMap));
+            text = text.replace(/\^([A-Za-z0-9+\-=()])/g, (_, script) => convertScriptCharacters(script, superscriptMap));
+            text = text.replace(/_\{([^{}]+)\}/g, (_, script) => convertScriptCharacters(script, subscriptMap));
+            text = text.replace(/_([A-Za-z0-9+\-=()])/g, (_, script) => convertScriptCharacters(script, subscriptMap));
+            text = text.replace(/[{}]/g, '');
+            text = text.replace(/\s+/g, ' ').trim();
+
+            return text;
+        }
+
+        function insertFormulaText(asFormula) {
+            const input = document.getElementById('formula-input');
+            if (!activeFormulaTarget || !input) return;
+
+            const raw = input.value.trim();
+            if (!raw) return;
+
+            insertAtCursor(activeFormulaTarget, asFormula ? convertLatexToDocumentText(raw) : raw);
+            closeFormulaDialog();
+        }
+
+        function insertIntoFormulaInput(text) {
+            const input = document.getElementById('formula-input');
+            if (!input) return;
+            insertAtCursor(input, text);
+            updateFormulaPreview();
+        }
+
+        function updateFormulaPreview() {
+            const input = document.getElementById('formula-input');
+            const preview = document.getElementById('formula-preview');
+            const docxPreview = document.getElementById('formula-docx-preview');
+            if (!input || !preview || !docxPreview) return;
+
+            const raw = input.value.trim();
+            preview.textContent = raw ? `\\(${raw}\\)` : 'Предпросмотр появится здесь.';
+            docxPreview.textContent = raw ? `В документ будет вставлено: ${convertLatexToDocumentText(raw)}` : 'В документ будет вставлено: —';
+
+            if (window.MathJax && MathJax.typesetPromise) {
+                MathJax.typesetClear([preview]);
+                MathJax.typesetPromise([preview]).catch(() => {});
+            }
+        }
+
+        document.addEventListener('input', (event) => {
+            if (event.target && event.target.id === 'formula-input') {
+                updateFormulaPreview();
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            const symbolButton = event.target.closest('.formula-symbol');
+            if (symbolButton) {
+                insertIntoFormulaInput(symbolButton.dataset.insert || '');
+                return;
+            }
+
+            const templateButton = event.target.closest('.formula-template');
+            if (templateButton) {
+                const input = document.getElementById('formula-input');
+                if (input) {
+                    const templateValue = templateButton.dataset.template || '';
+                    const isMatrixTemplate = templateValue.includes('\\begin{pmatrix}');
+                    if (
+                        isMatrixTemplate
+                        && activeFormulaTarget
+                        && !activeFormulaTarget.closest('.control-answer-row')
+                    ) {
+                        alert('Матрицу смежности можно вставлять только в варианты ответа контрольной работы.');
+                        return;
+                    }
+                    input.value = templateValue;
+                    input.focus();
+                    updateFormulaPreview();
+                }
+                closeFormulaHelpDialog();
+                const dialog = document.getElementById('formula-dialog');
+                if (dialog) {
+                    dialog.hidden = false;
+                }
+                return;
+            }
+
+            const dialog = document.getElementById('formula-dialog');
+            if (dialog && !dialog.hidden && event.target === dialog) {
+                closeFormulaDialog();
+            }
+
+            const helpDialog = document.getElementById('formula-help-dialog');
+            if (helpDialog && !helpDialog.hidden && event.target === helpDialog) {
+                closeFormulaHelpDialog();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeFormulaDialog();
+                closeFormulaHelpDialog();
+            }
+        });
+    </script>
+    <script src="{{ url_for('static', filename='study_plan_hours.js') }}"></script>
+    <script src="{{ url_for('static', filename='ai_assistant.js') }}"></script>
+    <script src="{{ url_for('static', filename='theme.js') }}"></script>
+</body>
+</html>
