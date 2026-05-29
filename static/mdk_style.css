@@ -1,0 +1,507 @@
+.mdk-form-shell {
+    max-width: 1040px;
+}
+
+.mdk-card {
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.48)),
+        rgba(255, 255, 255, 0.58);
+    box-shadow:
+        0 18px 48px rgba(15, 23, 42, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+
+.mdk-card h3 {
+    margin-top: 0;
+}
+
+.mdk-form-shell .form-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.mdk-form-shell .half {
+    flex: 1 1 0;
+}
+
+.mdk-form-shell .third {
+    flex: 1 1 33.333%;
+}
+
+.mdk-form-shell .quarter {
+    flex: 1 1 25%;
+}
+
+.mdk-form-shell .two-thirds {
+    flex: 2 1 66.666%;
+}
+
+.mdk-form-shell input,
+.mdk-form-shell select,
+.mdk-form-shell textarea {
+    width: 100%;
+}
+
+.mdk-form-shell textarea {
+    min-height: 88px;
+    resize: vertical;
+}
+
+.form-page {
+    display: none;
+}
+
+.form-page.is-active {
+    display: block;
+}
+
+.mdk-activities-header,
+.mdk-activity-title,
+.mdk-pc-row,
+.mdk-thematic-header,
+.mdk-plan-section-title,
+.mdk-plan-topic-title,
+.mdk-rooms-header,
+.mdk-room-title {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mdk-activities-header,
+.mdk-thematic-header,
+.mdk-rooms-header {
+    margin: 18px 0 12px;
+}
+
+.mdk-activities-header h4,
+.mdk-thematic-header h4,
+.mdk-rooms-header h4 {
+    margin: 0;
+}
+
+.mdk-activity,
+.mdk-plan-section,
+.mdk-room {
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 18px;
+    padding: 16px;
+    margin-bottom: 14px;
+    background: rgba(255, 255, 255, 0.38);
+}
+
+.mdk-activity-title,
+.mdk-plan-section-title,
+.mdk-room-title {
+    margin-bottom: 12px;
+}
+
+.mdk-sources-block {
+    margin-top: 22px;
+}
+
+.mdk-sources-block h4 {
+    margin: 0 0 14px;
+}
+
+.mdk-source-group {
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 18px;
+    padding: 14px;
+    margin-bottom: 14px;
+    background: rgba(255, 255, 255, 0.26);
+}
+
+.mdk-source-header,
+.mdk-source-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.mdk-source-header {
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.mdk-source-header h5 {
+    margin: 0;
+}
+
+.mdk-source-list {
+    display: grid;
+    gap: 10px;
+}
+
+.mdk-source-number {
+    flex: 0 0 34px;
+    padding-top: 12px;
+}
+
+.mdk-source-text {
+    flex: 1 1 auto;
+}
+
+.mdk-source-row .btn {
+    flex: 0 0 auto;
+}
+
+.mdk-assessment-rows {
+    display: grid;
+    gap: 14px;
+}
+
+.mdk-assessment-card {
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 18px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.mdk-kos-page {
+    padding: 28px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow:
+        0 24px 80px rgba(31, 38, 135, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(22px) saturate(160%);
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+}
+
+.mdk-kos-hero {
+    margin-bottom: 24px;
+    padding: 22px 24px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.74), rgba(255,255,255,0.36));
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.mdk-kos-hero h2 {
+    margin: 0;
+    text-align: left;
+}
+
+.mdk-kos-hero p {
+    margin: 8px 0 0;
+    color: #4b5563;
+}
+
+.mdk-kos-eyebrow {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.mdk-kos-results {
+    display: grid;
+    gap: 14px;
+}
+
+.mdk-kos-card {
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 18px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.mdk-kos-card-header,
+.mdk-kos-result-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.mdk-kos-card-header {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.mdk-kos-card-header h4 {
+    margin: 0;
+}
+
+.mdk-kos-result-list {
+    display: grid;
+    gap: 10px;
+}
+
+.mdk-kos-result-number {
+    flex: 0 0 34px;
+    padding-top: 12px;
+}
+
+.mdk-kos-result-code {
+    flex: 0 0 180px;
+}
+
+.mdk-kos-result-name {
+    flex: 1 1 auto;
+}
+
+.mdk-kos-questions,
+.mdk-kos-tickets {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.mdk-kos-question-row,
+.mdk-kos-ticket-header,
+.mdk-kos-ticket-question-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.mdk-kos-ticket {
+    display: grid;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.26);
+}
+
+.mdk-kos-ticket-questions {
+    display: grid;
+    gap: 10px;
+}
+
+.mdk-kos-question-number,
+.mdk-kos-ticket-question-number {
+    flex: 0 0 34px;
+    padding-top: 12px;
+}
+
+.mdk-kos-question-text,
+.mdk-kos-ticket-question-text {
+    flex: 1 1 auto;
+}
+
+.mdk-assessment-card h4 {
+    margin: 0 0 12px;
+}
+
+.mdk-assessment-criterion {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.mdk-checkbox-label {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    font-weight: 700;
+}
+
+.mdk-checkbox-label input {
+    width: auto;
+}
+
+.mdk-plan-topics {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.mdk-plan-topic {
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 16px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.28);
+}
+
+.mdk-plan-topic-title {
+    margin-bottom: 10px;
+}
+
+.mdk-plan-entry-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120px minmax(180px, 0.45fr);
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.mdk-pc-list {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.mdk-pc-row select {
+    flex: 1 1 auto;
+}
+
+.mdk-pc-row .btn {
+    flex: 0 0 auto;
+}
+
+.mdk-results-block {
+    margin-top: 20px;
+}
+
+.mdk-help-link {
+    margin: 0 0 14px;
+    color: var(--text-muted, rgba(15, 23, 42, 0.72));
+}
+
+.mdk-help-link a {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.mdk-results-block h4 {
+    margin: 0 0 12px;
+}
+
+.mdk-pc-results {
+    display: grid;
+    gap: 14px;
+}
+
+.mdk-result-card {
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 18px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.32);
+}
+
+.mdk-result-card h5 {
+    margin: 0 0 6px;
+}
+
+.mdk-result-card p {
+    margin: 0 0 12px;
+    opacity: 0.78;
+}
+
+.mdk-workload-table {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.mdk-workload-head {
+    font-weight: 700;
+}
+
+.mdk-workload-table strong {
+    align-self: center;
+}
+
+.mdk-workload-table input[readonly] {
+    opacity: 0.78;
+}
+
+.mdk-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+:root[data-theme="dark"] .mdk-card {
+    border-color: rgba(255, 255, 255, 0.14);
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035)),
+        rgba(7, 7, 8, 0.72);
+    box-shadow:
+        0 18px 48px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme="dark"] .mdk-kos-page,
+:root[data-theme="dark"] .mdk-kos-hero {
+    border-color: rgba(255, 255, 255, 0.14);
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035)),
+        rgba(7, 7, 8, 0.72);
+}
+
+:root[data-theme="dark"] .mdk-activity,
+:root[data-theme="dark"] .mdk-plan-section,
+:root[data-theme="dark"] .mdk-room {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.045);
+}
+
+:root[data-theme="dark"] .mdk-result-card,
+:root[data-theme="dark"] .mdk-plan-topic,
+:root[data-theme="dark"] .mdk-assessment-card,
+:root[data-theme="dark"] .mdk-kos-card,
+:root[data-theme="dark"] .mdk-kos-ticket {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.045);
+}
+
+:root[data-theme="dark"] .mdk-kos-hero p,
+:root[data-theme="dark"] .mdk-kos-eyebrow {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+:root[data-theme="dark"] .mdk-source-group {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.045);
+}
+
+@media (max-width: 760px) {
+    .mdk-form-shell .form-row,
+    .mdk-actions,
+    .mdk-activities-header,
+    .mdk-activity-title,
+    .mdk-pc-row,
+    .mdk-thematic-header,
+    .mdk-plan-section-title,
+    .mdk-plan-topic-title,
+    .mdk-rooms-header,
+    .mdk-room-title,
+    .mdk-source-header,
+    .mdk-source-row,
+    .mdk-kos-card-header,
+    .mdk-kos-result-row,
+    .mdk-kos-question-row,
+    .mdk-kos-ticket-header,
+    .mdk-kos-ticket-question-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .mdk-source-number,
+    .mdk-kos-result-number,
+    .mdk-kos-question-number,
+    .mdk-kos-ticket-question-number {
+        padding-top: 0;
+    }
+
+    .mdk-kos-result-code {
+        flex-basis: auto;
+    }
+
+    .mdk-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .mdk-workload-table,
+    .mdk-plan-entry-grid {
+        grid-template-columns: 1fr;
+    }
+}

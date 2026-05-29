@@ -1,0 +1,173 @@
+.practice-form-shell {
+    max-width: 1040px;
+}
+
+.practice-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.practice-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 8% 0%, rgba(255, 255, 255, 0.58), transparent 32%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 48%);
+    opacity: 0.9;
+}
+
+.practice-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.practice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.practice-grid-three {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.practice-grid-four {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.practice-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.practice-muted {
+    color: var(--text-soft);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.practice-dynamic-list {
+    display: grid;
+    gap: 12px;
+}
+
+.practice-task-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: start;
+}
+
+.practice-simple-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: start;
+}
+
+.practice-competency-field {
+    display: grid;
+    grid-template-columns: minmax(120px, 180px) minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: start;
+}
+
+.practice-evaluation-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr) minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: start;
+}
+
+.practice-task-field textarea {
+    min-height: 58px;
+    resize: vertical;
+}
+
+.practice-simple-field textarea {
+    min-height: 58px;
+    resize: vertical;
+}
+
+.practice-competency-field textarea {
+    min-height: 58px;
+    resize: vertical;
+}
+
+.practice-evaluation-field textarea {
+    min-height: 58px;
+    resize: vertical;
+}
+
+.practice-stage-group {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.practice-stage-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(90px, 130px) minmax(150px, 220px);
+    gap: 10px;
+    align-items: start;
+}
+
+.practice-stage-row textarea {
+    min-height: 70px;
+    resize: vertical;
+}
+
+.practice-stage-mini-field {
+    display: grid;
+    gap: 6px;
+}
+
+.practice-stage-mini-field label {
+    color: var(--text-soft);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.practice-add-task,
+.practice-add-competency,
+.practice-add-simple,
+.practice-add-evaluation {
+    margin-top: 12px;
+}
+
+.practice-remove-task,
+.practice-remove-competency,
+.practice-remove-simple,
+.practice-remove-evaluation {
+    min-height: 44px;
+}
+
+@media (max-width: 760px) {
+    .practice-grid,
+    .practice-grid-three,
+    .practice-grid-four {
+        grid-template-columns: 1fr;
+    }
+
+    .practice-task-field,
+    .practice-simple-field,
+    .practice-competency-field,
+    .practice-evaluation-field,
+    .practice-stage-row {
+        grid-template-columns: 1fr;
+    }
+
+    .practice-actions {
+        justify-content: stretch;
+        flex-direction: column;
+    }
+}
